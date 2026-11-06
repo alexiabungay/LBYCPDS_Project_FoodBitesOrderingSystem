@@ -1,4 +1,5 @@
 package features;
 
-public class RecordType {
+public enum RecordType {
+    SALE, CANCELLATION, REFUND
 }

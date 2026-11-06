@@ -1,4 +1,5 @@
 package features;
 
-public class UserRole {
+public enum UserRole {
+    CUSTOMER, DELIVERY_RIDER, BUSINESS_OWNER, EMPLOYEE, ADMINISTRATOR
 }

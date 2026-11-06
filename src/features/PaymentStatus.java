@@ -1,4 +1,5 @@
 package features;
 
-public class PaymentStatus {
+public enum PaymentStatus {
+    PENDING, SUCCESS, FAILED, CANCELLED, REFUNDED
 }

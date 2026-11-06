@@ -1,4 +1,5 @@
 package features;
 
-public class OrderType {
+public enum OrderType {
+    DINE_IN, TAKEOUT, DELIVERY
 }

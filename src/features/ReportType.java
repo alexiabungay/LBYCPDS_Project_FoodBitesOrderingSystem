@@ -1,4 +1,5 @@
 package features;
 
-public class ReportType {
+public enum ReportType {
+    DAILY, WEEKLY, MONTHLY
 }

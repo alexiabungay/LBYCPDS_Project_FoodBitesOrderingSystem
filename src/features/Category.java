@@ -1,4 +1,5 @@
 package features;
 
-public class Category {
+public enum Category {
+    MEAL, SNACK, DESSERT, DRINK
 }

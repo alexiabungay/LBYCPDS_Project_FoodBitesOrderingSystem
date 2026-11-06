@@ -1,4 +1,6 @@
 package features;
 
-public class OrderStatus {
+public enum OrderStatus {
+    PENDING_PAYMENT, CONFIRMED, PREPARING, READY, OUT_FOR_DELIVERY,
+    COMPLETED, DELIVERED, CANCELLED, FAILED, REFUNDED
 }
