@@ -24,6 +24,14 @@ public class Authentication {
         if (!sessionStack.isEmpty()) {
             sessionStack.pop();
         }
-        currentUser = sessionStack.peek(); 
+        currentUser = sessionStack.peek();
+    }
+
+    public static boolean checkRole(UserRole requiredRole) {
+        return currentUser != null && currentUser.getRole() == requiredRole;
+    }
+
+    public static User getCurrentUser() {
+        return currentUser;
     }
 }
