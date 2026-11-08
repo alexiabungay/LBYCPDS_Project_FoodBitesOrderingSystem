@@ -19,4 +19,8 @@ public class DataStoring {
     public static synchronized int generateNextOrderId() {
         return ++orderIdCounter;
     }
+
+    public static void addUser(User user) { users.add(user); }
+    public static void addRestaurant(Restaurant r) { restaurants.add(r); }
+    public static void addOrder(Order order) { orders.add(order); }
 }
