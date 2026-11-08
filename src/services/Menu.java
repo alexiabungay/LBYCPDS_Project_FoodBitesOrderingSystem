@@ -15,4 +15,8 @@ public class Menu {
         nameTree.insert(name, price);
         priceTree.insert(name, price);
     }
+
+    public void displayBestsellers(AVLTree.TreeNode[] itemArray) {
+        HeapSort.heapSort(itemArray);
+    }
 }
