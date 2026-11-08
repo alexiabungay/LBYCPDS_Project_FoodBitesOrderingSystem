@@ -27,4 +27,17 @@ public class Csv {
         tokens.add(sb.toString().trim());
         return tokens.toArray(new String[0]);
     }
+
+    public static String formatLine(String[] fields) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < fields.length; i++) {
+            String field = fields[i] == null ? "" : fields[i];
+            if (field.contains(",") || field.contains("\"")) {
+                field = "\"" + field.replace("\"", "\"\"") + "\"";
+            }
+            sb.append(field);
+            if (i < fields.length - 1) sb.append(",");
+        }
+        return sb.toString();
+    }
 }
