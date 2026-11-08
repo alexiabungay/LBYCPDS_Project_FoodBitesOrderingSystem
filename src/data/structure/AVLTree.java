@@ -39,7 +39,7 @@ public class AVLTree {
 
     public AVLTree(int keyType) {
         if (keyType != KEY_NAME && keyType != KEY_PRICE) {
-            throw new IllegalArgumentException("keyType must be AVLTree.BY_NAME or AVLTree.BY_PRICE");
+            throw new IllegalArgumentException("keyType must be AVLTree.KEY_NAME or AVLTree.KEY_PRICE");
         }
         this.keyType = keyType;
     }
