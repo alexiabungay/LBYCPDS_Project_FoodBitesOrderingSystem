@@ -10,4 +10,9 @@ import java.util.ArrayList;
 public class Menu {
     private final AVLTree nameTree = new AVLTree(AVLTree.KEY_NAME);
     private final AVLTree priceTree = new AVLTree(AVLTree.KEY_PRICE);
+
+    public void addMenuItem(String name, int price) {
+        nameTree.insert(name, price);
+        priceTree.insert(name, price);
+    }
 }
