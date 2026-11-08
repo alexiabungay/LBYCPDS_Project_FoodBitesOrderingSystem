@@ -19,4 +19,11 @@ public class Authentication {
         }
         return null;
     }
+
+    public static void logout() {
+        if (!sessionStack.isEmpty()) {
+            sessionStack.pop();
+        }
+        currentUser = sessionStack.peek(); 
+    }
 }
