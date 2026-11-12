@@ -19,9 +19,23 @@ public class SalesRecord {
         this.items = new ArrayList<>(items);
     }
 
-    public int getOrderId() { return orderId; }
-    public RecordType getType() { return type; }
-    public LocalDate getDate() { return date; }
-    public double getAmount() { return amount; }
-    public List<OrderItem> getItems() { return items; }
+    public int getOrderId() {
+        return orderId;
+    }
+
+    public RecordType getType() {
+        return type;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public double getAmount() {
+        return amount;
+    }
+
+    public List<OrderItem> getItems() {
+        return items;
+    }
 }

@@ -7,10 +7,17 @@ public class StatusDelivery {
     private final OrderStatus status;
     private final LocalDateTime timestamp = LocalDateTime.now();
 
-    public StatusDelivery(OrderStatus status) { this.status = status; }
+    public StatusDelivery(OrderStatus status) {
+        this.status = status;
+    }
 
-    public OrderStatus getStatus() { return status; }
-    public LocalDateTime getTimestamp() { return timestamp; }
+    public OrderStatus getStatus() {
+        return status;
+    }
+
+    public LocalDateTime getTimestamp() {
+        return timestamp;
+    }
 
     @Override
     public String toString() {

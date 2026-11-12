@@ -30,13 +30,33 @@ public class SalesReport {
 
     public double getNetRevenue() { return grossRevenue - refunds; }
 
-    public String getRestaurantName() { return restaurantName; }
-    public ReportType getPeriod() { return period; }
-    public int getOrderCount() { return orderCount; }
-    public double getGrossRevenue() { return grossRevenue; }
-    public int getCancellations() { return cancellations; }
-    public double getRefunds() { return refunds; }
-    public List<ItemSales> getBestSellers() { return bestSellers; }
+    public String getRestaurantName() {
+        return restaurantName;
+    }
+
+    public ReportType getPeriod() {
+        return period;
+    }
+
+    public int getOrderCount() {
+        return orderCount;
+    }
+
+    public double getGrossRevenue() {
+        return grossRevenue;
+    }
+
+    public int getCancellations() {
+        return cancellations;
+    }
+
+    public double getRefunds() {
+        return refunds;
+    }
+
+    public List<ItemSales> getBestSellers() {
+        return bestSellers;
+    }
 
     @Override
     public String toString() {
@@ -48,7 +68,8 @@ public class SalesReport {
         sb.append(String.format("  Refunds          : PHP %.2f%n", refunds));
         sb.append(String.format("  Net revenue      : PHP %.2f%n", getNetRevenue()));
         sb.append("  Best-selling items (heap sort, highest to lowest):\n");
-        if (bestSellers.isEmpty()) sb.append("    (no sales in this period)\n");
+        if (bestSellers.isEmpty())
+            sb.append("    (no sales in this period)\n");
         int rank = 1;
         for (ItemSales s : bestSellers)
             sb.append(String.format("    %d. %-22s %3d sold  PHP %.2f%n", rank++, s.getName(), s.getUnits(), s.getRevenue()));

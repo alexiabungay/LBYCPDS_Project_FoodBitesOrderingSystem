@@ -9,9 +9,16 @@ public class AddOn {
         this.price = price;
     }
 
-    public String getName() { return name; }
-    public double getPrice() { return price; }
+    public String getName() {
+        return name;
+    }
+
+    public double getPrice() {
+        return price;
+    }
 
     @Override
-    public String toString() { return name + " (+PHP " + String.format("%.2f", price) + ")"; }
+    public String toString() {
+        return name + " (+PHP " + String.format("%.2f", price) + ")";
+    }
 }
