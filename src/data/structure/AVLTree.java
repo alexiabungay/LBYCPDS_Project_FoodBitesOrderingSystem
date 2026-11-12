@@ -1,222 +1,184 @@
 package data.structure;
 
-public class AVLTree {
+import java.util.ArrayList;
+import java.util.List;
 
-    public static final int KEY_NAME = 1;
-    public static final int KEY_PRICE = 2;
+public class AVLTree<Key extends Comparable<Key>, Value> {
 
-    public static class TreeNode {
-        TreeNode left;
-        TreeNode right;
-        String menuName;
-        int menuPrice;
-        int totalSales;
-        int height;
-
-        TreeNode(String menuName, int menuPrice) {
-            this.menuName = menuName;
-            this.menuPrice = menuPrice;
-            this.totalSales = 0;
-            this.height = 1;
-        }
-
-        public String getMenuName() {
-            return menuName;
-        }
-
-        public int getMenuPrice() {
-            return menuPrice;
-        }
-
-        public int getTotalSales() {
-            return totalSales;
-        }
+    private class Node {
+        Key key;
+        Value value;
+        int height = 1;
+        Node left, right;
+        Node(Key key, Value value) { this.key = key; this.value = value; }
     }
 
-    TreeNode root;
-    int keyType;
-    int size;
+    private Node root;
+    private int size;
+    private boolean removed;
 
-    public AVLTree(int keyType) {
-        if (keyType != KEY_NAME && keyType != KEY_PRICE) {
-            throw new IllegalArgumentException("keyType must be AVLTree.KEY_NAME or AVLTree.KEY_PRICE");
+    public void insert(Key key, Value value) {
+        root = insert(root, key, value);
+    }
+
+    public Value search(Key key) {
+        Node currentNode = root;
+        while (currentNode != null) {
+            int comparisonResult = key.compareTo(currentNode.key);
+            if (comparisonResult == 0)
+                return currentNode.value;
+            currentNode = comparisonResult < 0 ? currentNode.left : currentNode.right;
         }
-        this.keyType = keyType;
+        return null;
     }
 
-    static int compareNames(String a, String b) {
-        return a.compareToIgnoreCase(b);
+    public boolean contains(Key key) {
+        return search(key) != null;
     }
 
-    static int comparePrices(int a, int b) {
-        return Integer.compare(a, b);
+    public boolean delete(Key key) {
+        removed = false;
+        root = delete(root, key);
+        if (removed) size--;
+        return removed;
     }
 
-    int compareNodes(String menuName, int menuPrice, TreeNode node) {
-        if (keyType == KEY_NAME) {
-            int c = compareNames(menuName, node.menuName);
-            if (c != 0) {
-                return c;
-            }
-            return comparePrices(menuPrice, node.menuPrice);
-        }
-
-        int c = comparePrices(menuPrice, node.menuPrice);
-        if (c != 0) {
-            return c;
-        }
-        return compareNames(menuName, node.menuName);
+    public List<Value> inOrder() {
+        List<Value> out = new ArrayList<>();
+        inOrder(root, out);
+        return out;
     }
 
-    static int height(TreeNode node) {
+    public List<Value> reverseInOrder() {
+        List<Value> out = new ArrayList<>();
+        reverseInOrder(root, out);
+        return out;
+    }
+
+    public List<Value> range(Key lowerBound, Key upperBound) {
+        List<Value> out = new ArrayList<>();
+        range(root, lowerBound, upperBound, out);
+        return out;
+    }
+
+    public int size() {
+        return size;
+    }
+
+    public boolean isEmpty() {
+        return size == 0;
+    }
+
+    public int height() {
+        return height(root);
+    }
+
+    private int height(Node node) {
         return node == null ? 0 : node.height;
     }
 
-    static void updateHeight(TreeNode node) {
+    private void update(Node node) {
         node.height = 1 + Math.max(height(node.left), height(node.right));
     }
 
-    static int getBalance(TreeNode node) {
+    private int balanceFactor(Node node) {
         return node == null ? 0 : height(node.left) - height(node.right);
     }
 
-    static TreeNode rightRotate(TreeNode y) {
-        TreeNode x = y.left;
-        TreeNode t2 = x.right;
-
-        x.right = y;
-        y.left = t2;
-
-        updateHeight(y);
-        updateHeight(x);
-        return x;
+    private Node rotateRight(Node nodeY) {
+        Node nodeX = nodeY.left;
+        nodeY.left = nodeX.right;
+        nodeX.right = nodeY;
+        update(nodeY);
+        update(nodeX);
+        return nodeX;
     }
 
-    static TreeNode leftRotate(TreeNode x) {
-        TreeNode y = x.right;
-        TreeNode t2 = y.left;
-
-        y.left = x;
-        x.right = t2;
-
-        updateHeight(x);
-        updateHeight(y);
-        return y;
+    private Node rotateLeft(Node nodeX) {
+        Node nodeY = nodeX.right;
+        nodeX.right = nodeY.left;
+        nodeY.left = nodeX;
+        update(nodeX);
+        update(nodeY);
+        return nodeY;
     }
 
-    static TreeNode rebalance(TreeNode node) {
-        int balance = getBalance(node);
-
-        if (balance > 1 && getBalance(node.left) >= 0) {
-            return rightRotate(node);
+    private Node rebalance(Node node) {
+        update(node);
+        int balance = balanceFactor(node);
+        if (balance > 1) {
+            if (balanceFactor(node.left) < 0)
+                node.left = rotateLeft(node.left);
+            return rotateRight(node);
         }
-        if (balance > 1 && getBalance(node.left) < 0) {
-            node.left = leftRotate(node.left);
-            return rightRotate(node);
+        if (balance < -1) {
+            if (balanceFactor(node.right) > 0)
+                node.right = rotateRight(node.right);
+            return rotateLeft(node);
         }
-        if (balance < -1 && getBalance(node.right) <= 0) {
-            return leftRotate(node);
-        }
-        if (balance < -1 && getBalance(node.right) > 0) {
-            node.right = rightRotate(node.right);
-            return leftRotate(node);
-        }
-
         return node;
     }
 
-    public boolean insert(String menuName, int menuPrice) {
-        int before = size;
-        root = insertRec(root, menuName, menuPrice);
-        return size > before;
-    }
-
-    TreeNode insertRec(TreeNode node, String menuName, int menuPrice) {
+    private Node insert(Node node, Key key, Value value) {
         if (node == null) {
             size++;
-            return new TreeNode(menuName, menuPrice);
+            return new Node(key, value);
         }
-
-        int cmp = compareNodes(menuName, menuPrice, node);
-
-        if (cmp < 0) {
-            node.left = insertRec(node.left, menuName, menuPrice);
-        } else if (cmp > 0) {
-            node.right = insertRec(node.right, menuName, menuPrice);
-        } else {
-            return node;
-        }
-
-        updateHeight(node);
+        int comparisonResult = key.compareTo(node.key);
+        if (comparisonResult < 0) node.left = insert(node.left, key, value);
+        else if (comparisonResult > 0) node.right = insert(node.right, key, value);
+        else { node.value = value; return node; }
         return rebalance(node);
     }
 
-    public static void preorder(TreeNode node) {
-        if (node != null) {
-            System.out.print(node.menuName + "(P" + node.menuPrice + ") ");
-            inorder(node.left);
-            inorder(node.right);
+    private Node delete(Node node, Key key) {
+        if (node == null)
+            return null;
+        int comparisonResult = key.compareTo(node.key);
+        if (comparisonResult < 0)
+            node.left = delete(node.left, key);
+        else if (comparisonResult > 0)
+            node.right = delete(node.right, key);
+        else {
+            removed = true;
+            if (node.left == null)
+                return node.right;
+            if (node.right == null)
+                return node.left;
+            Node min = node.right;
+            while (min.left != null)
+                min = min.left;
+            node.key = min.key;
+            node.value = min.value;
+            node.right = delete(node.right, min.key);
         }
+        return rebalance(node);
     }
 
-    public static void inorder(TreeNode node) {
-        if (node != null) {
-            inorder(node.left);
-            System.out.print(node.menuName + "(P" + node.menuPrice + ") ");
-            inorder(node.right);
-        }
+    private void inOrder(Node node, List<Value> out) {
+        if (node == null)
+            return;
+        inOrder(node.left, out);
+        out.add(node.value);
+        inOrder(node.right, out);
     }
 
-    public static void postorder(TreeNode node) {
-        if (node != null) {
-            inorder(node.left);
-            inorder(node.right);
-            System.out.print(node.menuName + "(P" + node.menuPrice + ") ");
-        }
+    private void reverseInOrder(Node node, List<Value> out) {
+        if (node == null)
+            return;
+        reverseInOrder(node.right, out);
+        out.add(node.value);
+        reverseInOrder(node.left, out);
     }
 
-    public static void printTree(TreeNode node, String prefix, boolean isLeft, String side) {
-        if (node != null) {
-            String label = side.isEmpty() ? "" : "[" + side + "] ";
-            System.out.println(prefix + (isLeft ? "├── " : "└── ") + label + node.menuName + " (P" + node.menuPrice + ")");
-
-            if (node.left != null || node.right != null) {
-                printTree(node.left, prefix + (isLeft ? "│   " : "    "), true, "L");
-                if (node.right != null) {
-                    printTree(node.right, prefix + (isLeft ? "│   " : "    "), false, "R");
-                }
-            }
-        }
-    }
-
-    public static void main(String[] args) {
-        String[] names = {"Sisig", "Bacsilog", "1pc Chicken Joy", "Mang-Inasal Paa", "Chicken Burger McDo"};
-        int[] prices = {190, 120, 110, 180, 100};
-
-        AVLTree nameTree = new AVLTree(KEY_NAME);
-        AVLTree priceTree = new AVLTree(KEY_PRICE);
-
-        for (int i = 0; i < names.length; i++) {
-            nameTree.insert(names[i], prices[i]);
-            priceTree.insert(names[i], prices[i]);
-        }
-
-        System.out.println("Name tree (A-Z):");
-        printTree(nameTree.root, "", false, "");
-        System.out.print("\nPre-order: ");
-        preorder(nameTree.root);
-        System.out.print("\nIn-order: ");
-        inorder(nameTree.root);
-        System.out.print("\nPost-order: ");
-        postorder(nameTree.root);
-
-        System.out.println("\n\nPrice tree (low to high):");
-        printTree(priceTree.root, "", false, "");
-        System.out.print("\nPre-order: ");
-        preorder(priceTree.root);
-        System.out.print("\nIn-order: ");
-        inorder(priceTree.root);
-        System.out.print("\nPost-order: ");
-        postorder(priceTree.root);
+    private void range(Node node, Key lowerBound, Key upperBound, List<Value> out) {
+        if (node == null)
+            return;
+        if (lowerBound.compareTo(node.key) < 0)
+            range(node.left, lowerBound, upperBound, out);
+        if (lowerBound.compareTo(node.key) <= 0 && upperBound.compareTo(node.key) >= 0)
+            out.add(node.value);
+        if (upperBound.compareTo(node.key) > 0)
+            range(node.right, lowerBound, upperBound, out);
     }
 }
