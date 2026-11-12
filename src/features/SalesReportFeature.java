@@ -3,7 +3,7 @@ package features;
 import java.time.LocalDate;
 import java.util.List;
 
-public class SalesReport {
+public class SalesReportFeature {
     private final String restaurantName;
     private final ReportType period;
     private final LocalDate from;
@@ -14,7 +14,7 @@ public class SalesReport {
     private final double refunds;
     private final List<ItemSales> bestSellers;
 
-    public SalesReport(String restaurantName, ReportType period, LocalDate from, LocalDate to,
+    public SalesReportFeature(String restaurantName, ReportType period, LocalDate from, LocalDate to,
                        int orderCount, double grossRevenue, int cancellations, double refunds,
                        List<ItemSales> bestSellers) {
         this.restaurantName = restaurantName;
@@ -28,7 +28,9 @@ public class SalesReport {
         this.bestSellers = bestSellers;
     }
 
-    public double getNetRevenue() { return grossRevenue - refunds; }
+    public double getNetRevenue() {
+        return grossRevenue - refunds;
+    }
 
     public String getRestaurantName() {
         return restaurantName;
@@ -71,8 +73,8 @@ public class SalesReport {
         if (bestSellers.isEmpty())
             sb.append("    (no sales in this period)\n");
         int rank = 1;
-        for (ItemSales s : bestSellers)
-            sb.append(String.format("    %d. %-22s %3d sold  PHP %.2f%n", rank++, s.getName(), s.getUnits(), s.getRevenue()));
+        for (ItemSales itemSale : bestSellers)
+            sb.append(String.format("    %d. %-22s %3d sold  PHP %.2f%n", rank++, itemSale.getName(), itemSale.getUnits(), itemSale.getRevenue()));
         return sb.toString();
     }
 }
