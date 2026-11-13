@@ -122,4 +122,69 @@ public class FoodBitesApp {
         String addOnsText = menuItem.getAddOns().isEmpty() ? "" : " | Add-ons: " + menuItem.getAddOns();
         System.out.println("       " + menuItem.getDescription() + sizesText + addOnsText);
     }
+
+    private void browse() {
+        List<Restaurant> restaurantList = menu.browseRestaurants();
+        for (Restaurant restaurant : restaurantList) {
+            System.out.println(restaurant);
+        }
+        int restaurantId = readInt("Restaurant ID to open (Press 0 to go back): ");
+        if (restaurantId == 0) {
+            return;
+        }
+        Restaurant restaurant = menu.getRestaurant(restaurantId);
+        while (true) {
+            System.out.println("\n" + restaurant.getName());
+            System.out.println("\t0. Back");
+            System.out.println("\t1. View full menu");
+            System.out.println("\t2. Search by name");
+            System.out.println("\t3. Filter by category");
+            System.out.println("\t4. Filter by price range");
+            System.out.println("\t5. Sort A to Z");
+            System.out.println("\t6. Sort lowest to highest price");
+            System.out.println("\t7. Sort highest to lowest price");
+            System.out.println("\t8. Popularity");
+            int menuChoice = readInt("Choice: ");
+
+            if (menuChoice == 0) {
+                return;
+            }
+            List<MenuItem> result = null;
+            switch (menuChoice) {
+                case 1:
+                    printCategory(menu.browseMenu(restaurant));
+                    continue;
+                case 2:
+                    String searchText = readLine("Search: ");
+                    result = menu.search(restaurant, searchText);
+                    break;
+                case 3:
+                    Category category = readCategory();
+                    result = menu.filterByCategory(restaurant, category);
+                    break;
+                case 4:
+                    double minPrice = readDouble("Min price: ");
+                    double maxPrice = readDouble("Max price: ");
+                    result = menu.filterByPrice(restaurant, minPrice, maxPrice);
+                    break;
+                case 5:
+                    result = menu.sort(restaurant, SortFeature.ALPHABETICAL);
+                    break;
+                case 6:
+                    result = menu.sort(restaurant, SortFeature.PRICE_LOW_TO_HIGH);
+                    break;
+                case 7:
+                    result = menu.sort(restaurant, SortFeature.PRICE_HIGH_TO_LOW);
+                    break;
+                case 8:
+                    result = menu.sort(restaurant, SortFeature.POPULARITY);
+                    break;
+                default:
+                    System.out.println("Invalid choice.");
+            }
+            if (result != null) {
+                printItems(result);
+            }
+        }
+    }
 }
