@@ -23,4 +23,13 @@ public class Authentication {
         if (!Validator.isValidPassword(password)) {
             throw new IllegalArgumentException("Password needs at least 8 characters with a letter and a number.");
         }
+        if (store.getUsersByEmail().contains(email.toLowerCase())) {
+            throw new IllegalArgumentException("That email is already registered.");
+        }
+        if (role == UserRole.ADMINISTRATOR) {
+            throw new IllegalArgumentException("Administrator accounts cannot be self-registered.");
+        }
+
+        int userId = store.newUserId();
+        User newUser;
 }
