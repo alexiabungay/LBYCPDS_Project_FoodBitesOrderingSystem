@@ -83,4 +83,29 @@ public class Authentication {
         currentUser = foundUser;
         return foundUser;
     }
+
+
+    public void logout() {
+        currentUser = null;
+    }
+
+    public User getCurrentUser() {
+        return currentUser;
+    }
+
+    public boolean isLoggedIn() {
+        return currentUser != null;
+    }
+
+    public boolean hasRole(UserRole... allowedRoles) {
+        if (currentUser == null) {
+            return false;
+        }
+        for (UserRole allowedRole : allowedRoles) {
+            if (currentUser.getRole() == allowedRole) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
