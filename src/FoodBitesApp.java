@@ -581,4 +581,59 @@ public class FoodBitesApp {
             }
         });
     }
+
+    private void run() {
+        int loadedRestaurantCount = store.loadRestaurants();
+        if (store.getUsersByEmail().search("admin@foodbites.ph") == null) {
+            authentication.createAdministrator("Food Bites Admin", "admin@foodbites.ph", "09170000000", "Admin1234");
+        }
+        System.out.println("FOOD BITES ORDERING SYSTEM");
+        System.out.println(loadedRestaurantCount + " restaurant(s) loaded from data/restaurants");
+        while (true) {
+            if (!authentication.isLoggedIn()) {
+                System.out.println("\nMain Menu");
+                System.out.println("\t1. Browse restaurants and menus");
+                System.out.println("\t2. Register");
+                System.out.println("\t3. Login");
+                System.out.println("\t4. Exit");
+                int mainChoice = readInt("Choice: ");
+                switch (mainChoice) {
+                    case 1:
+                        guard(() -> browse());
+                        break;
+                    case 2:
+                        guard(() -> register());
+                        break;
+                    case 3:
+                        guard(() -> login());
+                        break;
+                    case 4:
+                        System.out.println("Goodbye!");
+                        return;
+                    default:
+                        System.out.println("Invalid choice.");
+                }
+            } else {
+                User currentUser = authentication.getCurrentUser();
+                System.out.println("\n[" + currentUser.getRoleDescription() + "] " + currentUser.getName());
+                switch (currentUser.getRole()) {
+                    case CUSTOMER:
+                        customerMenu((Customer) currentUser);
+                        break;
+                    case EMPLOYEE:
+                        employeeMenu((Employee) currentUser);
+                        break;
+                    case DELIVERY_RIDER:
+                        riderMenu((DeliveryRider) currentUser);
+                        break;
+                    default:
+                        managerMenu(currentUser);
+                }
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        new FoodBitesApp().run();
+    }
 }
