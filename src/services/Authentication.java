@@ -64,4 +64,9 @@ public class Authentication {
         save(administrator);
         return administrator;
     }
+
+    private void save(User user) {
+        store.getUsersByEmail().insert(user.getEmail(), user);
+        store.getUsersById().insert(user.getId(), user);
+    }
 }
