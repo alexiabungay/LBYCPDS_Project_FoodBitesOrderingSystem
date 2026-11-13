@@ -228,4 +228,33 @@ public class FoodBitesApp {
         }
         System.out.printf("  Running subtotal: PHP %.2f%n", cart.getSubtotal());
     }
+
+    private void editCart(Customer customer) {
+        printCart(customer.getCart());
+        if (customer.getCart().isEmpty()) {
+            return;
+        }
+        System.out.println("0. Back");
+        System.out.println("1. Change quantity");
+        System.out.println("2. Remove item");
+        System.out.println("3. Clear cart");
+        int editChoice = readInt("Choice: ");
+        switch (editChoice) {
+            case 1:
+                int quantityLineNumber = readInt("Line number: ") - 1;
+                int newQuantity = readInt("New quantity: ");
+                customer.getCart().updateQuantity(quantityLineNumber, newQuantity);
+                break;
+            case 2:
+                int removeLineNumber = readInt("Line number: ") - 1;
+                customer.getCart().removeItem(removeLineNumber);
+                break;
+            case 3:
+                customer.getCart().clear();
+                break;
+            default:
+                return;
+        }
+        printCart(customer.getCart());
+    }
 }
