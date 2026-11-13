@@ -32,4 +32,24 @@ public class Authentication {
 
         int userId = store.newUserId();
         User newUser;
+
+        switch (role) {
+            case CUSTOMER:
+                newUser = new Customer(userId, name, email, phone, password);
+                break;
+            case DELIVERY_RIDER:
+                newUser = new DeliveryRider(userId, name, email, phone, password);
+                break;
+            case BUSINESS_OWNER:
+                newUser = new BusinessOwner(userId, name, email, phone, password);
+                break;
+            case EMPLOYEE:
+                if (store.getRestaurants().search(restaurantId) == null) {
+                    throw new IllegalArgumentException("Employees must be linked to an existing restaurant.");
+                }
+                newUser = new Employee(userId, name, email, phone, password, restaurantId);
+                break;
+            default:
+                throw new IllegalArgumentException("Unknown role.");
+        }
 }
