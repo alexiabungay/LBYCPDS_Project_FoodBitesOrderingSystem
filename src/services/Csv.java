@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public final class Csv {
-    private Csv() { }
+    private Csv () { }
 
     public static String escape(String text) {
         if (text == null) {
@@ -59,7 +59,6 @@ public final class Csv {
                 currentField.append(character);
             }
         }
-
         fields.add(currentField.toString().trim());
         return fields;
     }
