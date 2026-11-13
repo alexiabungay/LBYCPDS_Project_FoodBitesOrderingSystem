@@ -23,7 +23,7 @@ public class DataStoring {
     private final RestaurantStorage restaurantStorage;
 
     public DataStoring() {
-        this("data/restaurants");
+        this("src/data");
     }
 
     public DataStoring(String restaurantFolder) {
