@@ -52,4 +52,10 @@ public class Authentication {
             default:
                 throw new IllegalArgumentException("Unknown role.");
         }
+        save(newUser);
+        if (role == UserRole.BUSINESS_OWNER) {
+            store.relinkOwner(newUser);
+        }
+        return newUser;
+    }
 }
