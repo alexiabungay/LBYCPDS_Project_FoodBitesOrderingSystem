@@ -60,4 +60,31 @@ public class FoodBitesApp {
         int categoryChoice = readInt("Choice: ");
         return categoryChoice == 2 ? Category.SNACK : categoryChoice == 3 ? Category.DESSERT : categoryChoice == 4 ? Category.DRINK : Category.MEAL;
     }
+
+    private void register() {
+        System.out.println("User Role");
+        System.out.println("\t1. Customer");
+        System.out.println("\t2. Delivery rider");
+        System.out.println("\t3. Business owner");
+        System.out.println("\t4. Employee");
+        int roleChoice = readInt("Choice: ");
+
+        UserRole role = switch (roleChoice) {
+            case 2 -> UserRole.DELIVERY_RIDER;
+            case 3 -> UserRole.BUSINESS_OWNER;
+            case 4 -> UserRole.EMPLOYEE;
+            default -> UserRole.CUSTOMER;
+        };
+
+        int restaurantId = -1;
+        if (role == UserRole.EMPLOYEE) {
+            restaurantId = readInt("Restaurant ID you work for: ");
+        }
+        String name = readLine("Name: ");
+        String email = readLine("Email: ");
+        String phone = readLine("Phone: ");
+        String password = readLine("Password: ");
+        User newUser = auth.register(name, email, phone, password, role, restaurantId);
+        System.out.println("Registered " + newUser.getName() + ". You can now log in.");
+    }
 }
