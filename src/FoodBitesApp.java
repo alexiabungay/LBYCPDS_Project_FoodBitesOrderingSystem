@@ -50,4 +50,14 @@ public class FoodBitesApp {
             }
         }
     }
+
+    private Category readCategory() {
+        System.out.println("Category");
+        System.out.println("\t1. Meal");
+        System.out.println("\t2. Snack");
+        System.out.println("\t3. Dessert");
+        System.out.println("\t4. Drink");
+        int categoryChoice = readInt("Choice: ");
+        return categoryChoice == 2 ? Category.SNACK : categoryChoice == 3 ? Category.DESSERT : categoryChoice == 4 ? Category.DRINK : Category.MEAL;
+    }
 }
