@@ -58,4 +58,10 @@ public class Authentication {
         }
         return newUser;
     }
+
+    public Admin createAdministrator(String name, String email, String phone, String password) {
+        Admin administrator = new Admin(store.newUserId(), name, email, phone, password);
+        save(administrator);
+        return administrator;
+    }
 }
