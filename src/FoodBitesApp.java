@@ -442,4 +442,143 @@ public class FoodBitesApp {
             }
         });
     }
+
+    private void managerMenu(User user) {
+        System.out.println("1. Add restaurant");
+        System.out.println("2. Edit restaurant");
+        System.out.println("3. Remove restaurant");
+        System.out.println("4. Add menu item");
+        System.out.println("5. Edit menu item");
+        System.out.println("6. Update price");
+        System.out.println("7. Remove menu item");
+        System.out.println("8. Set availability");
+        System.out.println("9. Update stock");
+        System.out.println("10. View active orders");
+        System.out.println("11. View completed orders");
+        System.out.println("12. Cancel order");
+        System.out.println("13. Refund order");
+        System.out.println("14. Sales report");
+        System.out.println("15. Inventory report");
+        System.out.println("16. Best sellers");
+        System.out.println("17. Rank restaurants ");
+        System.out.println("18. View restaurants");
+        System.out.println("19. Logout");
+        guard(() -> {
+            int restaurantId;
+            int managerChoice = readInt("Choice: ");
+            switch (managerChoice) {
+                case 1:
+                    String newRestaurantName = readLine("Name: ");
+                    String newRestaurantDescription = readLine("Description: ");
+                    String newRestaurantAddress = readLine("Address: ");
+                    Restaurant createdRestaurant = menu.createRestaurant(user, newRestaurantName, newRestaurantDescription, newRestaurantAddress);
+                    System.out.println("Created: " + createdRestaurant);
+                    break;
+                case 2:
+                    restaurantId = readInt("Restaurant ID: ");
+                    String updatedName = readLine("Name: ");
+                    String updatedDescription = readLine("Description: ");
+                    String updatedAddress = readLine("Address: ");
+                    menu.updateRestaurant(user, restaurantId, updatedName, updatedDescription, updatedAddress);
+                    break;
+                case 3:
+                    restaurantId = readInt("Restaurant ID: ");
+                    menu.removeRestaurant(user, restaurantId);
+                    break;
+                case 4:
+                    restaurantId = readInt("Restaurant ID: ");
+                    String newItemName = readLine("Name: ");
+                    String newItemDescription = readLine("Description: ");
+                    Category newItemCategory = readCategory();
+                    double newItemPrice = readDouble("Price: ");
+                    int newItemStock = readInt("Stock: ");
+                    MenuItem addedItem = menu.addItem(user, restaurantId, newItemName, newItemDescription, newItemCategory, newItemPrice, newItemStock);
+                    System.out.println("Added: " + addedItem);
+                    break;
+                case 5:
+                    restaurantId = readInt("Restaurant ID: ");
+                    String currentItemName = readLine("Current name: ");
+                    String newName = readLine("New name: ");
+                    String editedDescription = readLine("Description: ");
+                    Category editedCategory = readCategory();
+                    double editedPrice = readDouble("Price: ");
+                    menu.editItem(user, restaurantId, currentItemName, newName, editedDescription, editedCategory, editedPrice);
+                    break;
+                case 6:
+                    restaurantId = readInt("Restaurant ID: ");
+                    String priceItemName = readLine("Item name: ");
+                    double newPrice = readDouble("New price: ");
+                    menu.updatePrice(user, restaurantId, priceItemName, newPrice);
+                    break;
+                case 7:
+                    restaurantId = readInt("Restaurant ID: ");
+                    String removeItemName = readLine("Item name: ");
+                    menu.removeItem(user, restaurantId, removeItemName);
+                    break;
+                case 8:
+                    restaurantId = readInt("Restaurant ID: ");
+                    String availabilityItemName = readLine("Item name: ");
+                    String availabilityAnswer = readLine("Available? (y/n): ");
+                    menu.setAvailability(user, restaurantId, availabilityItemName, availabilityAnswer.equalsIgnoreCase("y"));
+                    break;
+                case 9:
+                    restaurantId = readInt("Restaurant ID: ");
+                    String stockItemName = readLine("Item name: ");
+                    int newStock = readInt("New stock: ");
+                    menu.updateStock(user, restaurantId, stockItemName, newStock);
+                    break;
+                case 10:
+                    restaurantId = readInt("Restaurant ID: ");
+                    printOrders(orders.listOrders(user, restaurantId, true));
+                    break;
+                case 11:
+                    restaurantId = readInt("Restaurant ID: ");
+                    printOrders(orders.listOrders(user, restaurantId, false));
+                    break;
+                case 12:
+                    int cancelOrderId = readInt("Order ID: ");
+                    System.out.println(orders.cancelOrder(user, cancelOrderId));
+                    break;
+                case 13:
+                    int refundOrderId = readInt("Order ID: ");
+                    System.out.println(orders.refundOrder(user, refundOrderId));
+                    break;
+                case 14:
+                    restaurantId = readInt("Restaurant ID: ");
+                    System.out.println("1. Daily  2. Weekly  3. Monthly");
+                    int periodChoice = readInt("Choice: ");
+                    ReportType reportType = periodChoice == 1 ? ReportType.DAILY : periodChoice == 2 ? ReportType.WEEKLY : ReportType.MONTHLY;
+                    System.out.println(reports.generate(user, restaurantId, reportType, LocalDate.now()));
+                    break;
+                case 15:
+                    restaurantId = readInt("Restaurant ID: ");
+                    System.out.println(reports.inventoryReport(user, restaurantId));
+                    break;
+                case 16:
+                    restaurantId = readInt("Restaurant ID: ");
+                    Restaurant bestSellerRestaurant = menu.getRestaurant(restaurantId);
+                    int bestSellerRank = 1;
+                    for (MenuItem bestSellingItem : reports.bestSellers(bestSellerRestaurant)) {
+                        System.out.printf("  %d. %-22s %d sold%n", bestSellerRank++, bestSellingItem.getName(), bestSellingItem.getTotalSales());
+                    }
+                    break;
+                case 17:
+                    int restaurantRank = 1;
+                    for (Restaurant rankedRestaurant : reports.rankRestaurants(user)) {
+                        System.out.printf("  %d. %-22s PHP %.2f%n", restaurantRank++, rankedRestaurant.getName(), rankedRestaurant.getTotalSales());
+                    }
+                    break;
+                case 18:
+                    for (Restaurant restaurantToShow : menu.browseRestaurants()) {
+                        System.out.println(restaurantToShow);
+                    }
+                    break;
+                case 19:
+                    authentication.logout();
+                    break;
+                default:
+                    System.out.println("Invalid choice.");
+            }
+        });
+    }
 }
