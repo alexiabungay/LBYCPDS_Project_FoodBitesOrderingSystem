@@ -404,4 +404,42 @@ public class FoodBitesApp {
             }
         });
     }
+
+    private void riderMenu(DeliveryRider rider) {
+        System.out.println("1. View pending deliveries");
+        System.out.println("2. Accept next delivery");
+        System.out.println("3. Confirm delivered");
+        System.out.println("4. Report failed delivery");
+        System.out.println("5. Logout");
+        guard(() -> {
+            int riderChoice = readInt("Choice: ");
+            switch (riderChoice) {
+                case 1:
+                    List<Order> pendingDeliveries = orders.pendingDeliveries();
+                    if (pendingDeliveries.isEmpty()) {
+                        System.out.println("No pending deliveries.");
+                    }
+                    for (Order pendingOrder : pendingDeliveries) {
+                        System.out.println("  " + pendingOrder + " - " + pendingOrder.getDetails().getAddress());
+                    }
+                    break;
+                case 2:
+                    System.out.println("Out for delivery: " + orders.acceptNextDelivery(rider));
+                    break;
+                case 3:
+                    int deliveredOrderId = readInt("Order ID: ");
+                    System.out.println(orders.confirmDelivery(rider, deliveredOrderId, true));
+                    break;
+                case 4:
+                    int failedOrderId = readInt("Order ID: ");
+                    System.out.println(orders.confirmDelivery(rider, failedOrderId, false));
+                    break;
+                case 5:
+                    authentication.logout();
+                    break;
+                default:
+                    System.out.println("Invalid choice.");
+            }
+        });
+    }
 }
