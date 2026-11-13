@@ -69,4 +69,18 @@ public class Authentication {
         store.getUsersByEmail().insert(user.getEmail(), user);
         store.getUsersById().insert(user.getId(), user);
     }
+
+    public User login(String email, String password) {
+        String lookupEmail = "";
+        if (email != null) {
+            lookupEmail = email.toLowerCase();
+        }
+
+        User foundUser = store.getUsersByEmail().search(lookupEmail);
+        if (foundUser == null || !foundUser.checkPassword(password)) {
+            throw new IllegalArgumentException("Wrong email or password.");
+        }
+        currentUser = foundUser;
+        return foundUser;
+    }
 }
