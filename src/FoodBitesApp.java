@@ -27,6 +27,7 @@ public class FoodBitesApp {
 
     private int readInt(String prompt) {
         while (true) {
+            System.out.print(prompt);
             if (!scanner.hasNextLine()) {
                 System.out.println();
                 System.exit(0);
@@ -135,7 +136,7 @@ public class FoodBitesApp {
         Restaurant restaurant = menu.getRestaurant(restaurantId);
         while (true) {
             System.out.println("\n" + restaurant.getName());
-            System.out.println("\t0. Back");
+
             System.out.println("\t1. View full menu");
             System.out.println("\t2. Search by name");
             System.out.println("\t3. Filter by category");
@@ -144,9 +145,10 @@ public class FoodBitesApp {
             System.out.println("\t6. Sort lowest to highest price");
             System.out.println("\t7. Sort highest to lowest price");
             System.out.println("\t8. Popularity");
+            System.out.println("\t9. Back");
             int menuChoice = readInt("Choice: ");
 
-            if (menuChoice == 0) {
+            if (menuChoice == 9) {
                 return;
             }
             List<MenuItem> result = null;
@@ -234,10 +236,11 @@ public class FoodBitesApp {
         if (customer.getCart().isEmpty()) {
             return;
         }
-        System.out.println("0. Back");
+
         System.out.println("1. Change quantity");
         System.out.println("2. Remove item");
         System.out.println("3. Clear cart");
+        System.out.println("4. Back");
         int editChoice = readInt("Choice: ");
         switch (editChoice) {
             case 1:
