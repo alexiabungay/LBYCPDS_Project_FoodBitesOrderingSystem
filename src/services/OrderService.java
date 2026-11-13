@@ -19,14 +19,20 @@ public class OrderService {
     }
 
     public Bill previewBill(Customer customer, OrderType orderType, String promoCode) {
-        return billCalculator.compute(requireCart(customer), orderType, promoCode);
+        if (customer.getCart().isEmpty()) {
+            throw new IllegalArgumentException("Your cart is empty.");
+        }
+        return billCalculator.compute(customer.getCart(), orderType, promoCode);
     }
 
     public features.Order checkout(Customer customer, DeliveryDetails details, PaymentMethod paymentMethod,
                                    String promoCode, Boolean forcedPaymentResult) {
-        Cart cart = requireCart(customer);
+        Cart cart = customer.getCart();
+        if (cart.isEmpty()) {
+            throw new IllegalArgumentException("Your cart is empty.");
+        }
 
-        Restaurant restaurant = findRestaurant(cart.getRestaurantId());
+        Restaurant restaurant = store.getRestaurants().search(cart.getRestaurantId());
         if (restaurant == null) {
             throw new IllegalArgumentException("That restaurant is no longer available.");
         }
@@ -43,11 +49,11 @@ public class OrderService {
         }
 
         Bill bill = billCalculator.compute(cart, details.getType(), promoCode);
-        features.Order order = new features.Order(store.generateNextOrderId(), customer.getId(), restaurant.getId(),
+        features.Order order = new features.Order(store.newOrderId(), customer.getId(), restaurant.getId(),
                 cart.getItems(), details, bill);
         Payment payment = paymentService.process(bill.getTotal(), paymentMethod, forcedPaymentResult);
         order.setPayment(payment);
-        store.addOrder(order);
+        store.getOrders().insert(order.getId(), order);
         customer.getOrderIds().add(order.getId());
 
         if (payment.getStatus() != PaymentStatus.SUCCESS) {
@@ -62,16 +68,20 @@ public class OrderService {
         restaurant.getKitchenQueue().enqueue(order);
         restaurant.customerArrived();
         cart.clear();
+        store.saveRestaurant(restaurant);
         return order;
     }
 
     public int getQueuePosition(features.Order order) {
-        Restaurant restaurant = findRestaurant(order.getRestaurantId());
-        return restaurant == null ? -1 : restaurant.getKitchenQueue().positionOf(order);
+        Restaurant restaurant = store.getRestaurants().search(order.getRestaurantId());
+        if (restaurant == null) {
+            return -1;
+        }
+        return restaurant.getKitchenQueue().positionOf(order);
     }
 
     public features.Order getOrder(int orderId) {
-        features.Order order = findOrder(orderId);
+        features.Order order = store.getOrders().search(orderId);
         if (order == null) {
             throw new IllegalArgumentException("Order not found.");
         }
@@ -102,8 +112,12 @@ public class OrderService {
         }
 
         if (order.getRiderId() != -1) {
-            User rider = findUser(order.getRiderId());
-            trackingText.append("  Rider: ").append(rider == null ? "-" : rider.getName()).append('\n');
+            User rider = store.getUsersById().search(order.getRiderId());
+            String riderName = "-";
+            if (rider != null) {
+                riderName = rider.getName();
+            }
+            trackingText.append("  Rider: ").append(riderName).append('\n');
         }
 
         trackingText.append("  History:\n");
@@ -114,18 +128,31 @@ public class OrderService {
     }
 
     private String statusMessage(features.Order order) {
-        return switch (order.getStatus()) {
-            case CONFIRMED -> "Order confirmed. Waiting in the kitchen queue.";
-            case PREPARING -> "The kitchen has started preparing your order.";
-            case READY -> isDelivery(order) ? "Order is ready and waiting for a rider." : "Order is ready for pickup.";
-            case OUT_FOR_DELIVERY -> "Your order is out for delivery.";
-            case DELIVERED -> "Delivered.";
-            case COMPLETED -> "Completed.";
-            case CANCELLED -> "Cancelled.";
-            case FAILED -> "Failed (payment or delivery did not succeed).";
-            case REFUNDED -> "Refunded.";
-            default -> "Waiting for payment.";
-        };
+        switch (order.getStatus()) {
+            case CONFIRMED:
+                return "Order confirmed. Waiting in the kitchen queue.";
+            case PREPARING:
+                return "The kitchen has started preparing your order.";
+            case READY:
+                if (order.getDetails().getType() == OrderType.DELIVERY) {
+                    return "Order is ready and waiting for a rider.";
+                }
+                return "Order is ready for pickup.";
+            case OUT_FOR_DELIVERY:
+                return "Your order is out for delivery.";
+            case DELIVERED:
+                return "Delivered.";
+            case COMPLETED:
+                return "Completed.";
+            case CANCELLED:
+                return "Cancelled.";
+            case FAILED:
+                return "Failed (payment or delivery did not succeed).";
+            case REFUNDED:
+                return "Refunded.";
+            default:
+                return "Waiting for payment.";
+        }
     }
 
     public List<features.Order> viewKitchenQueue(Employee employee) {
@@ -156,7 +183,7 @@ public class OrderService {
 
         restaurant.getKitchenQueue().dequeue();
         frontOrder.setStatus(OrderStatus.READY);
-        if (isDelivery(frontOrder)) {
+        if (frontOrder.getDetails().getType() == OrderType.DELIVERY) {
             restaurant.getDispatchQueue().enqueue(frontOrder);
         }
         return frontOrder;
@@ -169,7 +196,7 @@ public class OrderService {
         if (order.getRestaurantId() != restaurant.getId()) {
             throw new SecurityException("That order belongs to another restaurant.");
         }
-        if (isDelivery(order)) {
+        if (order.getDetails().getType() == OrderType.DELIVERY) {
             throw new IllegalStateException("Delivery orders are completed by the rider.");
         }
         if (order.getStatus() != OrderStatus.READY) {
@@ -183,7 +210,7 @@ public class OrderService {
 
     public List<features.Order> pendingDeliveries() {
         List<features.Order> pendingOrders = new ArrayList<>();
-        for (Restaurant restaurant : store.getRestaurants()) {
+        for (Restaurant restaurant : store.getRestaurants().inOrder()) {
             pendingOrders.addAll(restaurant.getDispatchQueue().toList());
         }
         pendingOrders.sort(Comparator.comparingInt(features.Order::getId));
@@ -201,7 +228,7 @@ public class OrderService {
         }
 
         features.Order nextOrder = pendingOrders.get(0);
-        Restaurant restaurant = restaurantOf(nextOrder);
+        Restaurant restaurant = store.getRestaurants().search(nextOrder.getRestaurantId());
         restaurant.getDispatchQueue().remove(nextOrder);
 
         nextOrder.setRiderId(rider.getId());
@@ -212,18 +239,27 @@ public class OrderService {
 
     public features.Order confirmDelivery(DeliveryRider rider, int orderId, boolean arrived) {
         features.Order order = getOrder(orderId);
-        if (order.getRiderId() != rider.getId() || order.getStatus() != OrderStatus.OUT_FOR_DELIVERY) {
+        boolean isOutWithThisRider = order.getRiderId() == rider.getId()
+                && order.getStatus() == OrderStatus.OUT_FOR_DELIVERY;
+        if (!isOutWithThisRider) {
             throw new IllegalStateException("That order is not out for delivery with you.");
         }
 
-        Restaurant restaurant = restaurantOf(order);
+        Restaurant restaurant = store.getRestaurants().search(order.getRestaurantId());
         if (arrived) {
             order.setStatus(OrderStatus.DELIVERED);
             finalizeSale(order, restaurant);
             rider.getDeliveredOrderIds().add(order.getId());
         } else {
             order.setStatus(OrderStatus.FAILED);
-            rollback(order, restaurant);
+            restoreStock(order);
+            if (order.getPayment() != null) {
+                order.getPayment().markRefunded();
+            }
+            restaurant.customerLeft(false);
+            restaurant.addSalesRecord(new SalesRecord(order.getId(), RecordType.CANCELLATION, LocalDate.now(),
+                    order.getBill().getTotal(), order.getItems()));
+            store.saveRestaurant(restaurant);
         }
 
         rider.setAvailable(true);
@@ -232,7 +268,7 @@ public class OrderService {
 
     public features.Order cancelOrder(User actor, int orderId) {
         features.Order order = getOrder(orderId);
-        Restaurant restaurant = restaurantOf(order);
+        Restaurant restaurant = store.getRestaurants().search(order.getRestaurantId());
 
         if (actor.getRole() == UserRole.CUSTOMER) {
             if (order.getCustomerId() != actor.getId()) {
@@ -243,21 +279,32 @@ public class OrderService {
             }
         } else {
             requireStaff(actor, restaurant);
-            if (!isCancellable(order.getStatus())) {
+            OrderStatus orderStatus = order.getStatus();
+            boolean canStillBeCancelled = orderStatus == OrderStatus.CONFIRMED
+                    || orderStatus == OrderStatus.PREPARING
+                    || orderStatus == OrderStatus.READY;
+            if (!canStillBeCancelled) {
                 throw new IllegalStateException("This order can no longer be cancelled.");
             }
         }
 
         restaurant.getKitchenQueue().remove(order);
         restaurant.getDispatchQueue().remove(order);
+        restoreStock(order);
+        if (order.getPayment() != null) {
+            order.getPayment().markRefunded();
+        }
         order.setStatus(OrderStatus.CANCELLED);
-        rollback(order, restaurant);
+        restaurant.customerLeft(false);
+        restaurant.addSalesRecord(new SalesRecord(order.getId(), RecordType.CANCELLATION, LocalDate.now(),
+                order.getBill().getTotal(), order.getItems()));
+        store.saveRestaurant(restaurant);
         return order;
     }
 
     public features.Order refundOrder(User actor, int orderId) {
         features.Order order = getOrder(orderId);
-        Restaurant restaurant = restaurantOf(order);
+        Restaurant restaurant = store.getRestaurants().search(order.getRestaurantId());
 
         requireStaff(actor, restaurant);
         if (actor.getRole() == UserRole.EMPLOYEE) {
@@ -271,22 +318,32 @@ public class OrderService {
             orderItem.getItem().reverseSale(orderItem.getQuantity(), orderItem.getLineTotal());
         }
         restaurant.subtractRevenue(order.getBill().getTotal());
-        refundPayment(order);
+        order.getPayment().markRefunded();
         order.setStatus(OrderStatus.REFUNDED);
-        addSalesRecord(order, restaurant, RecordType.REFUND);
+        restaurant.addSalesRecord(new SalesRecord(order.getId(), RecordType.REFUND, LocalDate.now(),
+                order.getBill().getTotal(), order.getItems()));
         return order;
     }
 
     public List<features.Order> listOrders(User actor, int restaurantId, boolean activeOnly) {
-        Restaurant restaurant = findRestaurant(restaurantId);
+        Restaurant restaurant = store.getRestaurants().search(restaurantId);
         if (restaurant == null) {
             throw new IllegalArgumentException("Restaurant not found.");
         }
         requireStaff(actor, restaurant);
 
         List<features.Order> matchingOrders = new ArrayList<>();
-        for (features.Order order : store.getOrders()) {
-            if (order.getRestaurantId() == restaurantId && activeOnly == isActive(order.getStatus())) {
+        for (features.Order order : store.getOrders().inOrder()) {
+            if (order.getRestaurantId() != restaurantId) {
+                continue;
+            }
+
+            OrderStatus orderStatus = order.getStatus();
+            boolean isActive = orderStatus == OrderStatus.CONFIRMED
+                    || orderStatus == OrderStatus.PREPARING
+                    || orderStatus == OrderStatus.READY
+                    || orderStatus == OrderStatus.OUT_FOR_DELIVERY;
+            if (activeOnly == isActive) {
                 matchingOrders.add(order);
             }
         }
@@ -299,14 +356,8 @@ public class OrderService {
         }
         restaurant.addRevenue(order.getBill().getTotal());
         restaurant.customerLeft(true);
-        addSalesRecord(order, restaurant, RecordType.SALE);
-    }
-
-    private void rollback(features.Order order, Restaurant restaurant) {
-        restoreStock(order);
-        refundPayment(order);
-        restaurant.customerLeft(false);
-        addSalesRecord(order, restaurant, RecordType.CANCELLATION);
+        restaurant.addSalesRecord(new SalesRecord(order.getId(), RecordType.SALE, LocalDate.now(),
+                order.getBill().getTotal(), order.getItems()));
     }
 
     private void restoreStock(features.Order order) {
@@ -315,73 +366,8 @@ public class OrderService {
         }
     }
 
-    private void refundPayment(features.Order order) {
-        if (order.getPayment() != null) {
-            order.getPayment().markRefunded();
-        }
-    }
-
-    private void addSalesRecord(features.Order order, Restaurant restaurant, RecordType recordType) {
-        restaurant.addSalesRecord(new SalesRecord(order.getId(), recordType, LocalDate.now(),
-                order.getBill().getTotal(), order.getItems()));
-    }
-
-    private static Cart requireCart(Customer customer) {
-        Cart cart = customer.getCart();
-        if (cart.isEmpty()) {
-            throw new IllegalArgumentException("Your cart is empty.");
-        }
-        return cart;
-    }
-
-    private static boolean isDelivery(features.Order order) {
-        return order.getDetails().getType() == OrderType.DELIVERY;
-    }
-
-    private static boolean isActive(OrderStatus status) {
-        return status == OrderStatus.CONFIRMED
-                || status == OrderStatus.PREPARING
-                || status == OrderStatus.READY
-                || status == OrderStatus.OUT_FOR_DELIVERY;
-    }
-
-    private static boolean isCancellable(OrderStatus status) {
-        return isActive(status) && status != OrderStatus.OUT_FOR_DELIVERY;
-    }
-
-    private Restaurant findRestaurant(int restaurantId) {
-        for (Restaurant restaurant : store.getRestaurants()) {
-            if (restaurant.getId() == restaurantId) {
-                return restaurant;
-            }
-        }
-        return null;
-    }
-
-    private features.Order findOrder(int orderId) {
-        for (features.Order order : store.getOrders()) {
-            if (order.getId() == orderId) {
-                return order;
-            }
-        }
-        return null;
-    }
-
-    private User findUser(int userId) {
-        for (User user : store.getUsers()) {
-            if (user.getId() == userId) {
-                return user;
-            }
-        }
-        return null;
-    }
-
-    private Restaurant restaurantOf(features.Order order) {
-        return findRestaurant(order.getRestaurantId());
-    }
-
     private Restaurant restaurantOf(Employee employee) {
-        Restaurant restaurant = findRestaurant(employee.getRestaurantId());
+        Restaurant restaurant = store.getRestaurants().search(employee.getRestaurantId());
         if (restaurant == null) {
             throw new IllegalStateException("Your restaurant no longer exists.");
         }

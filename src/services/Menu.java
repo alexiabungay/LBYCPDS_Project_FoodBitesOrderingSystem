@@ -41,7 +41,6 @@ public class Menu {
         return restaurant.searchByName(keyword);
     }
 
-    /** Searches every restaurant so customers can compare prices. */
     public List<MenuItem> searchAll(String keyword) {
         List<MenuItem> matchingItems = new ArrayList<>();
         for (Restaurant restaurant : browseRestaurants()) {
