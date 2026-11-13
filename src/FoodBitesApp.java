@@ -15,4 +15,39 @@ public class FoodBitesApp {
     private final Menu menu = new Menu(store);
     private final services.OrderService orders = new services.OrderService(store, new BillCalculator(), new PaymentService());
     private final services.SalesReport reports = new services.SalesReport(store);
+
+    private String readLine(String prompt) {
+        System.out.print(prompt);
+        if (scanner.hasNextLine()) {
+            return scanner.nextLine().trim();
+        } else {
+            return "";
+        }
+    }
+
+    private int readInt(String prompt) {
+        while (true) {
+            if (!scanner.hasNextLine()) {
+                System.out.println();
+                System.exit(0);
+            }
+            System.out.print(prompt);
+            try {
+                return Integer.parseInt(scanner.nextLine().trim());
+            } catch (NumberFormatException exception) {
+                System.out.println("Please enter an integer.");
+            }
+        }
+    }
+
+    private double readDouble(String prompt) {
+        while (true) {
+            System.out.print(prompt);
+            try {
+                return Double.parseDouble(scanner.nextLine().trim());
+            } catch (NumberFormatException exception) {
+                System.out.println("Please enter a number.");
+            }
+        }
+    }
 }
