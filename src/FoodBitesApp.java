@@ -303,4 +303,13 @@ public class FoodBitesApp {
             System.out.println("Order #" + placedOrder.getId() + " confirmed! Your position in the queue: " + queuePosition);
         }
     }
+
+    private void printOrders(List<Order> orderList) {
+        if (orderList.isEmpty()) {
+            System.out.println("No orders.");
+        }
+        for (Order order : orderList) {
+            System.out.println("  " + order);
+        }
+    }
 }
