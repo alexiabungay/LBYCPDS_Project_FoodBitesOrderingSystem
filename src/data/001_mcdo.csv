@@ -1,0 +1,146 @@
+restaurant_id,owner_email,name,description,address,dine_in,takeout,delivery
+1,owner@mcdo.com,McDo,McDo Philippines fast food,,true,true,true
+
+item_name,description,category,price,stock,available,portion_sizes,add_ons
+Taro Custard Pie,,DESSERT,51,50,true,,
+Large Poptato,,SNACK,100,50,true,,
+Medium Poptato with McShaker BBQ,,SNACK,86,50,true,,
+Choco Lava Puff,,DESSERT,77,50,true,,
+Crispy Chicken Sandwich with Poptato Meal,,MEAL,143,50,true,,Extra Mayonnaise:17;Tartar Sauce:17;Thousand Island Sauce:18
+Matcha McFlurry with Oreo Solo,New,DESSERT,83,50,true,,
+Ebi Burger Meal,Limited time only,MEAL,265,50,true,,Extra Mayonnaise:17;Tartar Sauce:17;Thousand Island Sauce:18
+Triple Cheeseburger Meal,,MEAL,290,50,true,,Extra Cheese:17;Extra Mayonnaise:17
+Double Cheeseburger Meal,,MEAL,250,50,true,,Extra Cheese:17;Extra Mayonnaise:17
+Cheeseburger Meal,,MEAL,156,50,true,,Extra Cheese:17;Extra Mayonnaise:17
+Big Mac Meal,,MEAL,284,50,true,,Extra Cheese:17;Extra Mayonnaise:17
+Quarter Pounder with Cheese Meal,,MEAL,284,50,true,,Extra Cheese:17;Extra Mayonnaise:17
+"Quarter Pounder with Cheese, Lettuce, & Tomatoes Meal",,MEAL,319,50,true,,Extra Cheese:17;Extra Mayonnaise:17
+Double Quarter Pounder with Cheese Meal,,MEAL,346,50,true,,Extra Cheese:17;Extra Mayonnaise:17
+McChicken Meal,,MEAL,234,50,true,,Extra Cheese:17;Extra Mayonnaise:17
+Double McChicken Meal,,MEAL,264,50,true,,Extra Cheese:17;Extra Mayonnaise:17
+Crispy Chicken Fillet Sandwich with Fries Meal,,MEAL,177,50,true,,Extra Mayonnaise:17;Tartar Sauce:17;Thousand Island Sauce:18
+Crispy Chicken Sandwich with Lettuce & Tomatoes Meal,,MEAL,212,50,true,,Extra Mayonnaise:17;Tartar Sauce:17;Thousand Island Sauce:18
+Cheesy Burger McDo Meal,,MEAL,167,50,true,,Extra Cheese:17;Extra Mayonnaise:17
+Burger McDo Meal,,MEAL,157,50,true,,Extra Cheese:17;Extra Mayonnaise:17
+Cheeseburger with Lettuce & Tomatoes Meal,,MEAL,191,50,true,,Extra Cheese:17;Extra Mayonnaise:17
+Double Cheeseburger with Lettuce & Tomatoes Meal,,MEAL,285,50,true,,Extra Cheese:17;Extra Mayonnaise:17
+Burger McDo with Lettuce & Tomatoes Meal,,MEAL,192,50,true,,Extra Cheese:17;Extra Mayonnaise:17
+Double Big Mac Meal,,MEAL,346,50,true,,Extra Cheese:17;Extra Mayonnaise:17
+The BCB Meal,,MEAL,277,50,true,,Extra Cheese:17;Extra Mayonnaise:17
+Cheeseburger with regular fries,,MEAL,121,50,true,,Extra Cheese:17;Extra Mayonnaise:17
+Golden Chicken Curry Fillet with Fries Medium Meal,,MEAL,181,50,true,,Extra Plain Rice:40
+Golden Chicken Curry Fillet with Medium Drink,,MEAL,119,50,true,,Extra Plain Rice:40
+Sulit-Busog Crispy Chicken Fillet with Extra Rice and Regular Drink,,MEAL,103,50,true,,Extra Plain Rice:40
+Sulit-Busog - 1-pc. Chicken McDo with Extra Rice and Drink Meal,New offer,MEAL,128,50,true,,Extra Gravy:11;Extra Plain Rice:40
+Sulit-Busog Crispy Chicken Fillet Ala King w Extra Rice,,MEAL,103,50,true,,Extra Ala King Sauce:11;Extra Plain Rice:40
+Mega Meal - Spicy Chicken McDo w Fries & Burger McDo,,MEAL,232,50,true,,Extra Gravy:11;Extra Plain Rice:40;Extra Cheese:17;Extra Mayonnaise:17
+Mega Meal - Spicy Chicken McDo w Rice & McSpaghetti,,MEAL,221,50,true,,Extra Gravy:11;Extra Plain Rice:40;Extra McSpaghetti Sauce:25
+Mega Meal - Spicy Chicken McDo w Fries & McFlurry,,MEAL,234,50,true,,Extra Gravy:11;Extra Plain Rice:40
+1-pc. Spicy Chicken McDo with McSpaghetti & Fries Meal,,MEAL,267,50,true,,Extra Gravy:11;Extra Plain Rice:40;Extra McSpaghetti Sauce:25
+Mega Meal - Chicken McDo w Fries & Burger McDo,,MEAL,226,50,true,,Extra Gravy:11;Extra Plain Rice:40;Extra Cheese:17;Extra Mayonnaise:17
+Mega Meal - Chicken McDo w Rice & McSpaghetti,,MEAL,215,50,true,,Extra Gravy:11;Extra Plain Rice:40;Extra McSpaghetti Sauce:25
+Mega Meal - Chicken McDo w Fries & McFlurry,,MEAL,228,50,true,,Extra Gravy:11;Extra Plain Rice:40
+Crispy Chicken Fillet Ala King w Fries Meal,,MEAL,170,50,true,,Extra Ala King Sauce:11;Extra Plain Rice:40
+1-pc. Spicy Chicken McDo w McSpaghetti Meal,,MEAL,206,50,true,,Extra Gravy:11;Extra Plain Rice:40;Extra McSpaghetti Sauce:25
+1-pc. Chicken McDo w Rice Coke McFloat Meal,,MEAL,140,50,true,,Extra Gravy:11;Extra Plain Rice:40
+1-pc. Chicken McDo with McSpaghetti & Fries Meal,,MEAL,262,50,true,,Extra Gravy:11;Extra Plain Rice:40;Extra McSpaghetti Sauce:25
+6-pc. Chicken McNuggets w Fries Meal,,MEAL,215,50,true,,Extra Sweet N Sour Sauce:17;Extra BBQ Sauce:17
+6-pc. Chicken McNuggets w Rice Meal,,MEAL,188,50,true,,Extra Plain Rice:40;Extra Sweet N Sour Sauce:17;Extra BBQ Sauce:17
+1-pc. Chicken McDo w McSpaghetti Meal,,MEAL,201,50,true,,Extra Gravy:11;Extra Plain Rice:40;Extra McSpaghetti Sauce:25
+2-pc. Spicy Chicken McDo & Fries Meal,,MEAL,298,50,true,,Extra Gravy:11;Extra Plain Rice:40
+1-pc. Spicy Chicken McDo & Fries Meal,,MEAL,203,50,true,,Extra Gravy:11;Extra Plain Rice:40
+Crispy Chicken Fillet w Fries Meal,,MEAL,165,50,true,,
+Sulit-Busog - 1-pc. Chicken McDo Meal,,MEAL,103,50,true,,Extra Gravy:11;Extra Plain Rice:40
+2-pc. Chicken McDo & Fries Meal,,MEAL,288,50,true,,Extra Gravy:11;Extra Plain Rice:40
+1-pc. Chicken McDo & Fries Meal,,MEAL,198,50,true,,Extra Gravy:11;Extra Plain Rice:40
+2-pc. Spicy Chicken McDo Meal,,MEAL,241,50,true,,Extra Gravy:11;Extra Plain Rice:40
+1-pc. Spicy Chicken McDo Meal,,MEAL,120,50,true,,Extra Gravy:11;Extra Plain Rice:40
+8-pc. Chicken McShare Box,,MEAL,670,50,true,,Extra Gravy:11;Extra Plain Rice:40
+6-pc. Chicken McShare Box,,MEAL,513,50,true,,Extra Gravy:11;Extra Plain Rice:40
+10-pc. Chicken McNuggets,,SNACK,189,50,true,,Extra Sweet N Sour Sauce:17;Extra BBQ Sauce:17
+6-pc. Chicken McNuggets,,SNACK,110,50,true,,Extra Sweet N Sour Sauce:17;Extra BBQ Sauce:17
+2-pc. Chicken McDo Meal,,MEAL,231,50,true,,Extra Gravy:11;Extra Plain Rice:40
+1-pc. Chicken McDo Meal,,MEAL,115,50,true,,Extra Gravy:11;Extra Plain Rice:40
+Cotton Candy McFloat & Medium Fries Combo,,SNACK,103,50,true,,
+Rasberry McFloat & Medium Fries Combo,,SNACK,103,50,true,,
+Grape McFloat & Medium Fries Combo,,SNACK,103,50,true,,
+Cotton Candy McFloat,,DRINK,61,50,true,,
+McFlurry with Oreo,,DESSERT,70,50,true,,
+Hot Caramel Sundae,,DESSERT,59,50,true,,
+Raspberry McFloat,,DRINK,61,50,true,,
+Hot Fudge Sundae,,DESSERT,59,50,true,,
+Royal McFloat,New,DRINK,60,50,true,,
+Grape McFloat,,DRINK,61,50,true,,
+Orange Juice,,DRINK,85,50,true,,
+Coke McFloat,,DRINK,82,50,true,,
+Apple Juice,,DRINK,85,50,true,,
+Coke Zero Sugar,,DRINK,77,50,true,,
+Apple Pie,,DESSERT,45,50,true,,
+Iced Tea,,DRINK,85,50,true,,
+Sprite,,DRINK,77,50,true,,
+Royal,New,DRINK,77,50,true,,
+Golden McFloat Medium,Limited time only,DRINK,63,50,true,,
+Large Shake Shake Fries Cheese N McFloat Combo,,SNACK,148,50,true,,
+Large Shake Shake Fries BBQ N McFloat Combo,,SNACK,148,50,true,,
+BFF Shake Shake Fries BBQ N McFloat Combo,,SNACK,284,50,true,,
+Shake Shake Fries Cheese N McFloat Combo,,SNACK,126,50,true,,
+Shake Shake Fries BBQ N McFloat Combo,,SNACK,126,50,true,,
+Twister Fries N Royal McFloat Combo,Limited time only,SNACK,135,50,true,,
+Large Fries N McFloat Combo,,SNACK,138,50,true,,
+Shake Shake Fries Cheese,,SNACK,101,50,true,,
+Twister Fries Sharing,Limited time only,SNACK,199,50,true,,
+Twister Fries Regular,Limited time only,SNACK,99,50,true,,
+Shake Shake Fries BBQ,,SNACK,101,50,true,,
+BFF Fries,,SNACK,175,50,true,,
+Fries,,SNACK,92,50,true,,
+Cheese Dunk,Limited time only,SNACK,55,50,true,,
+Chili Con Carne Dunk,Limited time only,SNACK,55,50,true,,
+BFF Shake Shake Fries Cheese N McFloat Combo,,SNACK,284,50,true,,
+BFF Fries N McFloat Combo,,SNACK,285,50,true,,
+20-pc. Chicken McNuggets,,SNACK,375,50,true,,Extra Sweet N Sour Sauce:17;Extra BBQ Sauce:17
+Snack Burger McShare,,MEAL,380,50,true,,Extra Gravy:11;Extra Plain Rice:40
+McShare Bundle for 4,Good for 4,MEAL,847,50,true,,Extra Gravy:11;Extra Plain Rice:40
+McShare Bundle for 3,Good for 3,MEAL,612,50,true,,Extra Gravy:11;Extra Plain Rice:40
+McSpaghetti Platter,,MEAL,262,50,true,,Extra McSpaghetti Sauce:25
+Burger McDo Happy Meal,,MEAL,148,50,true,,Extra Cheese:17;Extra Mayonnaise:17
+McSpaghetti Happy Meal,,MEAL,168,50,true,,
+1-pc. Chicken McDo Happy Meal,,MEAL,200,50,true,,Extra Gravy:11;Extra Plain Rice:40
+4-pc. Chicken McNuggets Happy Meal,,MEAL,184,50,true,,Extra Sweet N Sour Sauce:17;Extra BBQ Sauce:17
+McCafe Cereal Milk Iced Latte,New,DRINK,160,50,true,,
+McCafe Cereal Milk Iced Coffee,New,DRINK,83,50,true,,
+McCafe Cereal Milk Premium Roast Coffee,New,DRINK,73,50,true,,
+McCafe Premium Roast Coffee,,DRINK,63,50,true,,
+McCafe Iced Coffee Black Medium,New,DRINK,59,50,true,,
+McCafe Iced Coffee Original,,DRINK,63,50,true,,
+McCafe Coffee Float,,DRINK,82,50,true,,
+McCafe Iced Coffee Vanilla,,DRINK,99,50,true,,
+McCafe Iced Coffee Chocolate,,DRINK,79,50,true,,
+McCafe Strawberry Oreo Frappe,,DRINK,169,50,true,,
+Cappuccino,,DRINK,145,50,true,,
+Espresso,,DRINK,95,50,true,,
+McCafe Strawberry Smoothie,,DRINK,159,50,true,,
+Macchiato,,DRINK,95,50,true,,
+Americano,,DRINK,135,50,true,,
+Mochaccino,,DRINK,150,50,true,,
+Cafe Latte,,DRINK,145,50,true,,
+Flat White,,DRINK,145,50,true,,
+McCafe Iced Chocolate,,DRINK,149,50,true,,
+McCafe Iced Americano,,DRINK,140,50,true,,
+McCafe Iced Latte,,DRINK,150,50,true,,
+McCafe Iced c,,DRINK,155,50,true,,
+McCafe Caramel Frappe,,DRINK,169,50,true,,
+McCafe Caramel Oreo Frappe,,DRINK,179,50,true,,
+McSpaghetti with Fries Meal,,MEAL,168,50,true,,Extra McSpaghetti Sauce:25
+McSpaghetti Meal,,MEAL,105,50,true,,Extra McSpaghetti Sauce:25
+McSpaghetti with Burger McDo Meal,,MEAL,149,50,true,,Extra McSpaghetti Sauce:25;Extra Cheese:17;Extra Mayonnaise:17
+Sulit-Busog 1 pc. Mushroom Pepper Steak with Extra Rice Meal,,MEAL,103,50,true,,Extra Mushroom Pepper Steak Sauce:11;Extra Plain Rice:40
+2 pc. Mushroom Pepper Steak & Fries Meal,,MEAL,208,50,true,,Extra Mushroom Pepper Steak Sauce:11;Extra Plain Rice:40
+1 pc. Mushroom Pepper Steak & Fries Meal,,MEAL,143,50,true,,Extra Mushroom Pepper Steak Sauce:11;Extra Plain Rice:40
+Sulit-Busog Golden Chicken Curry Fillet with Extra Rice Meal,,MEAL,103,50,true,,Extra Plain Rice:40
+FIFA World Cup Chicken McNuggets Meal,,MEAL,242,50,true,,Extra Sweet N Sour Sauce:17;Extra BBQ Sauce:17
+FIFA Collectible Cup Meal 6-pc. Chicken McNuggets,,MEAL,284,50,true,,Extra Sweet N Sour Sauce:17;Extra BBQ Sauce:17
+FIFA GOALden Bundle 2 Cheeseburgers,,MEAL,449,50,true,,Extra Cheese:17;Extra Mayonnaise:17
+A&W Root Beer McFloat and Fries Combo,,SNACK,101,50,true,,
+FIFA GOALden Bundle 10-pc. Chicken McNuggets,,MEAL,469,50,true,,Extra Sweet N Sour Sauce:17;Extra BBQ Sauce:17
+FIFA Collectible Cup Meal Cheeseburger,,MEAL,258,50,true,,Extra Cheese:17;Extra Mayonnaise:17
+6-pc. Chicken McNuggets w Fries and A&W Root Beer,,MEAL,222,50,true,,Extra Sweet N Sour Sauce:17;Extra BBQ Sauce:17
