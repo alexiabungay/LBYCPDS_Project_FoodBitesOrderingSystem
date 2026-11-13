@@ -312,4 +312,58 @@ public class FoodBitesApp {
             System.out.println("  " + order);
         }
     }
+
+    private void guard(Runnable action) {
+        try {
+            action.run();
+        } catch (IllegalArgumentException | IllegalStateException | SecurityException exception) {
+            System.out.println("! " + exception.getMessage());
+        }
+    }
+
+    private void customerMenu(Customer customer) {
+        System.out.println("1. Browse/search menus");
+        System.out.println("2. Add to cart");
+        System.out.println("3. View/edit cart");
+        System.out.println("4. Checkout");
+        System.out.println("5. Track an order");
+        System.out.println("6. My orders");
+        System.out.println("7. Cancel an order");
+        System.out.println("8. Logout");
+        guard(() -> {
+            int customerChoice = readInt("Choice: ");
+            switch (customerChoice) {
+                case 1:
+                    browse();
+                    break;
+                case 2:
+                    addToCart(customer);
+                    break;
+                case 3:
+                    editCart(customer);
+                    break;
+                case 4:
+                    checkout(customer);
+                    break;
+                case 5:
+                    int trackOrderId = readInt("Order ID: ");
+                    System.out.println(orders.trackOrder(customer, trackOrderId));
+                    break;
+                case 6:
+                    for (Order order : orders.getOrdersOf(customer)) {
+                        System.out.println(order);
+                    }
+                    break;
+                case 7:
+                    int cancelOrderId = readInt("Order ID: ");
+                    System.out.println(orders.cancelOrder(customer, cancelOrderId));
+                    break;
+                case 8:
+                    authentication.logout();
+                    break;
+                default:
+                    System.out.println("Invalid choice.");
+            }
+        });
+    }
 }
