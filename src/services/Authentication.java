@@ -10,4 +10,17 @@ public class Authentication {
         this.store = store;
     }
 
+    public User register(String name, String email, String phone, String password, UserRole role, int restaurantId) {
+        if (!Validator.isNotBlank(name)) {
+            throw new IllegalArgumentException("Name is required.");
+        }
+        if (!Validator.isValidEmail(email)) {
+            throw new IllegalArgumentException("Invalid email address.");
+        }
+        if (!Validator.isValidPhone(phone)) {
+            throw new IllegalArgumentException("Phone must be like a string of integers.");
+        }
+        if (!Validator.isValidPassword(password)) {
+            throw new IllegalArgumentException("Password needs at least 8 characters with a letter and a number.");
+        }
 }
