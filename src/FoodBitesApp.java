@@ -11,7 +11,7 @@ import java.util.Scanner;
 public class FoodBitesApp {
     private final Scanner scanner = new Scanner(System.in);
     private final DataStoring store = new DataStoring();
-    private final Authentication auth = new Authentication(store);
+    private final Authentication authentication = new Authentication(store);
     private final Menu menu = new Menu(store);
     private final services.OrderService orders = new services.OrderService(store, new BillCalculator(), new PaymentService());
     private final services.SalesReport reports = new services.SalesReport(store);
@@ -84,7 +84,14 @@ public class FoodBitesApp {
         String email = readLine("Email: ");
         String phone = readLine("Phone: ");
         String password = readLine("Password: ");
-        User newUser = auth.register(name, email, phone, password, role, restaurantId);
+        User newUser = authentication.register(name, email, phone, password, role, restaurantId);
         System.out.println("Registered " + newUser.getName() + ". You can now log in.");
+    }
+
+    private void login() {
+        String email = readLine("Email: ");
+        String password = readLine("Password: ");
+        User loggedInUser = authentication.login(email, password);
+        System.out.println("Welcome, " + loggedInUser.getName() + "!");
     }
 }
