@@ -24,7 +24,7 @@ public class SalesReport {
         if (restaurant == null) {
             throw new IllegalArgumentException("Restaurant not found.");
         }
-        if (actor.getRole() == UserRole.EMPLOYEE || !Order.canManage(actor, restaurant)) {
+        if (actor.getRole() == UserRole.EMPLOYEE || !OrderService.canManage(actor, restaurant)) {
             throw new SecurityException("Only the owner or an administrator can view sales reports.");
         }
 
@@ -100,7 +100,7 @@ public class SalesReport {
         if (restaurant == null) {
             throw new IllegalArgumentException("Restaurant not found.");
         }
-        if (!Order.canManage(actor, restaurant)) {
+        if (!OrderService.canManage(actor, restaurant)) {
             throw new SecurityException("No access to this restaurant.");
         }
 
