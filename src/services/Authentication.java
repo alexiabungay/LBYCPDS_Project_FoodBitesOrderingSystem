@@ -18,7 +18,7 @@ public class Authentication {
             throw new IllegalArgumentException("Invalid email address.");
         }
         if (!Validator.isValidPhone(phone)) {
-            throw new IllegalArgumentException("Phone must be like a string of integers.");
+            throw new IllegalArgumentException("Phone number is invalid.");
         }
         if (!Validator.isValidPassword(password)) {
             throw new IllegalArgumentException("Password needs at least 8 characters with a letter and a number.");
@@ -32,7 +32,6 @@ public class Authentication {
 
         int userId = store.newUserId();
         User newUser;
-
         switch (role) {
             case CUSTOMER:
                 newUser = new Customer(userId, name, email, phone, password);
@@ -83,7 +82,6 @@ public class Authentication {
         currentUser = foundUser;
         return foundUser;
     }
-
 
     public void logout() {
         currentUser = null;
