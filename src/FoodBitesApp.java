@@ -187,4 +187,33 @@ public class FoodBitesApp {
             }
         }
     }
+
+    private void addToCart(Customer customer) {
+        for (Restaurant restaurant : menu.browseRestaurants()) {
+            System.out.println(restaurant);
+        }
+        int restaurantId = readInt("Restaurant ID: ");
+        Restaurant restaurant = menu.getRestaurant(restaurantId);
+        printItems(restaurant.listAlphabetical());
+        String itemName = readLine("Item name: ");
+        MenuItem item = restaurant.findByName(itemName);
+        if (item == null) {
+            throw new IllegalArgumentException("Item not found.");
+        }
+        int quantity = readInt("Quantity: ");
+        String portion = "";
+        if (!item.getPortionSizes().isEmpty()) {
+            portion = readLine("Portion " + item.getPortionSizes() + ": ");
+        }
+        List<AddOn> chosenAddOns = new ArrayList<>();
+        for (AddOn addOn : item.getAddOns()) {
+            String addOnAnswer = readLine("Add " + addOn + "? (y/n): ");
+            if (addOnAnswer.equalsIgnoreCase("y")) {
+                chosenAddOns.add(addOn);
+            }
+        }
+        customer.getCart().addItem(item, quantity, portion, chosenAddOns);
+        String subtotalText = String.format("%.2f", customer.getCart().getSubtotal());
+        System.out.println("Added. Cart subtotal: PHP " + subtotalText);
+    }
 }
