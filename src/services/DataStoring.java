@@ -56,7 +56,6 @@ public class DataStoring {
         Set<Integer> usedRestaurantIds = new HashSet<>();
         int highestRestaurantId = 0;
 
-        // First pass: read each file's id. A missing or duplicate id becomes 0 so a new one is assigned later.
         for (Path csvFile : restaurantStorage.listFiles()) {
             int restaurantId = restaurantStorage.readId(csvFile);
             if (restaurantId > 0 && usedRestaurantIds.add(restaurantId)) {
@@ -68,7 +67,6 @@ public class DataStoring {
         }
         nextRestaurantId = Math.max(nextRestaurantId, highestRestaurantId + 1);
 
-        // Second pass: load each restaurant and its menu.
         int loadedCount = 0;
         for (Map.Entry<Path, Integer> fileEntry : restaurantIdsByFile.entrySet()) {
             Path csvFile = fileEntry.getKey();
