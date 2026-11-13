@@ -216,4 +216,16 @@ public class FoodBitesApp {
         String subtotalText = String.format("%.2f", customer.getCart().getSubtotal());
         System.out.println("Added. Cart subtotal: PHP " + subtotalText);
     }
+
+    private void printCart(Cart cart) {
+        if (cart.isEmpty()) {
+            System.out.println("Your cart is empty.");
+            return;
+        }
+        int lineNumber = 1;
+        for (CartItem cartItem : cart.getItems()) {
+            System.out.println("  " + (lineNumber++) + ". " + cartItem);
+        }
+        System.out.printf("  Running subtotal: PHP %.2f%n", cart.getSubtotal());
+    }
 }
