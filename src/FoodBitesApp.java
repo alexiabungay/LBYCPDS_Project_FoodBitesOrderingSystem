@@ -94,4 +94,32 @@ public class FoodBitesApp {
         User loggedInUser = authentication.login(email, password);
         System.out.println("Welcome, " + loggedInUser.getName() + "!");
     }
+
+    private void printCategory(Map<Category, List<MenuItem>> groupedItems) {
+        for (Map.Entry<Category, List<MenuItem>> entry : groupedItems.entrySet()) {
+            if (entry.getValue().isEmpty()) {
+                continue;
+            }
+            System.out.println("== " + entry.getKey() + " ==");
+            for (MenuItem menuItem : entry.getValue()) {
+                printItem(menuItem);
+            }
+        }
+    }
+
+    private void printItems(List<MenuItem> items) {
+        if (items.isEmpty()) {
+            System.out.println("No items match your search.");
+        }
+        for (MenuItem menuItem : items) {
+            printItem(menuItem);
+        }
+    }
+
+    private void printItem(MenuItem menuItem) {
+        System.out.println("  " + menuItem);
+        String sizesText = menuItem.getPortionSizes().isEmpty() ? "" : " | Sizes: " + menuItem.getPortionSizes();
+        String addOnsText = menuItem.getAddOns().isEmpty() ? "" : " | Add-ons: " + menuItem.getAddOns();
+        System.out.println("       " + menuItem.getDescription() + sizesText + addOnsText);
+    }
 }
