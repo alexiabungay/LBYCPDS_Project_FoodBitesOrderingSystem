@@ -366,4 +366,42 @@ public class FoodBitesApp {
             }
         });
     }
+
+    private void employeeMenu(Employee employee) {
+        System.out.println("1. View kitchen queue");
+        System.out.println("2. Mark order as preparing front order");
+        System.out.println("3. Mark order as ready");
+        System.out.println("4. Mark order as done");
+        System.out.println("5. Logout");
+        guard(() -> {
+            int employeeChoice = readInt("Choice: ");
+            switch (employeeChoice) {
+                case 1:
+                    List<Order> kitchenQueue = orders.viewKitchenQueue(employee);
+                    if (kitchenQueue.isEmpty()) {
+                        System.out.println("Kitchen queue is empty.");
+                    }
+                    int queuePosition = 1;
+                    for (Order queuedOrder : kitchenQueue) {
+                        System.out.println("  " + (queuePosition++) + ". " + queuedOrder);
+                    }
+                    break;
+                case 2:
+                    System.out.println("Preparing: " + orders.startPreparing(employee));
+                    break;
+                case 3:
+                    System.out.println("Ready: " + orders.markReady(employee));
+                    break;
+                case 4:
+                    int completeOrderId = readInt("Order ID: ");
+                    System.out.println("Done: " + orders.completeOrder(employee, completeOrderId));
+                    break;
+                case 5:
+                    authentication.logout();
+                    break;
+                default:
+                    System.out.println("Invalid choice.");
+            }
+        });
+    }
 }
