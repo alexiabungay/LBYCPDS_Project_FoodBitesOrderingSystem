@@ -257,4 +257,50 @@ public class FoodBitesApp {
         }
         printCart(customer.getCart());
     }
+
+    private void checkout(Customer customer) {
+        printCart(customer.getCart());
+        if (customer.getCart().isEmpty()) {
+            return;
+        }
+        System.out.println("Fulfillment");
+        System.out.println("\t1. Dine-in pre-order");
+        System.out.println("\t2. Takeout pickup");
+        System.out.println("\t3. Delivery");
+        int fulfillmentChoice = readInt("Choice: ");
+        OrderType orderType = fulfillmentChoice == 1 ? OrderType.DINE_IN : fulfillmentChoice == 2 ? OrderType.TAKEOUT : OrderType.DELIVERY;
+        String address = "";
+        String preferredTime = "";
+        if (orderType == OrderType.DELIVERY) {
+            address = readLine("Delivery address [" + customer.getAddress() + "]: ");
+            if (address.isEmpty()) {
+                address = customer.getAddress();
+            }
+        }
+        preferredTime = readLine("Preferred time (optional): ");
+        String specialInstructions = readLine("Special instructions (optional): ");
+        String promoCode = readLine("Promo code (optional): ");
+        System.out.println("\nBILL\n" + orders.previewBill(customer, orderType, promoCode));
+        System.out.println("Payment");
+        System.out.println("\t1. Cash on delivery");
+        System.out.println("\t2. Cash at counter");
+        System.out.println("\t3. Digital");
+        int paymentChoice = readInt("Choice: ");
+        PaymentMethod paymentMethod = paymentChoice == 1 ? PaymentMethod.CASH_ON_DELIVERY : paymentChoice == 2 ? PaymentMethod.CASH_AT_COUNTER : PaymentMethod.DIGITAL;
+        String confirmAnswer = readLine("Confirm order? (y/n): ");
+        if (!confirmAnswer.equalsIgnoreCase("y")) {
+            System.out.println("Order not placed.");
+            return;
+        }
+
+        DeliveryDetails deliveryDetails = new DeliveryDetails(orderType, address, preferredTime, specialInstructions);
+        Order placedOrder = orders.checkout(customer, deliveryDetails, paymentMethod, promoCode, null);
+        System.out.println(placedOrder.getPayment().receipt());
+        if (placedOrder.getStatus() == OrderStatus.FAILED) {
+            System.out.println("Payment failed, order was not confirmed.");
+        } else {
+            int queuePosition = orders.getQueuePosition(placedOrder);
+            System.out.println("Order #" + placedOrder.getId() + " confirmed! Your position in the queue: " + queuePosition);
+        }
+    }
 }
