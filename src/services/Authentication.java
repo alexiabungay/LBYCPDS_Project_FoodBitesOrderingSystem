@@ -1,37 +1,109 @@
 package services;
 
-import features.User;
-import features.UserRole;
-import java.util.ArrayDeque;
-import java.util.Deque;
+import features.*;
 
 public class Authentication {
-    private static User currentUser = null;
-    private static final Deque<User> sessionStack = new ArrayDeque<>();
+    private final DataStoring store;
+    private User currentUser;
 
-    public static User login(String email, String password) {
-        for (User user : DataStoring.getUsers()) {
-            if (user.getEmail().equalsIgnoreCase(email) && user.getPassword().equals(password)) {
-                currentUser = user;
-                sessionStack.push(user);
-                return currentUser;
+    public Authentication(DataStoring store) {
+        this.store = store;
+    }
+
+    public User register(String name, String email, String phone, String password, UserRole role, int restaurantId) {
+        if (!Validator.isNotBlank(name)) {
+            throw new IllegalArgumentException("Name is required.");
+        }
+        if (!Validator.isValidEmail(email)) {
+            throw new IllegalArgumentException("Invalid email address.");
+        }
+        if (!Validator.isValidPhone(phone)) {
+            throw new IllegalArgumentException("Phone number is invalid.");
+        }
+        if (!Validator.isValidPassword(password)) {
+            throw new IllegalArgumentException("Password needs at least 8 characters with a letter and a number.");
+        }
+        if (store.getUsersByEmail().contains(email.toLowerCase())) {
+            throw new IllegalArgumentException("That email is already registered.");
+        }
+        if (role == UserRole.ADMINISTRATOR) {
+            throw new IllegalArgumentException("Administrator accounts cannot be self-registered.");
+        }
+
+        int userId = store.newUserId();
+        User newUser;
+        switch (role) {
+            case CUSTOMER:
+                newUser = new Customer(userId, name, email, phone, password);
+                break;
+            case DELIVERY_RIDER:
+                newUser = new DeliveryRider(userId, name, email, phone, password);
+                break;
+            case BUSINESS_OWNER:
+                newUser = new BusinessOwner(userId, name, email, phone, password);
+                break;
+            case EMPLOYEE:
+                if (store.getRestaurants().search(restaurantId) == null) {
+                    throw new IllegalArgumentException("Employees must be linked to an existing restaurant.");
+                }
+                newUser = new Employee(userId, name, email, phone, password, restaurantId);
+                break;
+            default:
+                throw new IllegalArgumentException("Unknown role.");
+        }
+        save(newUser);
+        if (role == UserRole.BUSINESS_OWNER) {
+            store.relinkOwner(newUser);
+        }
+        return newUser;
+    }
+
+    public Admin createAdministrator(String name, String email, String phone, String password) {
+        Admin administrator = new Admin(store.newUserId(), name, email, phone, password);
+        save(administrator);
+        return administrator;
+    }
+
+    private void save(User user) {
+        store.getUsersByEmail().insert(user.getEmail(), user);
+        store.getUsersById().insert(user.getId(), user);
+    }
+
+    public User login(String email, String password) {
+        String lookupEmail = "";
+        if (email != null) {
+            lookupEmail = email.toLowerCase();
+        }
+
+        User foundUser = store.getUsersByEmail().search(lookupEmail);
+        if (foundUser == null || !foundUser.checkPassword(password)) {
+            throw new IllegalArgumentException("Wrong email or password.");
+        }
+        currentUser = foundUser;
+        return foundUser;
+    }
+
+    public void logout() {
+        currentUser = null;
+    }
+
+    public User getCurrentUser() {
+        return currentUser;
+    }
+
+    public boolean isLoggedIn() {
+        return currentUser != null;
+    }
+
+    public boolean hasRole(UserRole... allowedRoles) {
+        if (currentUser == null) {
+            return false;
+        }
+        for (UserRole allowedRole : allowedRoles) {
+            if (currentUser.getRole() == allowedRole) {
+                return true;
             }
         }
-        return null;
-    }
-
-    public static void logout() {
-        if (!sessionStack.isEmpty()) {
-            sessionStack.pop();
-        }
-        currentUser = sessionStack.peek();
-    }
-
-    public static boolean checkRole(UserRole requiredRole) {
-        return currentUser != null && currentUser.getRole() == requiredRole;
-    }
-
-    public static User getCurrentUser() {
-        return currentUser;
+        return false;
     }
 }

@@ -3,41 +3,63 @@ package services;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Csv {
-    public static String[] parseLine(String line) {
-        if (line == null || line.trim().isEmpty()) {
-            return new String[0];
+public final class Csv {
+    private Csv () { }
+
+    public static String escape(String text) {
+        if (text == null) {
+            return "";
         }
 
-        List<String> tokens = new ArrayList<>();
-        StringBuilder sb = new StringBuilder();
-        boolean inQuotes = false;
-
-        for (int i = 0; i < line.length(); i++) {
-            char c = line.charAt(i);
-            if (c == '"') {
-                inQuotes = !inQuotes;
-            } else if (c == ',' && !inQuotes) {
-                tokens.add(sb.toString().trim());
-                sb.setLength(0);
-            } else {
-                sb.append(c);
-            }
+        String singleLineText = text.replace("\r", " ").replace("\n", " ");
+        boolean needsQuotes = singleLineText.contains(",") || singleLineText.contains("\"");
+        if (needsQuotes) {
+            singleLineText = "\"" + singleLineText.replace("\"", "\"\"") + "\"";
         }
-        tokens.add(sb.toString().trim());
-        return tokens.toArray(new String[0]);
+        return singleLineText;
     }
 
-    public static String formatLine(String[] fields) {
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < fields.length; i++) {
-            String field = fields[i] == null ? "" : fields[i];
-            if (field.contains(",") || field.contains("\"")) {
-                field = "\"" + field.replace("\"", "\"\"") + "\"";
+    public static String join(List<String> fields) {
+        StringBuilder joinedLine = new StringBuilder();
+        for (int i = 0; i < fields.size(); i++) {
+            if (i > 0) {
+                joinedLine.append(',');
             }
-            sb.append(field);
-            if (i < fields.length - 1) sb.append(",");
+            joinedLine.append(escape(fields.get(i)));
         }
-        return sb.toString();
+        return joinedLine.toString();
+    }
+
+    public static List<String> parseLine(String line) {
+        List<String> fields = new ArrayList<>();
+        StringBuilder currentField = new StringBuilder();
+        boolean insideQuotes = false;
+
+        for (int i = 0; i < line.length(); i++) {
+            char character = line.charAt(i);
+
+            if (insideQuotes) {
+                if (character == '"') {
+                    boolean isDoubledQuote = i + 1 < line.length() && line.charAt(i + 1) == '"';
+                    if (isDoubledQuote) {
+                        currentField.append('"');
+                        i++;
+                    } else {
+                        insideQuotes = false;
+                    }
+                } else {
+                    currentField.append(character);
+                }
+            } else if (character == '"') {
+                insideQuotes = true;
+            } else if (character == ',') {
+                fields.add(currentField.toString().trim());
+                currentField.setLength(0);
+            } else {
+                currentField.append(character);
+            }
+        }
+        fields.add(currentField.toString().trim());
+        return fields;
     }
 }
