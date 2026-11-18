@@ -5,10 +5,13 @@ import services.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
+import java.util.function.BooleanSupplier;
+import java.util.function.Function;
 
 public class FoodBitesApp {
+    private static final String CANCEL = "0";
+
     private final Scanner scanner = new Scanner(System.in);
     private final DataStoring store = new DataStoring();
     private final Authentication authentication = new Authentication(store);
@@ -16,13 +19,22 @@ public class FoodBitesApp {
     private final services.OrderService orders = new services.OrderService(store, new BillCalculator(), new PaymentService());
     private final services.SalesReport reports = new services.SalesReport(store);
 
+    private void screen(String title) {
+        ClearScreen.clear();
+        System.out.println(title);
+    }
+
+    private void pause() {
+        ClearScreen.pause(scanner);
+    }
+
     private String readLine(String prompt) {
         System.out.print(prompt);
-        if (scanner.hasNextLine()) {
-            return scanner.nextLine().trim();
-        } else {
-            return "";
+        if (!scanner.hasNextLine()) {
+            System.out.println();
+            System.exit(0);
         }
+        return scanner.nextLine().trim();
     }
 
     private int readInt(String prompt) {
@@ -32,12 +44,21 @@ public class FoodBitesApp {
                 System.out.println();
                 System.exit(0);
             }
-            System.out.print(prompt);
             try {
                 return Integer.parseInt(scanner.nextLine().trim());
             } catch (NumberFormatException exception) {
                 System.out.println("Please enter an integer.");
             }
+        }
+    }
+
+    private int readChoice(String prompt, int min, int max) {
+        while (true) {
+            int choice = readInt(prompt);
+            if (choice >= min && choice <= max) {
+                return choice;
+            }
+            System.out.println("Please choose a number from " + min + " to " + max + ".");
         }
     }
 
@@ -62,143 +83,334 @@ public class FoodBitesApp {
         return categoryChoice == 2 ? Category.SNACK : categoryChoice == 3 ? Category.DESSERT : categoryChoice == 4 ? Category.DRINK : Category.MEAL;
     }
 
-    private void register() {
-        System.out.println("User Role");
-        System.out.println("\t1. Customer");
-        System.out.println("\t2. Delivery rider");
-        System.out.println("\t3. Business owner");
-        System.out.println("\t4. Employee");
-        int roleChoice = readInt("Choice: ");
+    private String categoryLabel(Category category) {
+        String name = category.name();
+        return name.charAt(0) + name.substring(1).toLowerCase();
+    }
 
-        UserRole role = switch (roleChoice) {
-            case 2 -> UserRole.DELIVERY_RIDER;
-            case 3 -> UserRole.BUSINESS_OWNER;
-            case 4 -> UserRole.EMPLOYEE;
-            default -> UserRole.CUSTOMER;
-        };
+    private String askField(String title, List<String> accepted, String[] hints, String label,
+                            boolean hidden, Function<String, String> check) {
+        String error = null;
+        while (true) {
+            screen(title);
+            System.out.println("(Enter 0 to cancel)");
+            for (String line : accepted) {
+                System.out.println(line);
+            }
+            if (hints != null) {
+                for (String hint : hints) {
+                    System.out.println(hint);
+                }
+            }
+            if (error != null) {
+                System.out.println("! " + error);
+            }
+            String input = hidden ? ClearScreen.readPassword(label + ": ", scanner) : readLine(label + ": ");
+            if (input.equals(CANCEL)) {
+                return null;
+            }
+            error = check.apply(input);
+            if (error == null) {
+                return input;
+            }
+        }
+    }
+
+    private boolean register() {
+        String title = "Register";
+        List<String> accepted = new ArrayList<>();
+
+        String[] roleHints = {"User Role", "\t1. Customer", "\t2. Delivery rider", "\t3. Business owner", "\t4. Employee"};
+        String roleInput = askField(title, accepted, roleHints, "Choice", false,
+                text -> text.matches("[1-4]") ? null : "Please enter a number from 1 to 4.");
+        if (roleInput == null) {
+            return false;
+        }
+        UserRole role;
+        String roleLabel;
+        switch (Integer.parseInt(roleInput)) {
+            case 2:
+                role = UserRole.DELIVERY_RIDER;
+                roleLabel = "Delivery rider";
+                break;
+            case 3:
+                role = UserRole.BUSINESS_OWNER;
+                roleLabel = "Business owner";
+                break;
+            case 4:
+                role = UserRole.EMPLOYEE;
+                roleLabel = "Employee";
+                break;
+            default:
+                role = UserRole.CUSTOMER;
+                roleLabel = "Customer";
+        }
+        accepted.add("Role: " + roleLabel);
 
         int restaurantId = -1;
         if (role == UserRole.EMPLOYEE) {
-            restaurantId = readInt("Restaurant ID you work for: ");
+            List<String> restaurantHints = new ArrayList<>();
+            restaurantHints.add("Restaurants:");
+            for (Restaurant restaurant : menu.browseRestaurants()) {
+                restaurantHints.add("  " + restaurant);
+            }
+            String restaurantInput = askField(title, accepted, restaurantHints.toArray(new String[0]),
+                    "Restaurant ID you work for", false, text -> {
+                        try {
+                            return store.getRestaurants().search(Integer.parseInt(text)) != null
+                                    ? null : "No restaurant has that ID.";
+                        } catch (NumberFormatException exception) {
+                            return "Please enter the restaurant's ID number.";
+                        }
+                    });
+            if (restaurantInput == null) {
+                return false;
+            }
+            restaurantId = Integer.parseInt(restaurantInput);
+            accepted.add("Restaurant ID: " + restaurantId);
         }
-        String name = readLine("Name: ");
-        String email = readLine("Email: ");
-        String phone = readLine("Phone: ");
-        String password = readLine("Password: ");
+
+        String name = askField(title, accepted, null, "Name", false,
+                text -> Validator.isNotBlank(text) ? null : "Name is required.");
+        if (name == null) {
+            return false;
+        }
+        accepted.add("Name: " + name);
+
+        String email = askField(title, accepted, null, "Email", false, text -> {
+            if (!Validator.isValidEmail(text)) {
+                return "Invalid email address.";
+            }
+            if (authentication.isEmailRegistered(text)) {
+                return "That email is already registered.";
+            }
+            return null;
+        });
+        if (email == null) {
+            return false;
+        }
+        accepted.add("Email: " + email);
+
+        String[] phoneHints = {"(Example: 09171234567 or +639171234567)"};
+        String phone = askField(title, accepted, phoneHints, "Phone", false,
+                text -> Validator.isValidPhone(text) ? null : "Phone number is invalid.");
+        if (phone == null) {
+            return false;
+        }
+        accepted.add("Phone: " + phone);
+
+        String[] passwordHints = {"(At least 8 characters with a letter and a number)"};
+        String password = askField(title, accepted, passwordHints, "Password", true,
+                text -> Validator.isValidPassword(text) ? null
+                        : "Password needs at least 8 characters with a letter and a number.");
+        if (password == null) {
+            return false;
+        }
+
         User newUser = authentication.register(name, email, phone, password, role, restaurantId);
+        screen(title);
         System.out.println("Registered " + newUser.getName() + ". You can now log in.");
+        return true;
     }
 
-    private void login() {
-        String email = readLine("Email: ");
-        String password = readLine("Password: ");
-        User loggedInUser = authentication.login(email, password);
-        System.out.println("Welcome, " + loggedInUser.getName() + "!");
+    private boolean login() {
+        String title = "Login";
+        List<String> accepted = new ArrayList<>();
+
+        String email = askField(title, accepted, null, "Email", false,
+                text -> authentication.isEmailRegistered(text) ? null : "No account is registered with that email.");
+        if (email == null) {
+            return false;
+        }
+        accepted.add("Email: " + email);
+
+        askField(title, accepted, null, "Password", true, text -> {
+            try {
+                authentication.login(email, text);
+                return null;
+            } catch (IllegalArgumentException exception) {
+                return "Incorrect password.";
+            }
+        });
+        return false;
     }
 
-    private void printCategory(Map<Category, List<MenuItem>> groupedItems) {
-        for (Map.Entry<Category, List<MenuItem>> entry : groupedItems.entrySet()) {
-            if (entry.getValue().isEmpty()) {
-                continue;
+    private Category chooseCategory(Restaurant restaurant) {
+        Category[] categories = Category.values();
+        screen(restaurant.getName() + " - Menu Categories");
+        for (int index = 0; index < categories.length; index++) {
+            int count = restaurant.filterByCategory(categories[index]).size();
+            System.out.printf("\t%d. %-8s (%d item%s)%n", index + 1, categoryLabel(categories[index]),
+                    count, count == 1 ? "" : "s");
+        }
+        System.out.println("\t0. Back");
+        while (true) {
+            int choice = readInt("Choice: ");
+            if (choice == 0) {
+                return null;
             }
-            System.out.println("== " + entry.getKey() + " ==");
-            for (MenuItem menuItem : entry.getValue()) {
-                printItem(menuItem);
+            if (choice >= 1 && choice <= categories.length) {
+                return categories[choice - 1];
             }
+            System.out.println("Please choose a number from 0 to " + categories.length + ".");
         }
     }
 
-    private void printItems(List<MenuItem> items) {
+    private void browseByCategory(Restaurant restaurant) {
+        while (true) {
+            Category category = chooseCategory(restaurant);
+            if (category == null) {
+                return;
+            }
+            screen(restaurant.getName() + " - " + categoryLabel(category));
+            printItems(restaurant.filterByCategory(category), false);
+            pause();
+        }
+    }
+
+    private void printItems(List<MenuItem> items, boolean showCategory) {
         if (items.isEmpty()) {
-            System.out.println("No items match your search.");
+            System.out.println("No items to show.");
+            return;
         }
-        for (MenuItem menuItem : items) {
-            printItem(menuItem);
-        }
+        System.out.println(DisplayMenu.forMenu(items, showCategory));
+        System.out.println(items.size() + " item(s)");
     }
 
-    private void printItem(MenuItem menuItem) {
-        System.out.println("  " + menuItem);
-        String sizesText = menuItem.getPortionSizes().isEmpty() ? "" : " | Sizes: " + menuItem.getPortionSizes();
-        String addOnsText = menuItem.getAddOns().isEmpty() ? "" : " | Add-ons: " + menuItem.getAddOns();
-        System.out.println("       " + menuItem.getDescription() + sizesText + addOnsText);
+    private MenuItem findMenuItem(Restaurant restaurant, String input) {
+        if (input.matches("\\d{1,9}")) {
+            int itemId = Integer.parseInt(input);
+            for (MenuItem menuItem : restaurant.listAlphabetical()) {
+                if (menuItem.getId() == itemId) {
+                    return menuItem;
+                }
+            }
+        }
+        return restaurant.findByName(input);
+    }
+
+    private void showItemDetails(Restaurant restaurant) {
+        String input = readLine("Item ID or name: ");
+        MenuItem item = findMenuItem(restaurant, input);
+        if (item == null) {
+            System.out.println("Item not found.");
+            return;
+        }
+        screen(item.getName());
+        System.out.println("Category : " + categoryLabel(item.getCategory()));
+        System.out.printf("Price    : PHP %.2f%n", item.getPrice());
+        System.out.println("Stock    : " + item.getStock()
+                + (item.isAvailable() && item.getStock() > 0 ? " (Available)" : " (Unavailable)"));
+        if (Validator.isNotBlank(item.getDescription())) {
+            System.out.println("Details  : " + item.getDescription());
+        }
+        if (!item.getPortionSizes().isEmpty()) {
+            System.out.println("Sizes    : " + String.join(", ", item.getPortionSizes()));
+        }
+        if (!item.getAddOns().isEmpty()) {
+            System.out.println("\nAdd-ons");
+            System.out.println(DisplayMenu.forAddOns(item.getAddOns()));
+        }
     }
 
     private void browse() {
-        List<Restaurant> restaurantList = menu.browseRestaurants();
-        for (Restaurant restaurant : restaurantList) {
-            System.out.println(restaurant);
+        screen("Restaurants");
+        for (Restaurant listedRestaurant : menu.browseRestaurants()) {
+            System.out.println(listedRestaurant);
         }
-        int restaurantId = readInt("Restaurant ID to open (Press 0 to go back): ");
+        int restaurantId = readInt("Restaurant ID to open (0 to go back): ");
         if (restaurantId == 0) {
             return;
         }
         Restaurant restaurant = menu.getRestaurant(restaurantId);
         while (true) {
-            System.out.println("\n" + restaurant.getName());
-
-            System.out.println("\t1. View full menu");
+            screen(restaurant.getName());
+            System.out.println("\t1. Browse by category");
             System.out.println("\t2. Search by name");
-            System.out.println("\t3. Filter by category");
-            System.out.println("\t4. Filter by price range");
-            System.out.println("\t5. Sort A to Z");
-            System.out.println("\t6. Sort lowest to highest price");
-            System.out.println("\t7. Sort highest to lowest price");
-            System.out.println("\t8. Popularity");
+            System.out.println("\t3. Filter by price range");
+            System.out.println("\t4. Sort A to Z");
+            System.out.println("\t5. Sort lowest to highest price");
+            System.out.println("\t6. Sort highest to lowest price");
+            System.out.println("\t7. Popularity");
+            System.out.println("\t8. View item details");
             System.out.println("\t9. Back");
             int menuChoice = readInt("Choice: ");
 
             if (menuChoice == 9) {
                 return;
             }
+            ClearScreen.clear();
             List<MenuItem> result = null;
+            String heading = "";
             switch (menuChoice) {
                 case 1:
-                    printCategory(menu.browseMenu(restaurant));
+                    browseByCategory(restaurant);
                     continue;
                 case 2:
                     String searchText = readLine("Search: ");
                     result = menu.search(restaurant, searchText);
+                    heading = "Search results for \"" + searchText + "\"";
                     break;
                 case 3:
-                    Category category = readCategory();
-                    result = menu.filterByCategory(restaurant, category);
-                    break;
-                case 4:
                     double minPrice = readDouble("Min price: ");
                     double maxPrice = readDouble("Max price: ");
                     result = menu.filterByPrice(restaurant, minPrice, maxPrice);
+                    heading = String.format("Items from PHP %.2f to PHP %.2f", minPrice, maxPrice);
+                    break;
+                case 4:
+                    result = menu.sort(restaurant, SortFeature.ALPHABETICAL);
+                    heading = "All items, A to Z";
                     break;
                 case 5:
-                    result = menu.sort(restaurant, SortFeature.ALPHABETICAL);
+                    result = menu.sort(restaurant, SortFeature.PRICE_LOW_TO_HIGH);
+                    heading = "All items, lowest to highest price";
                     break;
                 case 6:
-                    result = menu.sort(restaurant, SortFeature.PRICE_LOW_TO_HIGH);
+                    result = menu.sort(restaurant, SortFeature.PRICE_HIGH_TO_LOW);
+                    heading = "All items, highest to lowest price";
                     break;
                 case 7:
-                    result = menu.sort(restaurant, SortFeature.PRICE_HIGH_TO_LOW);
+                    result = menu.sort(restaurant, SortFeature.POPULARITY);
+                    heading = "All items by popularity";
                     break;
                 case 8:
-                    result = menu.sort(restaurant, SortFeature.POPULARITY);
-                    break;
+                    showItemDetails(restaurant);
+                    pause();
+                    continue;
                 default:
                     System.out.println("Invalid choice.");
+                    pause();
+                    continue;
             }
-            if (result != null) {
-                printItems(result);
-            }
+            screen(restaurant.getName() + " - " + heading);
+            printItems(result, true);
+            pause();
         }
     }
 
-    private void addToCart(Customer customer) {
-        for (Restaurant restaurant : menu.browseRestaurants()) {
-            System.out.println(restaurant);
+    private boolean addToCart(Customer customer) {
+        screen("Add to Cart");
+        for (Restaurant listedRestaurant : menu.browseRestaurants()) {
+            System.out.println(listedRestaurant);
         }
-        int restaurantId = readInt("Restaurant ID: ");
+        int restaurantId = readInt("Restaurant ID (0 to go back): ");
+        if (restaurantId == 0) {
+            return false;
+        }
         Restaurant restaurant = menu.getRestaurant(restaurantId);
-        printItems(restaurant.listAlphabetical());
-        String itemName = readLine("Item name: ");
-        MenuItem item = restaurant.findByName(itemName);
+
+        Category category = chooseCategory(restaurant);
+        if (category == null) {
+            return false;
+        }
+        screen(restaurant.getName() + " - " + categoryLabel(category));
+        printItems(restaurant.filterByCategory(category), false);
+
+        String itemInput = readLine("Item ID or name (0 to go back): ");
+        if (itemInput.equals(CANCEL)) {
+            return false;
+        }
+        MenuItem item = findMenuItem(restaurant, itemInput);
         if (item == null) {
             throw new IllegalArgumentException("Item not found.");
         }
@@ -217,6 +429,7 @@ public class FoodBitesApp {
         customer.getCart().addItem(item, quantity, portion, chosenAddOns);
         String subtotalText = String.format("%.2f", customer.getCart().getSubtotal());
         System.out.println("Added. Cart subtotal: PHP " + subtotalText);
+        return true;
     }
 
     private void printCart(Cart cart) {
@@ -261,43 +474,85 @@ public class FoodBitesApp {
         printCart(customer.getCart());
     }
 
-    private void checkout(Customer customer) {
+    private String askDiscountId(DiscountType discountType) {
+        while (true) {
+            String idNumber = readLine("Enter your " + discountType + " ID number (0 to skip the discount): ");
+            if (idNumber.equals(CANCEL)) {
+                return null;
+            }
+            if (Validator.isValidDiscountId(idNumber)) {
+                return idNumber.toUpperCase();
+            }
+            System.out.println("! Invalid ID number. Use 6-20 letters/digits (dashes allowed) with at least one digit.");
+        }
+    }
+
+    private boolean checkout(Customer customer) {
+        screen("Checkout");
         printCart(customer.getCart());
         if (customer.getCart().isEmpty()) {
-            return;
+            return true;
         }
-        System.out.println("Fulfillment");
-        System.out.println("\t1. Dine-in pre-order");
-        System.out.println("\t2. Takeout pickup");
+        System.out.println("\nFulfillment");
+        System.out.println("\t1. Dine-in Pre Order");
+        System.out.println("\t2. Takeout Pickup");
         System.out.println("\t3. Delivery");
-        int fulfillmentChoice = readInt("Choice: ");
+        int fulfillmentChoice = readChoice("Choice: ", 1, 3);
         OrderType orderType = fulfillmentChoice == 1 ? OrderType.DINE_IN : fulfillmentChoice == 2 ? OrderType.TAKEOUT : OrderType.DELIVERY;
         String address = "";
-        String preferredTime = "";
         if (orderType == OrderType.DELIVERY) {
             address = readLine("Delivery address [" + customer.getAddress() + "]: ");
             if (address.isEmpty()) {
                 address = customer.getAddress();
             }
         }
-        preferredTime = readLine("Preferred time (optional): ");
+        String preferredTime = readLine("Preferred time (optional): ");
         String specialInstructions = readLine("Special instructions (optional): ");
-        String promoCode = readLine("Promo code (optional): ");
-        System.out.println("\nBILL\n" + orders.previewBill(customer, orderType, promoCode));
-        System.out.println("Payment");
+
+        System.out.println("\nDiscount");
+        System.out.println("\t1. None");
+        System.out.println("\t2. Senior Citizen");
+        System.out.println("\t3. PWD");
+        int discountChoice = readChoice("Choice: ", 1, 3);
+        DiscountType discountType = discountChoice == 2 ? DiscountType.SENIOR_CITIZEN
+                : discountChoice == 3 ? DiscountType.PWD : DiscountType.NONE;
+        String discountIdNumber = "";
+        if (discountType.isSectorDiscount()) {
+            discountIdNumber = askDiscountId(discountType);
+            if (discountIdNumber == null) {
+                discountType = DiscountType.NONE;
+                discountIdNumber = "";
+                System.out.println("Continuing without the discount.");
+            }
+        }
+
+        String promoCode = "";
+        if (discountType.isSectorDiscount()) {
+            System.out.println("Promo codes cannot be combined with the Senior Citizen and PWD discount.");
+        } else {
+            promoCode = readLine("Promo code (optional): ");
+        }
+
+        screen("Bill");
+        System.out.println(orders.previewBill(customer, orderType, promoCode, discountType, discountIdNumber));
+        if (discountType.isSectorDiscount()) {
+            System.out.println("Please show your valid " + discountType + " ID when you receive your order.");
+        }
+        System.out.println("\nPayment");
         System.out.println("\t1. Cash on delivery");
         System.out.println("\t2. Cash at counter");
         System.out.println("\t3. Digital");
-        int paymentChoice = readInt("Choice: ");
+        int paymentChoice = readChoice("Choice: ", 1, 3);
         PaymentMethod paymentMethod = paymentChoice == 1 ? PaymentMethod.CASH_ON_DELIVERY : paymentChoice == 2 ? PaymentMethod.CASH_AT_COUNTER : PaymentMethod.DIGITAL;
         String confirmAnswer = readLine("Confirm order? (y/n): ");
         if (!confirmAnswer.equalsIgnoreCase("y")) {
             System.out.println("Order not placed.");
-            return;
+            return true;
         }
 
         DeliveryDetails deliveryDetails = new DeliveryDetails(orderType, address, preferredTime, specialInstructions);
-        Order placedOrder = orders.checkout(customer, deliveryDetails, paymentMethod, promoCode, null);
+        Order placedOrder = orders.checkout(customer, deliveryDetails, paymentMethod, promoCode, null,
+                discountType, discountIdNumber);
         System.out.println(placedOrder.getPayment().receipt());
         if (placedOrder.getStatus() == OrderStatus.FAILED) {
             System.out.println("Payment failed, order was not confirmed.");
@@ -305,6 +560,7 @@ public class FoodBitesApp {
             int queuePosition = orders.getQueuePosition(placedOrder);
             System.out.println("Order #" + placedOrder.getId() + " confirmed! Your position in the queue: " + queuePosition);
         }
+        return true;
     }
 
     private void printOrders(List<Order> orderList) {
@@ -316,11 +572,16 @@ public class FoodBitesApp {
         }
     }
 
-    private void guard(Runnable action) {
+    private void guard(BooleanSupplier action) {
+        boolean needsPause;
         try {
-            action.run();
+            needsPause = action.getAsBoolean();
         } catch (IllegalArgumentException | IllegalStateException | SecurityException exception) {
             System.out.println("! " + exception.getMessage());
+            needsPause = true;
+        }
+        if (needsPause) {
+            pause();
         }
     }
 
@@ -335,25 +596,28 @@ public class FoodBitesApp {
         System.out.println("8. Logout");
         guard(() -> {
             int customerChoice = readInt("Choice: ");
+            ClearScreen.clear();
             switch (customerChoice) {
                 case 1:
                     browse();
-                    break;
+                    return false;
                 case 2:
-                    addToCart(customer);
-                    break;
+                    return addToCart(customer);
                 case 3:
                     editCart(customer);
                     break;
                 case 4:
-                    checkout(customer);
-                    break;
+                    return checkout(customer);
                 case 5:
                     int trackOrderId = readInt("Order ID: ");
                     System.out.println(orders.trackOrder(customer, trackOrderId));
                     break;
                 case 6:
-                    for (Order order : orders.getOrdersOf(customer)) {
+                    List<Order> myOrders = orders.getOrdersOf(customer);
+                    if (myOrders.isEmpty()) {
+                        System.out.println("No orders yet.");
+                    }
+                    for (Order order : myOrders) {
                         System.out.println(order);
                     }
                     break;
@@ -363,10 +627,11 @@ public class FoodBitesApp {
                     break;
                 case 8:
                     authentication.logout();
-                    break;
+                    return false;
                 default:
                     System.out.println("Invalid choice.");
             }
+            return true;
         });
     }
 
@@ -378,6 +643,7 @@ public class FoodBitesApp {
         System.out.println("5. Logout");
         guard(() -> {
             int employeeChoice = readInt("Choice: ");
+            ClearScreen.clear();
             switch (employeeChoice) {
                 case 1:
                     List<Order> kitchenQueue = orders.viewKitchenQueue(employee);
@@ -405,6 +671,7 @@ public class FoodBitesApp {
                 default:
                     System.out.println("Invalid choice.");
             }
+            return employeeChoice != 5;
         });
     }
 
@@ -416,6 +683,7 @@ public class FoodBitesApp {
         System.out.println("5. Logout");
         guard(() -> {
             int riderChoice = readInt("Choice: ");
+            ClearScreen.clear();
             switch (riderChoice) {
                 case 1:
                     List<Order> pendingDeliveries = orders.pendingDeliveries();
@@ -443,6 +711,7 @@ public class FoodBitesApp {
                 default:
                     System.out.println("Invalid choice.");
             }
+            return riderChoice != 5;
         });
     }
 
@@ -469,6 +738,7 @@ public class FoodBitesApp {
         guard(() -> {
             int restaurantId;
             int managerChoice = readInt("Choice: ");
+            ClearScreen.clear();
             switch (managerChoice) {
                 case 1:
                     String newRestaurantName = readLine("Name: ");
@@ -582,27 +852,34 @@ public class FoodBitesApp {
                 default:
                     System.out.println("Invalid choice.");
             }
+            return managerChoice != 19;
         });
     }
+
 
     private void run() {
         int loadedRestaurantCount = store.loadRestaurants();
         if (store.getUsersByEmail().search("admin@foodbites.ph") == null) {
             authentication.createAdministrator("Food Bites Admin", "admin@foodbites.ph", "09170000000", "Admin1234");
         }
-        System.out.println("FOOD BITES ORDERING SYSTEM");
-        System.out.println(loadedRestaurantCount + " restaurant(s) loaded from data/restaurants");
         while (true) {
+            ClearScreen.clear();
             if (!authentication.isLoggedIn()) {
+                System.out.println("FOOD BITES ORDERING SYSTEM");
+                System.out.println(loadedRestaurantCount + " restaurant(s) loaded from data/restaurants");
                 System.out.println("\nMain Menu");
                 System.out.println("\t1. Browse restaurants and menus");
                 System.out.println("\t2. Register");
                 System.out.println("\t3. Login");
                 System.out.println("\t4. Exit");
                 int mainChoice = readInt("Choice: ");
+                ClearScreen.clear();
                 switch (mainChoice) {
                     case 1:
-                        guard(() -> browse());
+                        guard(() -> {
+                            browse();
+                            return false;
+                        });
                         break;
                     case 2:
                         guard(() -> register());
@@ -615,10 +892,11 @@ public class FoodBitesApp {
                         return;
                     default:
                         System.out.println("Invalid choice.");
+                        pause();
                 }
             } else {
                 User currentUser = authentication.getCurrentUser();
-                System.out.println("\n[" + currentUser.getRoleDescription() + "] " + currentUser.getName());
+                System.out.println("[" + currentUser.getRoleDescription() + "] " + currentUser.getName() + "\n");
                 switch (currentUser.getRole()) {
                     case CUSTOMER:
                         customerMenu((Customer) currentUser);
