@@ -58,6 +58,10 @@ public class Authentication {
         return newUser;
     }
 
+    public boolean isEmailRegistered(String email) {
+        return email != null && store.getUsersByEmail().contains(email.trim().toLowerCase());
+    }
+
     public Admin createAdministrator(String name, String email, String phone, String password) {
         Admin administrator = new Admin(store.newUserId(), name, email, phone, password);
         save(administrator);

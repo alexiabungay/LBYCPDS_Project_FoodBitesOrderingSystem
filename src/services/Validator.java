@@ -20,6 +20,12 @@ public final class Validator {
         return hasLetter && hasDigit;
     }
 
+    public static boolean isValidDiscountId(String idNumber) {
+        return idNumber != null
+                && idNumber.trim().matches("^[A-Za-z0-9][A-Za-z0-9-]{5,19}$")
+                && idNumber.matches(".*\\d.*");
+    }
+
     public static boolean isNotBlank(String text) {
         return text != null && !text.trim().isEmpty();
     }
