@@ -19,14 +19,25 @@ public class OrderService {
     }
 
     public Bill previewBill(Customer customer, OrderType orderType, String promoCode) {
+        return previewBill(customer, orderType, promoCode, DiscountType.NONE, null);
+    }
+
+    public Bill previewBill(Customer customer, OrderType orderType, String promoCode,
+                            DiscountType discountType, String discountIdNumber) {
         if (customer.getCart().isEmpty()) {
             throw new IllegalArgumentException("Your cart is empty.");
         }
-        return billCalculator.compute(customer.getCart(), orderType, promoCode);
+        return billCalculator.compute(customer.getCart(), orderType, promoCode, discountType, discountIdNumber);
     }
 
     public features.Order checkout(Customer customer, DeliveryDetails details, PaymentMethod paymentMethod,
                                    String promoCode, Boolean forcedPaymentResult) {
+        return checkout(customer, details, paymentMethod, promoCode, forcedPaymentResult, DiscountType.NONE, null);
+    }
+
+    public features.Order checkout(Customer customer, DeliveryDetails details, PaymentMethod paymentMethod,
+                                   String promoCode, Boolean forcedPaymentResult,
+                                   DiscountType discountType, String discountIdNumber) {
         Cart cart = customer.getCart();
         if (cart.isEmpty()) {
             throw new IllegalArgumentException("Your cart is empty.");
@@ -48,7 +59,7 @@ public class OrderService {
             throw new IllegalArgumentException(String.join(" ", availabilityProblems));
         }
 
-        Bill bill = billCalculator.compute(cart, details.getType(), promoCode);
+        Bill bill = billCalculator.compute(cart, details.getType(), promoCode, discountType, discountIdNumber);
         features.Order order = new features.Order(store.newOrderId(), customer.getId(), restaurant.getId(),
                 cart.getItems(), details, bill);
         Payment payment = paymentService.process(bill.getTotal(), paymentMethod, forcedPaymentResult);
