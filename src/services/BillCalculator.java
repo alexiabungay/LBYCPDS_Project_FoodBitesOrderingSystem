@@ -9,6 +9,7 @@ public class BillCalculator {
     public static final double TAX_RATE = 0.12;
     public static final double SERVICE_CHARGE_RATE = 0.10;
     public static final double DELIVERY_FEE = 49.00;
+    public static final double SECTOR_DISCOUNT_RATE = 0.20;
 
     private final Map<String, Double> promos = new HashMap<>();
 
@@ -22,6 +23,10 @@ public class BillCalculator {
     }
 
     public Bill compute(Cart cart, OrderType type, String promoCode) {
+        return compute(cart, type, promoCode, DiscountType.NONE, null);
+    }
+
+    public Bill compute(Cart cart, OrderType type, String promoCode, DiscountType discountType, String idNumber) {
         Bill bill = new Bill();
         double subtotal = 0;
         for (CartItem currentItem : cart.getItems()) {
@@ -31,8 +36,23 @@ public class BillCalculator {
         bill.setSubtotal(subtotal);
         bill.addLine(new BillDetails("Subtotal", subtotal));
 
+        boolean sectorDiscount = discountType != null && discountType.isSectorDiscount();
+        boolean hasPromo = promoCode != null && !promoCode.trim().isEmpty();
+
         double discount = 0;
-        if (promoCode != null && !promoCode.trim().isEmpty()) {
+        if (sectorDiscount) {
+            if (hasPromo) {
+                throw new IllegalArgumentException("The Senior Citizen and PWD discount cannot be combined with a promo code.");
+            }
+            if (!Validator.isValidDiscountId(idNumber)) {
+                throw new IllegalArgumentException("A valid " + discountType + " ID number is required for the discount.");
+            }
+            discount = subtotal * SECTOR_DISCOUNT_RATE;
+            bill.setDiscount(discount);
+            bill.setDiscountType(discountType);
+            bill.setDiscountIdNumber(idNumber.trim().toUpperCase());
+            bill.addLine(new BillDetails(discountType + " discount (20%)", -discount));
+        } else if (hasPromo) {
             if (!isValidPromo(promoCode))
                 throw new IllegalArgumentException("Invalid promo code.");
             discount = subtotal * promos.get(promoCode.toUpperCase());
@@ -42,9 +62,9 @@ public class BillCalculator {
         }
 
         double taxable = subtotal - discount;
-        double tax = taxable * TAX_RATE;
+        double tax = sectorDiscount ? 0 : taxable * TAX_RATE;
         bill.setTax(tax);
-        bill.addLine(new BillDetails("Tax (12%)", tax));
+        bill.addLine(new BillDetails(sectorDiscount ? "Tax (VAT-exempt)" : "Tax (12%)", tax));
 
         if (type == OrderType.DINE_IN) {
             double serviceCharge = taxable * SERVICE_CHARGE_RATE;
