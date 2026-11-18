@@ -148,6 +148,20 @@ public class DisplayMenu {
         return table.render();
     }
 
+    public static String forOrdering(List<MenuItem> items) {
+        DisplayMenu table = new DisplayMenu(
+                new String[]{"No.", "Item", "Price (PHP)", "Stock", "Status"},
+                new Align[]{Align.RIGHT, Align.LEFT, Align.RIGHT, Align.RIGHT, Align.LEFT},
+                new int[]{4, 44, 11, 6, 11});
+        int number = 1;
+        for (MenuItem item : items) {
+            String status = item.isAvailable() && item.getStock() > 0 ? "Available" : "Unavailable";
+            table.addRow(String.valueOf(number++), item.getName(), String.format("%.2f", item.getPrice()),
+                    String.valueOf(item.getStock()), status);
+        }
+        return table.render();
+    }
+
     public static String forAddOns(List<AddOn> addOns) {
         DisplayMenu table = new DisplayMenu(
                 new String[]{"Add-on", "Price (PHP)"},

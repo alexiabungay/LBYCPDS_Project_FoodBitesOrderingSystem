@@ -388,6 +388,83 @@ public class FoodBitesApp {
         }
     }
 
+    private void printNumberedItems(List<MenuItem> items) {
+        if (items.isEmpty()) {
+            System.out.println("No items to show.");
+            return;
+        }
+        System.out.println(DisplayMenu.forOrdering(items));
+        System.out.println(items.size() + " item(s)");
+    }
+
+    private MenuItem chooseItemByNumber(List<MenuItem> items) {
+        if (items.isEmpty()) {
+            return null;
+        }
+        while (true) {
+            int choice = readInt("Item number (0 to go back): ");
+            if (choice == 0) {
+                return null;
+            }
+            if (choice >= 1 && choice <= items.size()) {
+                return items.get(choice - 1);
+            }
+            System.out.println("Please choose a number from 0 to " + items.size() + ".");
+        }
+    }
+
+    private String choosePortion(MenuItem item) {
+        List<String> portionSizes = item.getPortionSizes();
+        if (portionSizes.isEmpty()) {
+            return "";
+        }
+        System.out.println("Portion sizes");
+        for (int index = 0; index < portionSizes.size(); index++) {
+            System.out.printf("\t%d. %s%n", index + 1, portionSizes.get(index));
+        }
+        int choice = readChoice("Portion (0 for no preference): ", 0, portionSizes.size());
+        return choice == 0 ? "" : portionSizes.get(choice - 1);
+    }
+
+    private List<AddOn> chooseAddOns(MenuItem item) {
+        List<AddOn> chosenAddOns = new ArrayList<>();
+        List<AddOn> availableAddOns = item.getAddOns();
+        if (availableAddOns.isEmpty()) {
+            return chosenAddOns;
+        }
+        System.out.println("Upgrades / add-ons");
+        for (int index = 0; index < availableAddOns.size(); index++) {
+            System.out.printf("\t%d. %s%n", index + 1, availableAddOns.get(index));
+        }
+        System.out.println("\t0. Done choosing upgrades");
+        while (true) {
+            int choice = readInt("Upgrade number: ");
+            if (choice == 0) {
+                return chosenAddOns;
+            }
+            if (choice < 1 || choice > availableAddOns.size()) {
+                System.out.println("Please choose a number from 0 to " + availableAddOns.size() + ".");
+                continue;
+            }
+            AddOn addOn = availableAddOns.get(choice - 1);
+            if (containsAddOn(chosenAddOns, addOn)) {
+                System.out.println("That upgrade is already selected.");
+                continue;
+            }
+            chosenAddOns.add(addOn);
+            System.out.println("Added upgrade: " + addOn.getName());
+        }
+    }
+
+    private boolean containsAddOn(List<AddOn> addOns, AddOn candidate) {
+        for (AddOn addOn : addOns) {
+            if (addOn.getName().equalsIgnoreCase(candidate.getName())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     private boolean addToCart(Customer customer) {
         screen("Add to Cart");
         for (Restaurant listedRestaurant : menu.browseRestaurants()) {
@@ -399,36 +476,59 @@ public class FoodBitesApp {
         }
         Restaurant restaurant = menu.getRestaurant(restaurantId);
 
-        Category category = chooseCategory(restaurant);
-        if (category == null) {
-            return false;
-        }
-        screen(restaurant.getName() + " - " + categoryLabel(category));
-        printItems(restaurant.filterByCategory(category), false);
+        boolean addedAnyItem = false;
+        while (true) {
+            Category category = chooseCategory(restaurant);
+            if (category == null) {
+                break;
+            }
+            List<MenuItem> items = restaurant.filterByCategory(category);
+            screen(restaurant.getName() + " - " + categoryLabel(category));
+            printNumberedItems(items);
+            if (items.isEmpty()) {
+                pause();
+                continue;
+            }
+            MenuItem item = chooseItemByNumber(items);
+            if (item == null) {
+                continue;
+            }
+            if (!item.canOrder(1)) {
+                System.out.println("! " + item.getName() + " is not available right now.");
+                pause();
+                continue;
+            }
 
-        String itemInput = readLine("Item ID or name (0 to go back): ");
-        if (itemInput.equals(CANCEL)) {
-            return false;
-        }
-        MenuItem item = findMenuItem(restaurant, itemInput);
-        if (item == null) {
-            throw new IllegalArgumentException("Item not found.");
-        }
-        int quantity = readInt("Quantity: ");
-        String portion = "";
-        if (!item.getPortionSizes().isEmpty()) {
-            portion = readLine("Portion " + item.getPortionSizes() + ": ");
-        }
-        List<AddOn> chosenAddOns = new ArrayList<>();
-        for (AddOn addOn : item.getAddOns()) {
-            String addOnAnswer = readLine("Add " + addOn + "? (y/n): ");
-            if (addOnAnswer.equalsIgnoreCase("y")) {
-                chosenAddOns.add(addOn);
+            int quantity;
+            while (true) {
+                quantity = readInt("Quantity (0 to go back): ");
+                if (quantity == 0) {
+                    break;
+                }
+                if (quantity > 0 && item.canOrder(quantity)) {
+                    break;
+                }
+                System.out.println("! Please enter a quantity from 1 to " + item.getStock() + ".");
+            }
+            if (quantity == 0) {
+                continue;
+            }
+
+            String portion = choosePortion(item);
+            List<AddOn> chosenAddOns = chooseAddOns(item);
+            customer.getCart().addItem(item, quantity, portion, chosenAddOns);
+            addedAnyItem = true;
+            System.out.printf("Added %d x %s. Cart subtotal: PHP %.2f%n",
+                    quantity, item.getName(), customer.getCart().getSubtotal());
+            if (!readLine("Add another item? (y/n): ").equalsIgnoreCase("y")) {
+                break;
             }
         }
-        customer.getCart().addItem(item, quantity, portion, chosenAddOns);
-        String subtotalText = String.format("%.2f", customer.getCart().getSubtotal());
-        System.out.println("Added. Cart subtotal: PHP " + subtotalText);
+
+        if (!addedAnyItem) {
+            return false;
+        }
+        printCart(customer.getCart());
         return true;
     }
 
@@ -715,6 +815,20 @@ public class FoodBitesApp {
         });
     }
 
+    private void addItemUpgrades(User user, int restaurantId, MenuItem item) {
+        while (readLine("Add an upgrade/add-on to " + item.getName() + "? (y/n): ").equalsIgnoreCase("y")) {
+            String upgradeName = readLine("Upgrade name: ");
+            double upgradePrice = readDouble("Upgrade price: ");
+            menu.addAddOn(user, restaurantId, item.getName(), new AddOn(upgradeName, upgradePrice));
+            System.out.println("Upgrade added: " + upgradeName);
+        }
+        while (readLine("Add a portion size to " + item.getName() + "? (y/n): ").equalsIgnoreCase("y")) {
+            String portionSize = readLine("Portion size: ");
+            menu.addPortionSize(user, restaurantId, item.getName(), portionSize);
+            System.out.println("Portion size added: " + portionSize);
+        }
+    }
+
     private void managerMenu(User user) {
         System.out.println("1. Add restaurant");
         System.out.println("2. Edit restaurant");
@@ -734,7 +848,9 @@ public class FoodBitesApp {
         System.out.println("16. Best sellers");
         System.out.println("17. Rank restaurants ");
         System.out.println("18. View restaurants");
-        System.out.println("19. Logout");
+        System.out.println("19. Add item upgrade");
+        System.out.println("20. Add portion size");
+        System.out.println("21. Logout");
         guard(() -> {
             int restaurantId;
             int managerChoice = readInt("Choice: ");
@@ -767,6 +883,7 @@ public class FoodBitesApp {
                     int newItemStock = readInt("Stock: ");
                     MenuItem addedItem = menu.addItem(user, restaurantId, newItemName, newItemDescription, newItemCategory, newItemPrice, newItemStock);
                     System.out.println("Added: " + addedItem);
+                    addItemUpgrades(user, restaurantId, addedItem);
                     break;
                 case 5:
                     restaurantId = readInt("Restaurant ID: ");
@@ -847,12 +964,27 @@ public class FoodBitesApp {
                     }
                     break;
                 case 19:
+                    restaurantId = readInt("Restaurant ID: ");
+                    String upgradeItemName = readLine("Item name: ");
+                    String upgradeName = readLine("Upgrade name: ");
+                    double upgradePrice = readDouble("Upgrade price: ");
+                    menu.addAddOn(user, restaurantId, upgradeItemName, new AddOn(upgradeName, upgradePrice));
+                    System.out.println("Upgrade added to " + upgradeItemName + ".");
+                    break;
+                case 20:
+                    restaurantId = readInt("Restaurant ID: ");
+                    String portionItemName = readLine("Item name: ");
+                    String portionSize = readLine("Portion size: ");
+                    menu.addPortionSize(user, restaurantId, portionItemName, portionSize);
+                    System.out.println("Portion size added to " + portionItemName + ".");
+                    break;
+                case 21:
                     authentication.logout();
                     break;
                 default:
                     System.out.println("Invalid choice.");
             }
-            return managerChoice != 19;
+            return managerChoice != 21;
         });
     }
 

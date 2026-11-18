@@ -175,12 +175,33 @@ public class Menu {
     }
 
     public void addAddOn(User actor, int restaurantId, String itemName, AddOn addOn) {
-        findItem(actor, restaurantId, itemName).getAddOns().add(addOn);
+        if (addOn == null || !Validator.isNotBlank(addOn.getName())) {
+            throw new IllegalArgumentException("Upgrade name is required.");
+        }
+        if (addOn.getPrice() < 0) {
+            throw new IllegalArgumentException("Upgrade price cannot be negative.");
+        }
+        MenuItem menuItem = findItem(actor, restaurantId, itemName);
+        for (AddOn existing : menuItem.getAddOns()) {
+            if (existing.getName().equalsIgnoreCase(addOn.getName().trim())) {
+                throw new IllegalArgumentException("That upgrade already exists for this item.");
+            }
+        }
+        menuItem.getAddOns().add(new AddOn(addOn.getName().trim(), addOn.getPrice()));
         store.saveRestaurant(getRestaurant(restaurantId));
     }
 
     public void addPortionSize(User actor, int restaurantId, String itemName, String portionSize) {
-        findItem(actor, restaurantId, itemName).getPortionSizes().add(portionSize);
+        if (!Validator.isNotBlank(portionSize)) {
+            throw new IllegalArgumentException("Portion size is required.");
+        }
+        MenuItem menuItem = findItem(actor, restaurantId, itemName);
+        for (String existing : menuItem.getPortionSizes()) {
+            if (existing.equalsIgnoreCase(portionSize.trim())) {
+                throw new IllegalArgumentException("That portion size already exists for this item.");
+            }
+        }
+        menuItem.getPortionSizes().add(portionSize.trim());
         store.saveRestaurant(getRestaurant(restaurantId));
     }
 

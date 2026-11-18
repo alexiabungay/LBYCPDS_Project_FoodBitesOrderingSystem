@@ -1,10 +1,10 @@
 package services;
 
+import java.io.Console;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class ClearScreen {
-    private static volatile boolean masking;
-
     public static void clear() {
         try {
             if (System.getProperty("os.name").toLowerCase().contains("win")) {
@@ -26,26 +26,24 @@ public class ClearScreen {
     }
 
     public static String readPassword(String prompt, Scanner scanner) {
-        System.out.print(prompt + " ");
-        masking = true;
-        Thread eraser = new Thread(() -> {
-            while (masking) {
-                System.out.print("\b*");
-                try {
-                    Thread.sleep(1);
-                } catch (InterruptedException e) {
-                    return;
-                }
+        Console console = System.console();
+        if (console != null) {
+            char[] password = console.readPassword("%s", prompt);
+            System.out.println();
+            if (password == null) {
+                System.exit(0);
+                return "";
             }
-        });
-        eraser.start();
-        String password = scanner.nextLine();
-        masking = false;
-        try {
-            eraser.join();
-        } catch (InterruptedException e) {
+            String text = new String(password);
+            Arrays.fill(password, '\0');
+            return text;
         }
-        System.out.println();
-        return password;
+
+        System.out.print(prompt);
+        if (!scanner.hasNextLine()) {
+            System.out.println();
+            System.exit(0);
+        }
+        return scanner.nextLine();
     }
 }
