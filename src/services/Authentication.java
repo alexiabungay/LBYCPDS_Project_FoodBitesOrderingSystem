@@ -71,6 +71,7 @@ public class Authentication {
     private void save(User user) {
         store.getUsersByEmail().insert(user.getEmail(), user);
         store.getUsersById().insert(user.getId(), user);
+        store.getRecords().appendUser(user);
     }
 
     public User login(String email, String password) {
