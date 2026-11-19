@@ -1,11 +1,10 @@
 package services;
 
+import data.structure.AVLTree;
+import data.structure.HeapSort;
 import features.*;
 
-import java.util.ArrayList;
-import java.util.EnumMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Menu {
     private final DataStoring store;
@@ -16,6 +15,20 @@ public class Menu {
 
     public List<Restaurant> browseRestaurants() {
         return store.getRestaurants().inOrder();
+    }
+
+    public List<Restaurant> browseRestaurantsAlphabetical() {
+        AVLTree<String, Restaurant> byName = new AVLTree<>();
+        for (Restaurant restaurant : browseRestaurants()) {
+            byName.insert(String.format("%s#%06d", restaurant.getName().toLowerCase(), restaurant.getId()), restaurant);
+        }
+        return byName.inOrder();
+    }
+
+    public List<Restaurant> browseRestaurantsBySalesAscending() {
+        Restaurant[] restaurants = browseRestaurants().toArray(new Restaurant[0]);
+        HeapSort.sortAscending(restaurants, Comparator.comparingDouble(Restaurant::getTotalSales));
+        return new ArrayList<>(java.util.Arrays.asList(restaurants));
     }
 
     public Restaurant getRestaurant(int restaurantId) {

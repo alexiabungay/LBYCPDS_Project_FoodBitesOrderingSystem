@@ -1,9 +1,12 @@
 import features.*;
 import features.Order;
 import services.*;
+import data.structure.AVLTree;
+import data.structure.HeapSort;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 import java.util.function.BooleanSupplier;
@@ -836,6 +839,7 @@ public class FoodBitesApp {
         }
     }
 
+    // TODO: Remove option 1 to 3.
     private void managerMenu(User user) {
         System.out.println("1. Add restaurant");
         System.out.println("2. Edit restaurant");
@@ -995,6 +999,81 @@ public class FoodBitesApp {
         });
     }
 
+    private void printRestaurantList(List<Restaurant> restaurants) {
+        if (restaurants.isEmpty()) {
+            System.out.println("No restaurants to show.");
+            return;
+        }
+        for (Restaurant restaurant : restaurants) {
+            System.out.println(restaurant);
+        }
+    }
+
+    private void printSalesRanking(List<Restaurant> restaurants) {
+        int salesRank = 1;
+        for (Restaurant ranked : restaurants) {
+            System.out.printf("  %d. %-22s PHP %.2f%n", salesRank++, ranked.getName(), ranked.getTotalSales());
+        }
+    }
+
+    private void adminMenu(User user){
+        System.out.println("1. Add restaurant");
+        System.out.println("2. Edit restaurant");
+        System.out.println("3. Remove restaurant");
+        System.out.println("4. View restaurants by ID");
+        System.out.println("5. View restaurants A to Z");
+        System.out.println("6. View restaurants by Descending Order of Sales");
+        System.out.println("7. View restaurants by Increasing Order of Sales");
+        System.out.println("8. Logout");
+
+        guard(() -> {
+            int restaurantId;
+            int adminChoice = readInt("Choice: ");
+            ClearScreen.clear();
+            switch (adminChoice) {
+                case 1:
+                    String newRestaurantName = readLine("Name: ");
+                    String newRestaurantDescription = readLine("Description: ");
+                    String newRestaurantAddress = readLine("Address: ");
+                    Restaurant createdRestaurant = menu.createRestaurant(user, newRestaurantName, newRestaurantDescription, newRestaurantAddress);
+                    System.out.println("Created: " + createdRestaurant);
+                    break;
+                case 2:
+                    restaurantId = readInt("Restaurant ID: ");
+                    String updatedName = readLine("Name: ");
+                    String updatedDescription = readLine("Description: ");
+                    String updatedAddress = readLine("Address: ");
+                    menu.updateRestaurant(user, restaurantId, updatedName, updatedDescription, updatedAddress);
+                    break;
+                case 3:
+                    restaurantId = readInt("Restaurant ID: ");
+                    menu.removeRestaurant(user, restaurantId);
+                    break;
+                case 4:
+                    System.out.println("Restaurants by ID");
+                    printRestaurantList(menu.browseRestaurants());
+                    break;
+                case 5:
+                    System.out.println("Restaurants A to Z");
+                    printRestaurantList(menu.browseRestaurantsAlphabetical());
+                    break;
+                case 6:
+                    System.out.println("Restaurants by sales (highest first)");
+                    printSalesRanking(reports.rankRestaurants(user));
+                    break;
+                case 7:
+                    System.out.println("Restaurants by sales (lowest first)");
+                    printSalesRanking(menu.browseRestaurantsBySalesAscending());
+                    break;
+                case 8:
+                    authentication.logout();
+                    break;
+                default:
+                    System.out.println("Invalid choice.");
+            }
+            return adminChoice != 8;
+        });
+    }
 
     private void run() {
         int loadedRestaurantCount = store.loadRestaurants();
@@ -1047,6 +1126,9 @@ public class FoodBitesApp {
                         break;
                     case DELIVERY_RIDER:
                         riderMenu((DeliveryRider) currentUser);
+                        break;
+                    case ADMINISTRATOR:
+                        adminMenu(currentUser);
                         break;
                     default:
                         managerMenu(currentUser);
