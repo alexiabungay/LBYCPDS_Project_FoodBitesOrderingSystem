@@ -21,6 +21,7 @@ public class DataStoring {
     private final AVLTree<Integer, Order> orders = new AVLTree<>();
 
     private final RestaurantStorage restaurantStorage;
+    private final UserSalesDataCvs records;
 
     public DataStoring() {
         this("src/data");
@@ -28,6 +29,8 @@ public class DataStoring {
 
     public DataStoring(String restaurantFolder) {
         this.restaurantStorage = new RestaurantStorage(restaurantFolder);
+        // kept in a sub-folder so the restaurant loader (which reads *.csv in restaurantFolder) never sees these files
+        this.records = new UserSalesDataCvs(restaurantFolder + "/records");
     }
 
     private int nextUserId = 1;
@@ -92,6 +95,33 @@ public class DataStoring {
             }
         }
         return loadedCount;
+    }
+
+    // Loads saved accounts. Call after loadRestaurants() so business owners get linked to their restaurants.
+    public int loadUsers() {
+        int loadedCount = 0;
+        for (User savedUser : records.readUsers()) {
+            if (usersByEmail.contains(savedUser.getEmail()) || usersById.contains(savedUser.getId())) {
+                continue;
+            }
+            usersByEmail.insert(savedUser.getEmail(), savedUser);
+            usersById.insert(savedUser.getId(), savedUser);
+            nextUserId = Math.max(nextUserId, savedUser.getId() + 1);
+            relinkOwner(savedUser);
+            loadedCount++;
+        }
+        return loadedCount;
+    }
+
+    // Loads saved sales into the restaurants (for the sales report / best sellers) and continues the order numbers.
+    public int loadSalesData() {
+        int loadedCount = records.loadSales(restaurants);
+        nextOrderId = Math.max(nextOrderId, records.highestOrderId() + 1);
+        return loadedCount;
+    }
+
+    public UserSalesDataCvs getRecords() {
+        return records;
     }
 
     public void saveRestaurant(Restaurant restaurant) {
