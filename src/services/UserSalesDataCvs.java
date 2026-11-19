@@ -19,16 +19,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-/**
- * Saves user and sales data to CSV files. Every save is an append, so nothing is overwritten.
- *
- *   users.csv        - every registered account (loaded again the next time the program runs)
- *   orders.csv       - one row every time an order is placed or its status changes
- *                      (dine in / takeout / delivery, completed, cancelled, refunded, failed, ...)
- *   order_items.csv  - the food ordered in each order
- *   sales.csv        - the food sold, cancelled or refunded (loaded again for the sales report)
- *   receipts/        - the e-receipt of each confirmed order as a text file
- */
+
 public class UserSalesDataCvs {
     private static final String USER_HEADER =
             "user_id,role,name,email,phone,password_hash,restaurant_id,registered_at";
@@ -59,7 +50,7 @@ public class UserSalesDataCvs {
         this.receiptsFolder = folder.resolve("receipts");
     }
 
-    // ---------------------------------------------------------------- writing
+    // writing
 
     private String now() {
         return LocalDateTime.now().format(TIMESTAMP_FORMAT);
@@ -103,7 +94,8 @@ public class UserSalesDataCvs {
                 now()));
     }
 
-    // One row per call: save it again whenever the order changes status so the file keeps the full history.
+    // One row per call
+    // save it again whenever the order changes status so the file keeps the full history.
     public void appendOrder(Order order) {
         Bill bill = order.getBill();
         Payment payment = order.getPayment();
@@ -181,8 +173,7 @@ public class UserSalesDataCvs {
         }
     }
 
-    // ---------------------------------------------------------------- reading
-
+    // reading
     private List<List<String>> readRows(Path file) {
         List<List<String>> rows = new ArrayList<>();
         if (!Files.exists(file)) {
@@ -193,7 +184,7 @@ public class UserSalesDataCvs {
             boolean isFirstLine = true;
             for (String line : Files.readAllLines(file, StandardCharsets.UTF_8)) {
                 if (isFirstLine) {
-                    isFirstLine = false;     // header
+                    isFirstLine = false; // header
                     continue;
                 }
                 if (line.trim().isEmpty()) {
