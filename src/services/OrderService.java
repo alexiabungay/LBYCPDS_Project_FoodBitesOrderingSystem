@@ -66,9 +66,11 @@ public class OrderService {
         order.setPayment(payment);
         store.getOrders().insert(order.getId(), order);
         customer.getOrderIds().add(order.getId());
+        store.getRecords().appendOrderItems(order);
 
         if (payment.getStatus() != PaymentStatus.SUCCESS) {
             order.setStatus(OrderStatus.FAILED);
+            logOrder(order);
             return order;
         }
 
@@ -80,6 +82,8 @@ public class OrderService {
         restaurant.customerArrived();
         cart.clear();
         store.saveRestaurant(restaurant);
+        logOrder(order);
+        store.getRecords().saveReceipt(order.getId(), eReceipt.generate(order, customer, restaurant));
         return order;
     }
 
@@ -179,6 +183,7 @@ public class OrderService {
             throw new IllegalStateException("Order #" + frontOrder.getId() + " is already being prepared. Mark it ready first.");
         }
         frontOrder.setStatus(OrderStatus.PREPARING);
+        logOrder(frontOrder);
         return frontOrder;
     }
 
@@ -197,6 +202,7 @@ public class OrderService {
         if (frontOrder.getDetails().getType() == OrderType.DELIVERY) {
             restaurant.getDispatchQueue().enqueue(frontOrder);
         }
+        logOrder(frontOrder);
         return frontOrder;
     }
 
@@ -216,6 +222,7 @@ public class OrderService {
 
         order.setStatus(OrderStatus.COMPLETED);
         finalizeSale(order, restaurant);
+        logOrder(order);
         return order;
     }
 
@@ -245,6 +252,7 @@ public class OrderService {
         nextOrder.setRiderId(rider.getId());
         nextOrder.setStatus(OrderStatus.OUT_FOR_DELIVERY);
         rider.setAvailable(false);
+        logOrder(nextOrder);
         return nextOrder;
     }
 
@@ -268,11 +276,12 @@ public class OrderService {
                 order.getPayment().markRefunded();
             }
             restaurant.customerLeft(false);
-            restaurant.addSalesRecord(new SalesRecord(order.getId(), RecordType.CANCELLATION, LocalDate.now(),
+            recordSalesRecord(restaurant, new SalesRecord(order.getId(), RecordType.CANCELLATION, LocalDate.now(),
                     order.getBill().getTotal(), order.getItems()));
             store.saveRestaurant(restaurant);
         }
 
+        logOrder(order);
         rider.setAvailable(true);
         return order;
     }
@@ -307,9 +316,10 @@ public class OrderService {
         }
         order.setStatus(OrderStatus.CANCELLED);
         restaurant.customerLeft(false);
-        restaurant.addSalesRecord(new SalesRecord(order.getId(), RecordType.CANCELLATION, LocalDate.now(),
+        recordSalesRecord(restaurant, new SalesRecord(order.getId(), RecordType.CANCELLATION, LocalDate.now(),
                 order.getBill().getTotal(), order.getItems()));
         store.saveRestaurant(restaurant);
+        logOrder(order);
         return order;
     }
 
@@ -331,8 +341,9 @@ public class OrderService {
         restaurant.subtractRevenue(order.getBill().getTotal());
         order.getPayment().markRefunded();
         order.setStatus(OrderStatus.REFUNDED);
-        restaurant.addSalesRecord(new SalesRecord(order.getId(), RecordType.REFUND, LocalDate.now(),
+        recordSalesRecord(restaurant, new SalesRecord(order.getId(), RecordType.REFUND, LocalDate.now(),
                 order.getBill().getTotal(), order.getItems()));
+        logOrder(order);
         return order;
     }
 
@@ -367,8 +378,19 @@ public class OrderService {
         }
         restaurant.addRevenue(order.getBill().getTotal());
         restaurant.customerLeft(true);
-        restaurant.addSalesRecord(new SalesRecord(order.getId(), RecordType.SALE, LocalDate.now(),
+        recordSalesRecord(restaurant, new SalesRecord(order.getId(), RecordType.SALE, LocalDate.now(),
                 order.getBill().getTotal(), order.getItems()));
+    }
+
+    // keeps the sales record in memory (for reports) and appends it to the sales csv file
+    private void recordSalesRecord(Restaurant restaurant, SalesRecord salesRecord) {
+        restaurant.addSalesRecord(salesRecord);
+        store.getRecords().appendSalesRecord(restaurant.getId(), salesRecord);
+    }
+
+    // appends the order's current status to the orders csv file
+    private void logOrder(features.Order order) {
+        store.getRecords().appendOrder(order);
     }
 
     private void restoreStock(features.Order order) {
