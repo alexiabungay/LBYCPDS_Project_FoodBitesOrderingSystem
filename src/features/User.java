@@ -9,7 +9,7 @@ public abstract class User {
     private String name;
     private final String email;
     private String phone;
-    private final String passwordHash;
+    private String passwordHash;
     private final UserRole role;
 
     protected User(int id, String name, String email, String phone, String password, UserRole role) {
@@ -23,6 +23,15 @@ public abstract class User {
 
     public boolean checkPassword(String password) {
         return passwordHash.equals(hash(password));
+    }
+
+    public String getPasswordHash() {
+        return passwordHash;
+    }
+
+    // Used when an account is loaded back from the saved users file (the hash is already computed).
+    public void restorePasswordHash(String savedHash) {
+        this.passwordHash = savedHash;
     }
 
     private static String hash(String input) {
