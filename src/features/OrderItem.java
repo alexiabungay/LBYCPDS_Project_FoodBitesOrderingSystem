@@ -20,6 +20,14 @@ public class OrderItem {
         this.details = sb.toString();
     }
 
+    public OrderItem(MenuItem item, String name, double unitPrice, int quantity, String details) {
+        this.item = item;
+        this.name = name;
+        this.unitPrice = unitPrice;
+        this.quantity = quantity;
+        this.details = details == null ? "" : details;
+    }
+
     public double getLineTotal() {
         return unitPrice * quantity;
     }
