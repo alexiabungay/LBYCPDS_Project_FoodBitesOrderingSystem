@@ -105,7 +105,7 @@ public class FoodBitesApp {
             if (error != null) {
                 System.out.println("! " + error);
             }
-            String input = hidden ? ClearScreen.readPassword(label + ": ", scanner) : readLine(label + ": ");
+            String input = readLine(label + ": ");
             if (input.equals(CANCEL)) {
                 return null;
             }

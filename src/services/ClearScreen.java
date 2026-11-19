@@ -1,49 +1,60 @@
 package services;
 
+import java.io.ByteArrayOutputStream;
 import java.io.Console;
-import java.util.Arrays;
+import java.io.IOException;
+import java.io.InputStream;
+import java.lang.reflect.Method;
+import java.nio.charset.StandardCharsets;
+import java.util.Base64;
 import java.util.Scanner;
 
-public class ClearScreen {
-    public static void clear() {
+public final class ClearScreen {
+    private static final boolean WINDOWS = System.getProperty("os.name", "").toLowerCase().contains("win");
+    private static final boolean TERMINAL = detectTerminal();
+    private static boolean maskingHintShown = false;
+
+    private ClearScreen() { }
+
+    private static boolean detectTerminal() {
+        Console console = System.console();
+        if (console == null) {
+            return false;
+        }
         try {
-            if (System.getProperty("os.name").toLowerCase().contains("win")) {
-                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-            } else {
-                System.out.print("\033[H\033[2J");
-                System.out.flush();
-            }
-        } catch (Exception e) {
-            for (int i = 0; i < 50; i++) {
+            // Java 22+: System.console() is never null, so ask whether it is really a terminal.
+            Method isTerminal = Console.class.getMethod("isTerminal");
+            return (Boolean) isTerminal.invoke(console);
+        } catch (ReflectiveOperationException | RuntimeException exception) {
+            return true;
+        }
+    }
+
+    public static void clear() {
+        if (!TERMINAL) {
+            for (int line = 0; line < 50; line++) {
                 System.out.println();
             }
+            return;
+        }
+        try {
+            if (WINDOWS) {
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+            } else {
+                System.out.print("\033[H\033[2J\033[3J");
+                System.out.flush();
+            }
+        } catch (IOException | InterruptedException exception) {
+            System.out.print("\033[H\033[2J");
+            System.out.flush();
         }
     }
 
     public static void pause(Scanner scanner) {
-        System.out.print("\nPress Enter to continue");
-        scanner.nextLine();
-    }
-
-    public static String readPassword(String prompt, Scanner scanner) {
-        Console console = System.console();
-        if (console != null) {
-            char[] password = console.readPassword("%s", prompt);
-            System.out.println();
-            if (password == null) {
-                System.exit(0);
-                return "";
-            }
-            String text = new String(password);
-            Arrays.fill(password, '\0');
-            return text;
+        System.out.print("\nPress Enter to continue...");
+        System.out.flush();
+        if (scanner.hasNextLine()) {
+            scanner.nextLine();
         }
-
-        System.out.print(prompt);
-        if (!scanner.hasNextLine()) {
-            System.out.println();
-            System.exit(0);
-        }
-        return scanner.nextLine();
     }
 }
