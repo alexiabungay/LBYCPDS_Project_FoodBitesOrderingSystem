@@ -19,7 +19,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-
 public class UserSalesDataCvs {
     private static final String USER_HEADER =
             "user_id,role,name,email,phone,password_hash,restaurant_id,registered_at";

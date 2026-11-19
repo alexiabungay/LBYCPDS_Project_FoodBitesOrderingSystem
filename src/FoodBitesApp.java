@@ -839,7 +839,6 @@ public class FoodBitesApp {
         }
     }
 
-    // TODO: Remove option 1 to 3.
     private void managerMenu(User user) {
         System.out.println("1. Add restaurant");
         System.out.println("2. Edit restaurant");
@@ -1016,6 +1015,18 @@ public class FoodBitesApp {
         }
     }
 
+    private void printBusinessOwners() {
+        List<BusinessOwner> owners = menu.browseBusinessOwners();
+        if (owners.isEmpty()) {
+            System.out.println("(No business owner accounts yet. Register one first.)");
+            return;
+        }
+        System.out.println("Business owners:");
+        for (BusinessOwner owner : owners) {
+            System.out.println("  " + owner.getName() + " - " + owner.getEmail());
+        }
+    }
+
     private void adminMenu(User user){
         System.out.println("1. Add restaurant");
         System.out.println("2. Edit restaurant");
@@ -1024,7 +1035,8 @@ public class FoodBitesApp {
         System.out.println("5. View restaurants A to Z");
         System.out.println("6. View restaurants by Descending Order of Sales");
         System.out.println("7. View restaurants by Increasing Order of Sales");
-        System.out.println("8. Logout");
+        System.out.println("8. View List of Business Owners");
+        System.out.println("9. Logout");
 
         guard(() -> {
             int restaurantId;
@@ -1035,7 +1047,9 @@ public class FoodBitesApp {
                     String newRestaurantName = readLine("Name: ");
                     String newRestaurantDescription = readLine("Description: ");
                     String newRestaurantAddress = readLine("Address: ");
-                    Restaurant createdRestaurant = menu.createRestaurant(user, newRestaurantName, newRestaurantDescription, newRestaurantAddress);
+                    printBusinessOwners();
+                    String newRestaurantOwnerEmail = readLine("Owner email: ");
+                    Restaurant createdRestaurant = menu.createRestaurant(user, newRestaurantName, newRestaurantDescription, newRestaurantAddress, newRestaurantOwnerEmail);
                     System.out.println("Created: " + createdRestaurant);
                     break;
                 case 2:
@@ -1043,7 +1057,9 @@ public class FoodBitesApp {
                     String updatedName = readLine("Name: ");
                     String updatedDescription = readLine("Description: ");
                     String updatedAddress = readLine("Address: ");
-                    menu.updateRestaurant(user, restaurantId, updatedName, updatedDescription, updatedAddress);
+                    printBusinessOwners();
+                    String updatedOwnerEmail = readLine("New owner email (leave blank to keep the current owner): ");
+                    menu.updateRestaurant(user, restaurantId, updatedName, updatedDescription, updatedAddress, updatedOwnerEmail);
                     break;
                 case 3:
                     restaurantId = readInt("Restaurant ID: ");
@@ -1066,12 +1082,15 @@ public class FoodBitesApp {
                     printSalesRanking(menu.browseRestaurantsBySalesAscending());
                     break;
                 case 8:
+                    printBusinessOwners();
+                    break;
+                case 9:
                     authentication.logout();
                     break;
                 default:
                     System.out.println("Invalid choice.");
             }
-            return adminChoice != 8;
+            return adminChoice != 9;
         });
     }
 

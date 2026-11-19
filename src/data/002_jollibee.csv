@@ -1,0 +1,4 @@
+restaurant_id,owner_email,name,description,address,dine_in,takeout,delivery
+2,owner@jollibee.com,Jollibee,masarap,Tomas Morato,true,true,true
+
+item_name,description,category,price,stock,available,portion_sizes,add_ons

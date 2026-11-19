@@ -1,3 +1,5 @@
 user_id,role,name,email,phone,password_hash,restaurant_id,registered_at
 1,ADMINISTRATOR,Food Bites Admin,admin@foodbites.ph,09170000000,240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9,-1,2026-11-19 12:38:16
 2,CUSTOMER,Gian,gian_fadriquela@dlsu.edu.ph,09565932223,bd94dcda26fccb4e68d6a31f9b5aac0b571ae266d822620e901ef7ebe3a11d4f,-1,2026-11-19 13:04:07
+3,BUSINESS_OWNER,McDo,owner@mcdo.com,09171234567,fac840c814b10176b10c6360eaef1e9d204f6536cfb45746ce53c75d69f77d4b,-1,2026-11-19 18:31:53
+4,BUSINESS_OWNER,Jollibee,owner@jollibee.com,09275959186,bb5ef93d72709933b03589b4735a4887a5853e79350628b576df0755bbc13732,-1,2026-11-19 18:35:42

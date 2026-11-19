@@ -83,41 +83,7 @@ public class Menu {
         }
     }
 
-    public Restaurant createRestaurant(User actor, String name, String description, String address) {
-        requireManager(actor);
-        if (!Validator.isNotBlank(name)) {
-            throw new IllegalArgumentException("Restaurant name is required.");
-        }
-
-        int ownerId = actor.getId();
-        Restaurant restaurant = new Restaurant(store.newRestaurantId(), ownerId, name, description, address);
-        restaurant.setOwnerEmail(actor.getEmail());
-        store.getRestaurants().insert(restaurant.getId(), restaurant);
-
-        if (actor instanceof BusinessOwner) {
-            ((BusinessOwner) actor).getRestaurantIds().add(restaurant.getId());
-        }
-        store.saveRestaurant(restaurant);
-        return restaurant;
-    }
-
-    public void updateRestaurant(User actor, int restaurantId, String name, String description, String address) {
-        Restaurant restaurant = requireOwnership(actor, restaurantId);
-        restaurant.setName(name);
-        restaurant.setDescription(description);
-        restaurant.setAddress(address);
-        store.saveRestaurant(restaurant);
-    }
-
-    public void removeRestaurant(User actor, int restaurantId) {
-        Restaurant restaurant = requireOwnership(actor, restaurantId);
-        store.getRestaurants().delete(restaurantId);
-        store.deleteRestaurantFile(restaurant);
-
-        if (actor instanceof BusinessOwner) {
-            ((BusinessOwner) actor).getRestaurantIds().remove((Integer) restaurantId);
-        }
-    }
+    // Business Owner Menu
 
     public MenuItem addItem(User actor, int restaurantId, String name, String description,
                             Category category, double price, int stock) {
@@ -242,5 +208,105 @@ public class Menu {
             throw new SecurityException("You can only manage your own restaurant.");
         }
         return restaurant;
+    }
+
+    // Admin Menu
+
+    public Restaurant createRestaurant(User actor, String name, String description, String address) {
+        requireManager(actor);
+        if (!Validator.isNotBlank(name)) {
+            throw new IllegalArgumentException("Restaurant name is required.");
+        }
+
+        int ownerId = actor.getId();
+        Restaurant restaurant = new Restaurant(store.newRestaurantId(), ownerId, name, description, address);
+        restaurant.setOwnerEmail(actor.getEmail());
+        store.getRestaurants().insert(restaurant.getId(), restaurant);
+
+        if (actor instanceof BusinessOwner) {
+            ((BusinessOwner) actor).getRestaurantIds().add(restaurant.getId());
+        }
+        store.saveRestaurant(restaurant);
+        return restaurant;
+    }
+
+    public void updateRestaurant(User actor, int restaurantId, String name, String description, String address) {
+        Restaurant restaurant = requireOwnership(actor, restaurantId);
+        restaurant.setName(name);
+        restaurant.setDescription(description);
+        restaurant.setAddress(address);
+        store.saveRestaurant(restaurant);
+    }
+
+    public void removeRestaurant(User actor, int restaurantId) {
+        Restaurant restaurant = requireOwnership(actor, restaurantId);
+        store.getRestaurants().delete(restaurantId);
+        store.deleteRestaurantFile(restaurant);
+
+        User owner = store.getUsersById().search(restaurant.getOwnerId());
+        if (owner instanceof BusinessOwner) {
+            ((BusinessOwner) owner).getRestaurantIds().remove((Integer) restaurantId);
+        }
+    }
+
+    public List<BusinessOwner> browseBusinessOwners() {
+        List<BusinessOwner> owners = new ArrayList<>();
+        for (User user : store.getUsersById().inOrder()) {
+            if (user instanceof BusinessOwner) {
+                owners.add((BusinessOwner) user);
+            }
+        }
+        return owners;
+    }
+
+    private BusinessOwner findBusinessOwner(String ownerEmail) {
+        User found = ownerEmail == null ? null : store.getUsersByEmail().search(ownerEmail.trim().toLowerCase());
+        if (!(found instanceof BusinessOwner)) {
+            throw new IllegalArgumentException("No business owner account has that email.");
+        }
+        return (BusinessOwner) found;
+    }
+
+    private void requireAdministrator(User actor) {
+        if (actor == null || actor.getRole() != UserRole.ADMINISTRATOR) {
+            throw new SecurityException("Only administrators can assign restaurant owners.");
+        }
+    }
+
+    public void assignOwner(User actor, int restaurantId, String ownerEmail) {
+        requireAdministrator(actor);
+        Restaurant restaurant = getRestaurant(restaurantId);
+        BusinessOwner newOwner = findBusinessOwner(ownerEmail);
+
+        User oldOwner = store.getUsersById().search(restaurant.getOwnerId());
+        if (oldOwner instanceof BusinessOwner) {
+            ((BusinessOwner) oldOwner).getRestaurantIds().remove((Integer) restaurantId);
+        }
+        restaurant.setOwnerId(newOwner.getId());
+        restaurant.setOwnerEmail(newOwner.getEmail());
+        if (!newOwner.getRestaurantIds().contains(restaurantId)) {
+            newOwner.getRestaurantIds().add(restaurantId);
+        }
+        store.saveRestaurant(restaurant);
+    }
+
+    public Restaurant createRestaurant(User actor, String name, String description, String address, String ownerEmail) {
+        requireAdministrator(actor);
+        BusinessOwner owner = findBusinessOwner(ownerEmail);
+        Restaurant restaurant = createRestaurant(actor, name, description, address);
+        assignOwner(actor, restaurant.getId(), owner.getEmail());
+        return restaurant;
+    }
+
+    public void updateRestaurant(User actor, int restaurantId, String name, String description, String address, String ownerEmail) {
+        requireAdministrator(actor);
+        boolean changeOwner = Validator.isNotBlank(ownerEmail);
+        if (changeOwner) {
+            findBusinessOwner(ownerEmail);
+        }
+        updateRestaurant(actor, restaurantId, name, description, address);
+        if (changeOwner) {
+            assignOwner(actor, restaurantId, ownerEmail);
+        }
     }
 }
