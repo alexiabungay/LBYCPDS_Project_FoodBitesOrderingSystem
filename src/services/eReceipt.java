@@ -8,11 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-/**
- * Builds the plain-text e-receipt / bill of an order. The layout follows a printed e-receipt:
- * centered header and section titles, label on the left and value on the right, then customer details,
- * address, order notes and a "Powered by" footer.
- */
 public class eReceipt {
     private static final int WIDTH = 46;
     private static final int QTY_WIDTH = 4;
@@ -39,7 +34,6 @@ public class eReceipt {
         }
     }
 
-    // ---------------------------------------------------------------- public
 
     // The receipt of a placed order.
     public static String generate(Order order, User customer, Restaurant restaurant) {
@@ -58,7 +52,7 @@ public class eReceipt {
                 order.getDetails(), lines, order.getBill(), payment);
     }
 
-    // The bill shown before the customer confirms the order (no order number or payment yet).
+    // The bill shown before the customer confirms the order
     public static String preview(Customer customer, Restaurant restaurant, DeliveryDetails details, Bill bill) {
         List<ReceiptLine> lines = new ArrayList<>();
         for (CartItem cartItem : customer.getCart().getItems()) {
@@ -68,8 +62,7 @@ public class eReceipt {
         return render("BILL", "Pending", LocalDateTime.now(), restaurant, customer, details, lines, bill, null);
     }
 
-    // ---------------------------------------------------------------- layout
-
+    //  layout
     private static String render(String title, String orderNumber, LocalDateTime orderedAt, Restaurant restaurant,
                                  User customer, DeliveryDetails details, List<ReceiptLine> lines, Bill bill,
                                  Payment payment) {
@@ -178,8 +171,7 @@ public class eReceipt {
         return out.toString();
     }
 
-    // ---------------------------------------------------------------- helpers
-
+    // helpers
     private static void centered(StringBuilder out, String text) {
         for (String textLine : wrap(text, WIDTH)) {
             int padding = Math.max(0, (WIDTH - textLine.length()) / 2);
