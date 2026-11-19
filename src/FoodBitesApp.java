@@ -633,8 +633,11 @@ public class FoodBitesApp {
             promoCode = readLine("Promo code (optional): ");
         }
 
+        Bill bill = orders.previewBill(customer, orderType, promoCode, discountType, discountIdNumber);
+        DeliveryDetails deliveryDetails = new DeliveryDetails(orderType, address, preferredTime, specialInstructions);
+        Restaurant billRestaurant = menu.getRestaurant(customer.getCart().getRestaurantId());
         screen("Bill");
-        System.out.println(orders.previewBill(customer, orderType, promoCode, discountType, discountIdNumber));
+        System.out.println(eReceipt.preview(customer, billRestaurant, deliveryDetails, bill));
         if (discountType.isSectorDiscount()) {
             System.out.println("Please show your valid " + discountType + " ID when you receive your order.");
         }
@@ -650,13 +653,14 @@ public class FoodBitesApp {
             return true;
         }
 
-        DeliveryDetails deliveryDetails = new DeliveryDetails(orderType, address, preferredTime, specialInstructions);
         Order placedOrder = orders.checkout(customer, deliveryDetails, paymentMethod, promoCode, null,
                 discountType, discountIdNumber);
-        System.out.println(placedOrder.getPayment().receipt());
         if (placedOrder.getStatus() == OrderStatus.FAILED) {
+            System.out.println(placedOrder.getPayment().receipt());
             System.out.println("Payment failed, order was not confirmed.");
         } else {
+            screen("E-Receipt");
+            System.out.println(eReceipt.generate(placedOrder, customer, billRestaurant));
             int queuePosition = orders.getQueuePosition(placedOrder);
             System.out.println("Order #" + placedOrder.getId() + " confirmed! Your position in the queue: " + queuePosition);
         }
@@ -991,6 +995,8 @@ public class FoodBitesApp {
 
     private void run() {
         int loadedRestaurantCount = store.loadRestaurants();
+        store.loadUsers();
+        store.loadSalesData();
         if (store.getUsersByEmail().search("admin@foodbites.ph") == null) {
             authentication.createAdministrator("Food Bites Admin", "admin@foodbites.ph", "09170000000", "Admin1234");
         }
