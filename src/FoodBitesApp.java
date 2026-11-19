@@ -1,12 +1,9 @@
 import features.*;
 import features.Order;
 import services.*;
-import data.structure.AVLTree;
-import data.structure.HeapSort;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 import java.util.function.BooleanSupplier;
@@ -91,6 +88,17 @@ public class FoodBitesApp {
         return name.charAt(0) + name.substring(1).toLowerCase();
     }
 
+    private String readHiddenInput(String prompt) {
+        java.io.Console console = System.console();
+        if (console != null) {
+            char[] typed = console.readPassword(prompt);
+            if (typed != null) {
+                return new String(typed).trim();
+            }
+        }
+        return readLine(prompt);
+    }
+
     private String askField(String title, List<String> accepted, String[] hints, String label,
                             boolean hidden, Function<String, String> check) {
         String error = null;
@@ -107,7 +115,7 @@ public class FoodBitesApp {
             if (error != null) {
                 System.out.println("! " + error);
             }
-            String input = readLine(label + ": ");
+            String input = hidden ? readHiddenInput(label + ": ") : readLine(label + ": ");
             if (input.equals(CANCEL)) {
                 return null;
             }
