@@ -48,7 +48,7 @@ public class DisplayMenu {
             List<List<String>> wrappedCells = new ArrayList<>();
             int rowHeight = 1;
             for (int column = 0; column < columnCount; column++) {
-                List<String> wrapped = wrap(row[column], widths[column]);
+                List<String> wrapped = TextUtil.wrap(row[column], widths[column]);
                 wrappedCells.add(wrapped);
                 rowHeight = Math.max(rowHeight, wrapped.size());
             }
@@ -88,37 +88,6 @@ public class DisplayMenu {
             default:
                 return text + " ".repeat(space);
         }
-    }
-
-    private static List<String> wrap(String text, int width) {
-        List<String> lines = new ArrayList<>();
-        if (text.length() <= width) {
-            lines.add(text);
-            return lines;
-        }
-        StringBuilder current = new StringBuilder();
-        for (String word : text.split(" ")) {
-            while (word.length() > width) {
-                if (current.length() > 0) {
-                    lines.add(current.toString());
-                    current.setLength(0);
-                }
-                lines.add(word.substring(0, width));
-                word = word.substring(width);
-            }
-            if (current.length() == 0) {
-                current.append(word);
-            } else if (current.length() + 1 + word.length() <= width) {
-                current.append(' ').append(word);
-            } else {
-                lines.add(current.toString());
-                current = new StringBuilder(word);
-            }
-        }
-        if (current.length() > 0) {
-            lines.add(current.toString());
-        }
-        return lines;
     }
 
     public static String forMenu(List<MenuItem> items, boolean showCategory) {

@@ -91,14 +91,14 @@ public class eReceipt {
                 "Item", "Qty", "Amount"));
         out.append(dashes());
         for (ReceiptLine line : lines) {
-            List<String> nameLines = wrap(line.name, NAME_WIDTH);
+            List<String> nameLines = TextUtil.wrap(line.name, NAME_WIDTH);
             out.append(String.format(Locale.US, "%-" + NAME_WIDTH + "s %" + QTY_WIDTH + "d %" + AMOUNT_WIDTH + "s%n",
                     nameLines.get(0), line.quantity, money(line.amount)));
             for (int index = 1; index < nameLines.size(); index++) {
                 out.append(nameLines.get(index)).append('\n');
             }
             if (isFilled(line.details)) {
-                for (String detailLine : wrap(line.details, WIDTH - 2)) {
+                for (String detailLine : TextUtil.wrap(line.details, WIDTH - 2)) {
                     out.append("  ").append(detailLine).append('\n');
                 }
             }
@@ -112,7 +112,7 @@ public class eReceipt {
         }
         row(out, "TOTAL", money(bill.getTotal()));
         if (bill.getDiscountType().isSectorDiscount()) {
-            row(out, bill.getDiscountType() + " ID", maskedId(bill.getDiscountIdNumber()));
+            row(out, bill.getDiscountType() + " ID", bill.getMaskedDiscountIdNumber());
         }
 
         // payment
@@ -173,14 +173,14 @@ public class eReceipt {
 
     // helpers
     private static void centered(StringBuilder out, String text) {
-        for (String textLine : wrap(text, WIDTH)) {
+        for (String textLine : TextUtil.wrap(text, WIDTH)) {
             int padding = Math.max(0, (WIDTH - textLine.length()) / 2);
             out.append(" ".repeat(padding)).append(textLine).append('\n');
         }
     }
 
     private static void left(StringBuilder out, String text) {
-        for (String textLine : wrap(text, WIDTH)) {
+        for (String textLine : TextUtil.wrap(text, WIDTH)) {
             out.append(textLine).append('\n');
         }
     }
@@ -198,36 +198,6 @@ public class eReceipt {
 
     private static String dashes() {
         return "-".repeat(WIDTH) + "\n";
-    }
-
-    private static List<String> wrap(String text, int width) {
-        List<String> result = new ArrayList<>();
-        StringBuilder current = new StringBuilder();
-        String safeText = text == null ? "" : text.trim();
-
-        for (String word : safeText.split("\\s+")) {
-            while (word.length() > width) {
-                if (current.length() > 0) {
-                    result.add(current.toString());
-                    current.setLength(0);
-                }
-                result.add(word.substring(0, width));
-                word = word.substring(width);
-            }
-            if (current.length() == 0) {
-                current.append(word);
-            } else if (current.length() + 1 + word.length() <= width) {
-                current.append(' ').append(word);
-            } else {
-                result.add(current.toString());
-                current.setLength(0);
-                current.append(word);
-            }
-        }
-        if (current.length() > 0 || result.isEmpty()) {
-            result.add(current.toString());
-        }
-        return result;
     }
 
     private static boolean isFilled(String text) {
@@ -249,13 +219,6 @@ public class eReceipt {
             details.append(details.length() > 0 ? ", " : "").append(addOn.getName());
         }
         return details.toString();
-    }
-
-    private static String maskedId(String idNumber) {
-        if (idNumber == null || idNumber.length() <= 4) {
-            return idNumber == null ? "" : idNumber;
-        }
-        return "*".repeat(idNumber.length() - 4) + idNumber.substring(idNumber.length() - 4);
     }
 
     private static String orderTypeLabel(OrderType type) {
