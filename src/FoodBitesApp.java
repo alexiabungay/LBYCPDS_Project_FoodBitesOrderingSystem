@@ -92,8 +92,7 @@ public class FoodBitesApp {
                             boolean hidden, Function<String, String> check) {
         String error = null;
         while (true) {
-            screen(title);
-            System.out.println("(Enter 0 to cancel)");
+            System.out.println("\n" + title + " (Enter 0 to cancel)");
             for (String line : accepted) {
                 System.out.println(line);
             }
@@ -232,6 +231,10 @@ public class FoodBitesApp {
                 return "Incorrect password.";
             }
         });
+
+        User currentUser = authentication.getCurrentUser();
+        System.out.println("\nSuccessfully Logged In. Welcome, " + currentUser.getRoleDescription() + " " + currentUser.getName() + "!");
+
         return false;
     }
 
