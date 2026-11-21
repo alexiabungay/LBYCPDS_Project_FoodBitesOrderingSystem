@@ -33,6 +33,10 @@ public abstract class User {
         this.passwordHash = savedHash;
     }
 
+    public void changePassword(String newPassword) {
+        this.passwordHash = hash(newPassword);
+    }
+
     private static String hash(String input) {
         try {
             MessageDigest message = MessageDigest.getInstance("SHA-256");
