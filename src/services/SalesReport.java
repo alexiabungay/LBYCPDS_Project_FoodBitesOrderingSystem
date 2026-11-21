@@ -115,6 +115,57 @@ public class SalesReport {
         return report.toString();
     }
 
+    public String foodplacesSummary(User admin) {
+        if (admin == null || admin.getRole() != UserRole.ADMINISTRATOR) {
+            throw new SecurityException("Administrators only.");
+        }
+
+        int orderCount = 0;
+        int cancellationCount = 0;
+        int refundCount = 0;
+        double grossSales = 0;
+        double refundTotal = 0;
+        Restaurant topRestaurant = null;
+
+        List<Restaurant> allRestaurants = store.getRestaurants().inOrder();
+        for (Restaurant restaurant : allRestaurants) {
+            for (SalesRecord salesRecord : restaurant.getSalesRecords()) {
+                switch (salesRecord.getType()) {
+                    case SALE:
+                        orderCount++;
+                        grossSales += salesRecord.getAmount();
+                        break;
+                    case CANCELLATION:
+                        cancellationCount++;
+                        break;
+                    default:
+                        refundCount++;
+                        refundTotal += salesRecord.getAmount();
+                }
+            }
+            if (topRestaurant == null || restaurant.getTotalSales() > topRestaurant.getTotalSales()) {
+                topRestaurant = restaurant;
+            }
+        }
+
+        String topName = "(no sales yet)";
+        if (topRestaurant != null && topRestaurant.getTotalSales() > 0) {
+            topName = topRestaurant.getName() + String.format(" (PHP %.2f)", topRestaurant.getTotalSales());
+        }
+
+        return "FOODPLACES SUMMARY" + System.lineSeparator()
+                + DisplayMenu.forSalesSummary(new String[][]{
+                {"Restaurants", String.valueOf(allRestaurants.size())},
+                {"Orders completed", String.valueOf(orderCount)},
+                {"Gross revenue", String.format("PHP %.2f", grossSales)},
+                {"Cancellations", String.valueOf(cancellationCount)},
+                {"Refunds issued", String.valueOf(refundCount)},
+                {"Refund total", String.format("PHP %.2f", refundTotal)},
+                {"Net revenue", String.format("PHP %.2f", grossSales - refundTotal)},
+                {"Top restaurant", topName}
+        });
+    }
+
     public List<Restaurant> rankRestaurants(User actor) {
         if (actor.getRole() != UserRole.ADMINISTRATOR) {
             throw new SecurityException("Administrators only.");
