@@ -1,7 +1,10 @@
 package services;
 
 import features.AddOn;
+import features.ItemSales;
 import features.MenuItem;
+import features.Order;
+import features.OrderItem;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -138,6 +141,76 @@ public class DisplayMenu {
                 new int[]{44, 11});
         for (AddOn addOn : addOns) {
             table.addRow(addOn.getName(), String.format("+%.2f", addOn.getPrice()));
+        }
+        return table.render();
+    }
+
+    public static String forOrders(List<Order> orders) {
+        DisplayMenu table = new DisplayMenu(
+                new String[]{"Order #", "Type", "Status", "Items", "Total (PHP)"},
+                new Align[]{Align.RIGHT, Align.LEFT, Align.LEFT, Align.LEFT, Align.RIGHT},
+                new int[]{7, 10, 16, 40, 11});
+        for (Order order : orders) {
+            StringBuilder lines = new StringBuilder();
+            for (OrderItem orderItem : order.getItems()) {
+                if (lines.length() > 0) {
+                    lines.append(", ");
+                }
+                lines.append(orderItem.getQuantity()).append("x ").append(orderItem.getName());
+            }
+            table.addRow(String.valueOf(order.getId()), String.valueOf(order.getDetails().getType()),
+                    String.valueOf(order.getStatus()), lines.toString(),
+                    String.format("%.2f", order.getBill().getTotal()));
+        }
+        return table.render();
+    }
+
+    public static String forBestSellers(List<MenuItem> items) {
+        DisplayMenu table = new DisplayMenu(
+                new String[]{"Rank", "Item", "Category", "Units Sold", "Revenue (PHP)"},
+                new Align[]{Align.RIGHT, Align.LEFT, Align.LEFT, Align.RIGHT, Align.RIGHT},
+                new int[]{4, 44, 10, 10, 13});
+        int rank = 1;
+        for (MenuItem item : items) {
+            table.addRow(String.valueOf(rank++), item.getName(), item.getCategory().toString(),
+                    String.valueOf(item.getTotalSales()), String.format("%.2f", item.getTotalRevenue()));
+        }
+        return table.render();
+    }
+
+    public static String forInventory(List<MenuItem> items, int lowStockLimit) {
+        DisplayMenu table = new DisplayMenu(
+                new String[]{"ID", "Item", "Category", "Stock", "Status", "Alert"},
+                new Align[]{Align.RIGHT, Align.LEFT, Align.LEFT, Align.RIGHT, Align.LEFT, Align.LEFT},
+                new int[]{6, 44, 10, 6, 11, 9});
+        for (MenuItem item : items) {
+            table.addRow(String.valueOf(item.getId()), item.getName(), item.getCategory().toString(),
+                    String.valueOf(item.getStock()), item.isAvailable() ? "Available" : "Unavailable",
+                    item.getStock() <= lowStockLimit ? "LOW STOCK" : "");
+        }
+        return table.render();
+    }
+
+    public static String forSalesSummary(String[][] metrics) {
+        DisplayMenu table = new DisplayMenu(
+                new String[]{"Summary", "Value"},
+                new Align[]{Align.LEFT, Align.RIGHT},
+                new int[]{24, 20});
+        for (String[] metric : metrics) {
+            table.addRow(metric[0], metric[1]);
+        }
+        return table.render();
+    }
+
+    public static String forSalesItems(List<ItemSales> sales) {
+        DisplayMenu table = new DisplayMenu(
+                new String[]{"Rank", "Item", "Units Sold", "Revenue (PHP)"},
+                new Align[]{Align.RIGHT, Align.LEFT, Align.RIGHT, Align.RIGHT},
+                new int[]{4, 44, 10, 13});
+        int rank = 1;
+        for (ItemSales sale : sales) {
+            table.addRow(String.valueOf(rank++), sale.getName(), String.valueOf(sale.getUnits()),
+                    String.format("%.2f", sale.getRevenue()));
         }
         return table.render();
     }
