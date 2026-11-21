@@ -190,18 +190,6 @@ public class Restaurant {
         return totalSales;
     }
 
-    public int getCurrentCustomers() {
-        return currentCustomers;
-    }
-
-    public int getTotalCustomers() {
-        return totalCustomers;
-    }
-
-    public int getMenuSize() {
-        return nameIndex.size();
-    }
-
     @Override
     public String toString() {
         return String.format("#%d %s - %s (%s)", id, name, description, address);

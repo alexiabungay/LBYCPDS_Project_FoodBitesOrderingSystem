@@ -27,10 +27,6 @@ public class Payment {
         status = PaymentStatus.FAILED; timestamp = LocalDateTime.now(); message = reason;
     }
 
-    public void markCancelled() {
-        status = PaymentStatus.CANCELLED; timestamp = LocalDateTime.now(); message = "Payment cancelled.";
-    }
-
     public void markRefunded() {
         status = PaymentStatus.REFUNDED; message = "Payment refunded.";
     }
@@ -46,10 +42,6 @@ public class Payment {
         return referenceNumber;
     }
 
-    public double getAmount() {
-        return amount;
-    }
-
     public PaymentMethod getMethod() {
         return method;
     }
@@ -60,9 +52,5 @@ public class Payment {
 
     public LocalDateTime getTimestamp() {
         return timestamp;
-    }
-
-    public String getMessage() {
-        return message;
     }
 }

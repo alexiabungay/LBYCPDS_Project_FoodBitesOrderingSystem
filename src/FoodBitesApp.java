@@ -37,7 +37,6 @@ public class FoodBitesApp {
         return scanner.nextLine().trim();
     }
 
-    // Optional input: leaving it blank or typing "none" (any capitalization) means no value.
     private String readOptional(String prompt) {
         String input = readLine(prompt);
         return input.equalsIgnoreCase("none") ? "" : input;

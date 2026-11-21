@@ -22,7 +22,6 @@ public final class ClearScreen {
             return false;
         }
         try {
-            // Java 22+: System.console() is never null, so ask whether it is really a terminal.
             Method isTerminal = Console.class.getMethod("isTerminal");
             return (Boolean) isTerminal.invoke(console);
         } catch (ReflectiveOperationException | RuntimeException exception) {

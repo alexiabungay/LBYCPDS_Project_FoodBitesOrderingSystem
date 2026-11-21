@@ -32,34 +32,6 @@ public class SalesReportFeature {
         return grossRevenue - refunds;
     }
 
-    public String getRestaurantName() {
-        return restaurantName;
-    }
-
-    public ReportType getPeriod() {
-        return period;
-    }
-
-    public int getOrderCount() {
-        return orderCount;
-    }
-
-    public double getGrossRevenue() {
-        return grossRevenue;
-    }
-
-    public int getCancellations() {
-        return cancellations;
-    }
-
-    public double getRefunds() {
-        return refunds;
-    }
-
-    public List<ItemSales> getBestSellers() {
-        return bestSellers;
-    }
-
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

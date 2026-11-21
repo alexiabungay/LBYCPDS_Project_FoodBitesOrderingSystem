@@ -29,7 +29,6 @@ public abstract class User {
         return passwordHash;
     }
 
-    // Used when an account is loaded back from the saved users file (the hash is already computed).
     public void restorePasswordHash(String savedHash) {
         this.passwordHash = savedHash;
     }
