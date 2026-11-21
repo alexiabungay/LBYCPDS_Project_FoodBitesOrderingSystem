@@ -1,3 +1,6 @@
 order_id,restaurant_id,item_name,details,quantity,unit_price,line_total
 1001,2,1-pc. Chickenjoy w/ Drink,Extra Rice,2,178.00,356.00
 1001,2,Cookies & Cream Sundae,,1,95.00,95.00
+1002,6,Paa Large - PM1,"Extra Plain Rice, Chicken Oil",5,209.00,1045.00
+1002,6,Crema de Leche Halo-Halo,,3,89.00,267.00
+1002,6,Coke,,5,46.00,230.00

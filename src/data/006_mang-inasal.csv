@@ -35,10 +35,10 @@ Chicken Inasal Pecho & Grilled Liempo Solo Fiesta,Chicken Inasal Pecho Grilled L
 Chicken Inasal Pecho Solo Fiesta,Chicken Inasal Pecho 1 pc Lumpiang Togue Half Palabok Java Rice,MEAL,309.0,50,true,,Extra Plain Rice:29.0;Extra Java Rice:41.0;Extra Soup:12.0;Chicken Oil:11.0;Toyomansi:11.0;Spiced Vinegar:8.0
 Chicken Inasal Regular,Chicken Inasal Regular with 1 rice. Choice of chicken part is subject to availability,MEAL,117.0,50,true,,Extra Plain Rice:29.0;Extra Java Rice:41.0;Extra Soup:12.0;Chicken Oil:11.0;Toyomansi:11.0;Spiced Vinegar:8.0
 Chicken Inasal Trio,3 pcs Chicken Inasal Paa Large,MEAL,489.0,50,true,,Extra Plain Rice:29.0;Extra Java Rice:41.0;Extra Soup:12.0;Chicken Oil:11.0;Toyomansi:11.0;Spiced Vinegar:8.0
-Coke,12oz Soda,DRINK,46.0,50,true,,
+Coke,12oz Soda,DRINK,46.0,45,true,,
 Coke Regular 1.5L,Perfect for sharing,DRINK,117.0,50,true,,
 Coke Zero,12oz Soda,DRINK,46.0,50,true,,
-Crema de Leche Halo-Halo,A delightful creamy concoction of milk and ice topped with caramel,DESSERT,89.0,50,true,,
+Crema de Leche Halo-Halo,A delightful creamy concoction of milk and ice topped with caramel,DESSERT,89.0,47,true,,
 Extra Creamy Halo-Halo,Extra Creamy Halo-Halo Small,DESSERT,89.0,50,true,,
 Grilled Liempo,Grilled Liempo with 1 rice,MEAL,159.0,50,true,,Extra Plain Rice:29.0;Extra Java Rice:41.0;Extra Soup:12.0;Chicken Oil:11.0;Toyomansi:11.0;Spiced Vinegar:8.0
 Grilled Liempo & 1pc Pork BBQ Solo Fiesta,1pc Pork BBQ Grilled Liempo 1 pc Lumpiang Togue Half Palabok Java Rice and Soup,MEAL,300.0,50,true,,Extra Plain Rice:29.0;Extra Java Rice:41.0;Extra Soup:12.0;Chicken Oil:11.0;Toyomansi:11.0;Spiced Vinegar:8.0
@@ -47,7 +47,7 @@ Grilled Liempo Family Size,Good for 4-5 people,MEAL,611.0,50,true,,Extra Plain R
 Grilled Liempo Solo Fiesta,Grilled Liempo 1 pc Lumpiang Togue Half Palabok Java Rice and Soup,MEAL,264.0,50,true,,Extra Plain Rice:29.0;Extra Java Rice:41.0;Extra Soup:12.0;Chicken Oil:11.0;Toyomansi:11.0;Spiced Vinegar:8.0
 Iced Red Gulaman,12oz Drinks,DRINK,46.0,50,true,,
 Iced Tea,12oz Drinks,DRINK,46.0,50,true,,
-Paa Large - PM1,Paa Large with 1 rice,MEAL,169.0,50,true,,Extra Plain Rice:29.0;Extra Java Rice:41.0;Extra Soup:12.0;Chicken Oil:11.0;Toyomansi:11.0;Spiced Vinegar:8.0
+Paa Large - PM1,Paa Large with 1 rice,MEAL,169.0,45,true,,Extra Plain Rice:29.0;Extra Java Rice:41.0;Extra Soup:12.0;Chicken Oil:11.0;Toyomansi:11.0;Spiced Vinegar:8.0
 Palabok Family Size,Good for 4-5,MEAL,407.0,50,true,,Chicken Oil:11.0;Toyomansi:11.0
 Palabok Party Size,Good for 8-10,MEAL,804.0,50,true,,Chicken Oil:11.0;Toyomansi:11.0
 Palabok Regular Size,Noodles in thick rich sauce seasoned with chopped spring onions and hard-boiled egg,MEAL,105.0,50,true,,Chicken Oil:11.0;Toyomansi:11.0

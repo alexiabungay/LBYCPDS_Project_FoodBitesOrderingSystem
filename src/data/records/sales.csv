@@ -1,3 +1,6 @@
 date,order_id,restaurant_id,record_type,item_name,details,quantity,unit_price,line_total,record_amount
 2026-11-22,1001,2,SALE,1-pc. Chickenjoy w/ Drink,Extra Rice,2,178.00,356.00,550.22
 2026-11-22,1001,2,SALE,Cookies & Cream Sundae,,1,95.00,95.00,550.22
+2026-11-22,1002,6,SALE,Paa Large - PM1,"Extra Plain Rice, Chicken Oil",5,209.00,1045.00,1881.24
+2026-11-22,1002,6,SALE,Crema de Leche Halo-Halo,,3,89.00,267.00,1881.24
+2026-11-22,1002,6,SALE,Coke,,5,46.00,230.00,1881.24
