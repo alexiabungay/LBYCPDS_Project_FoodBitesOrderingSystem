@@ -1,4 +1,31 @@
 restaurant_id,owner_email,name,description,address,dine_in,takeout,delivery
-2,owner@jollibee.com,Jollibee,masarap,Tomas Morato,true,true,true
+2,owner@jollibee.com,Jollibee,Bida ang Saya!,,true,true,true
 
 item_name,description,category,price,stock,available,portion_sizes,add_ons
+1-pc. Chickenjoy Solo,,MEAL,98.0,50,true,,
+1-pc. Chickenjoy Spicy Solo,,MEAL,106.0,50,true,,
+1-pc. Chickenjoy w/ Burger Steak Solo,,MEAL,183.0,50,true,,
+1-pc. Chickenjoy w/ Drink,,MEAL,111.0,50,true,,
+1-pc. Chickenjoy w/ Fries Solo,,MEAL,167.0,50,true,,
+1-pc. Chickenjoy w/ Jolly Spaghetti Solo,,MEAL,167.0,50,true,,
+1-pc. Chickenjoy w/ Jolly Spaghetti w/ Drink,,MEAL,205.0,50,true,,
+1-pc. Chickenjoy w/ Palabok Solo,,MEAL,254.0,50,true,,
+10-pc. Chicken Nuggets Solo,,SNACK,232.0,50,true,,
+2-pc. Chickenjoy Solo,,MEAL,201.0,50,true,,
+2-pc. Pancakes Solo,,MEAL,95.0,50,true,,
+4-pc. Chickenjoy Family Box Solo,,MEAL,420.0,50,true,,
+6-pc. Chicken Nuggets Solo,,SNACK,143.0,50,true,,
+6-pc. Chickenjoy Solo,,MEAL,554.0,50,true,,
+8-pc. Chickenjoy Solo,,MEAL,748.0,50,true,,
+Bacon Cheesy Yumburger Solo,,SNACK,142.0,50,true,,
+Beef Tapa Solo,,MEAL,135.0,50,true,,
+Champ Solo,,MEAL,277.0,50,true,,
+Cheesy Yumburger Solo,,SNACK,84.0,50,true,,
+Chocolate Sundae,,DESSERT,63.0,50,true,,
+Jolly Spaghetti Solo,,MEAL,76.0,50,true,,
+Jolly Spaghetti w/ Drink,,MEAL,95.0,50,true,,
+Mini Chocolate Sundae,,DESSERT,50.0,50,true,,
+Palabok Solo,,MEAL,177.0,50,true,,
+Peach Mango Pie,,DESSERT,53.0,50,true,,
+Yumburger Solo,,SNACK,51.0,50,true,,
+Yumburger w/ Drink,,MEAL,95.0,50,true,,
