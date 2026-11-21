@@ -153,7 +153,7 @@ public class SalesReport {
             topName = topRestaurant.getName() + String.format(" (PHP %.2f)", topRestaurant.getTotalSales());
         }
 
-        return "FOODPLACES SUMMARY" + System.lineSeparator()
+        return "FOOD BITES SUMMARY" + System.lineSeparator()
                 + DisplayMenu.forSalesSummary(new String[][]{
                 {"Restaurants", String.valueOf(allRestaurants.size())},
                 {"Orders completed", String.valueOf(orderCount)},

@@ -1099,9 +1099,9 @@ public class FoodBitesApp {
         System.out.println("7. View restaurants A to Z");
         System.out.println("8. View restaurants by Descending Order of Sales");
         System.out.println("9. View restaurants by Increasing Order of Sales");
-        System.out.println("10. View List of Business Owners");
-        System.out.println("11. View List of All Registered Users");
-        System.out.println("12. Foodplaces summary");
+        System.out.println("10. View list of business owners");
+        System.out.println("11. View list of all registered users");
+        System.out.println("12. Food Bites summary");
         System.out.println("13. Change a user's password");
         System.out.println("0. Logout");
 
