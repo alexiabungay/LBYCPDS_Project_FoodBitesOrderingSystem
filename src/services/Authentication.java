@@ -2,6 +2,8 @@ package services;
 
 import features.*;
 
+import java.util.List;
+
 public class Authentication {
     private final DataStoring store;
     private User currentUser;
@@ -86,6 +88,32 @@ public class Authentication {
         }
         currentUser = foundUser;
         return foundUser;
+    }
+
+    public User changePasswordFor(User admin, String email, String newPassword) {
+        if (admin == null || admin.getRole() != UserRole.ADMINISTRATOR) {
+            throw new SecurityException("Administrators only.");
+        }
+        User targetUser = email == null ? null : store.getUsersByEmail().search(email.trim().toLowerCase());
+        if (targetUser == null) {
+            throw new IllegalArgumentException("No account is registered with that email.");
+        }
+        if (targetUser.getRole() == UserRole.ADMINISTRATOR) {
+            throw new IllegalArgumentException("Administrator passwords cannot be changed here.");
+        }
+        if (!Validator.isValidPassword(newPassword)) {
+            throw new IllegalArgumentException("Password needs at least 8 characters with a letter and a number.");
+        }
+        targetUser.changePassword(newPassword);
+        store.getRecords().updatePasswordHash(targetUser.getId(), targetUser.getPasswordHash());
+        return targetUser;
+    }
+
+    public List<User> listUsers(User admin) {
+        if (admin == null || admin.getRole() != UserRole.ADMINISTRATOR) {
+            throw new SecurityException("Administrators only.");
+        }
+        return store.getRecords().readUsers();
     }
 
     public void logout() {
