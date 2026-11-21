@@ -1,0 +1,3 @@
+order_id,restaurant_id,item_name,details,quantity,unit_price,line_total
+1001,2,1-pc. Chickenjoy w/ Drink,Extra Rice,2,178.00,356.00
+1001,2,Cookies & Cream Sundae,,1,95.00,95.00

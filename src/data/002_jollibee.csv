@@ -30,7 +30,7 @@ item_name,description,category,price,stock,available,portion_sizes,add_ons
 1 - pc. Spicy Chickenjoy w/ Chicken Macaroni Soup & Drink,,MEAL,239.0,50,true,,Extra Chickenjoy Gravy:19.0;Extra Rice:54.0
 1 - pc. Spicy Chickenjoy w/ Mashed Potato,,MEAL,220.0,50,true,,Extra Chickenjoy Gravy:19.0;Extra Rice:54.0
 1 - pc. Spicy Chickenjoy w/ Mashed Potato & Drink,,MEAL,239.0,50,true,,Extra Chickenjoy Gravy:19.0;Extra Rice:54.0
-1-pc. Chickenjoy w/ Drink,,MEAL,124.0,50,true,,Extra Chickenjoy Gravy:19.0;Extra Rice:54.0
+1-pc. Chickenjoy w/ Drink,,MEAL,124.0,48,true,,Extra Chickenjoy Gravy:19.0;Extra Rice:54.0
 "1-pc. Chickenjoy, Half Jolly Spaghetti, Burger Steak with Rice and Reg. Drink",,MEAL,288.0,50,true,,Extra Chickenjoy Gravy:19.0;Extra Rice:54.0
 "1-pc. Chickenjoy, Half Jolly Spaghetti, Yumburger, with Rice and Reg. Drink",,MEAL,251.0,50,true,,Extra Chickenjoy Gravy:19.0;Extra Rice:54.0
 1-pc. Pepper Cream w/ Jolly Spaghetti & Drink,,MEAL,199.0,50,true,,Extra Chickenjoy Gravy:19.0;Extra Rice:54.0
@@ -74,7 +74,7 @@ Chicken Macaroni Soup,,SNACK,94.0,50,true,,
 Chocolate Sundae,,DESSERT,71.0,50,true,,
 Coke,,DRINK,50.0,50,true,,
 Coke Float,,DRINK,105.0,50,true,,
-Cookies & Cream Sundae,,DESSERT,95.0,50,true,,
+Cookies & Cream Sundae,,DESSERT,95.0,49,true,,
 Corned Beef Solo,,MEAL,135.0,50,true,,Extra Rice:54.0
 Corned Beef w/ Drink,,MEAL,165.0,50,true,,Extra Rice:54.0
 Creamy Ranch Crunchy Chicken Sandwich,,SNACK,88.0,50,true,,

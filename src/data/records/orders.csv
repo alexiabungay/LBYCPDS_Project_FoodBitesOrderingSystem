@@ -1,0 +1,5 @@
+logged_at,order_id,restaurant_id,customer_id,order_type,status,payment_method,payment_status,payment_reference,subtotal,discount,tax,service_charge,delivery_fee,total,address,preferred_time,special_instructions,rider_id
+2026-11-22 00:50:30,1001,2,2,DINE_IN,CONFIRMED,CASH_AT_COUNTER,SUCCESS,FB-PAY-00001,451.00,0.00,54.12,45.10,0.00,550.22,,,naone,-1
+2026-11-22 00:53:07,1001,2,2,DINE_IN,PREPARING,CASH_AT_COUNTER,SUCCESS,FB-PAY-00001,451.00,0.00,54.12,45.10,0.00,550.22,,,naone,-1
+2026-11-22 00:53:11,1001,2,2,DINE_IN,READY,CASH_AT_COUNTER,SUCCESS,FB-PAY-00001,451.00,0.00,54.12,45.10,0.00,550.22,,,naone,-1
+2026-11-22 00:53:15,1001,2,2,DINE_IN,COMPLETED,CASH_AT_COUNTER,SUCCESS,FB-PAY-00001,451.00,0.00,54.12,45.10,0.00,550.22,,,naone,-1
