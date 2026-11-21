@@ -212,34 +212,42 @@ public class Menu {
 
     // Admin Menu
 
-    public Restaurant createRestaurant(User actor, String name, String description, String address) {
-        requireManager(actor);
+    public Restaurant createRestaurant(User admin, String name, String description, String address) {
+        if (admin == null || admin.getRole() != UserRole.ADMINISTRATOR) {
+            throw new SecurityException("Administrators only.");
+        }
         if (!Validator.isNotBlank(name)) {
             throw new IllegalArgumentException("Restaurant name is required.");
         }
 
-        int ownerId = actor.getId();
+        int ownerId = admin.getId();
         Restaurant restaurant = new Restaurant(store.newRestaurantId(), ownerId, name, description, address);
-        restaurant.setOwnerEmail(actor.getEmail());
+        restaurant.setOwnerEmail(admin.getEmail());
         store.getRestaurants().insert(restaurant.getId(), restaurant);
 
-        if (actor instanceof BusinessOwner) {
-            ((BusinessOwner) actor).getRestaurantIds().add(restaurant.getId());
+        if (admin instanceof BusinessOwner) {
+            ((BusinessOwner) admin).getRestaurantIds().add(restaurant.getId());
         }
         store.saveRestaurant(restaurant);
         return restaurant;
     }
 
-    public void updateRestaurant(User actor, int restaurantId, String name, String description, String address) {
-        Restaurant restaurant = requireOwnership(actor, restaurantId);
+    public void updateRestaurant(User admin, int restaurantId, String name, String description, String address) {
+        if (admin == null || admin.getRole() != UserRole.ADMINISTRATOR) {
+            throw new SecurityException("Administrators only.");
+        }
+        Restaurant restaurant = requireOwnership(admin, restaurantId);
         restaurant.setName(name);
         restaurant.setDescription(description);
         restaurant.setAddress(address);
         store.saveRestaurant(restaurant);
     }
 
-    public void removeRestaurant(User actor, int restaurantId) {
-        Restaurant restaurant = requireOwnership(actor, restaurantId);
+    public void removeRestaurant(User admin, int restaurantId) {
+        if (admin == null || admin.getRole() != UserRole.ADMINISTRATOR) {
+            throw new SecurityException("Administrators only.");
+        }
+        Restaurant restaurant = requireOwnership(admin, restaurantId);
         store.getRestaurants().delete(restaurantId);
         store.deleteRestaurantFile(restaurant);
 
@@ -267,14 +275,10 @@ public class Menu {
         return (BusinessOwner) found;
     }
 
-    private void requireAdministrator(User actor) {
-        if (actor == null || actor.getRole() != UserRole.ADMINISTRATOR) {
-            throw new SecurityException("Only administrators can assign restaurant owners.");
+    public void assignOwner(User admin, int restaurantId, String ownerEmail) {
+        if (admin == null || admin.getRole() != UserRole.ADMINISTRATOR) {
+            throw new SecurityException("Administrators only.");
         }
-    }
-
-    public void assignOwner(User actor, int restaurantId, String ownerEmail) {
-        requireAdministrator(actor);
         Restaurant restaurant = getRestaurant(restaurantId);
         BusinessOwner newOwner = findBusinessOwner(ownerEmail);
 
@@ -290,23 +294,27 @@ public class Menu {
         store.saveRestaurant(restaurant);
     }
 
-    public Restaurant createRestaurant(User actor, String name, String description, String address, String ownerEmail) {
-        requireAdministrator(actor);
+    public Restaurant createRestaurant(User admin, String name, String description, String address, String ownerEmail) {
+        if (admin == null || admin.getRole() != UserRole.ADMINISTRATOR) {
+            throw new SecurityException("Administrators only.");
+        }
         BusinessOwner owner = findBusinessOwner(ownerEmail);
-        Restaurant restaurant = createRestaurant(actor, name, description, address);
-        assignOwner(actor, restaurant.getId(), owner.getEmail());
+        Restaurant restaurant = createRestaurant(admin, name, description, address);
+        assignOwner(admin, restaurant.getId(), owner.getEmail());
         return restaurant;
     }
 
-    public void updateRestaurant(User actor, int restaurantId, String name, String description, String address, String ownerEmail) {
-        requireAdministrator(actor);
+    public void updateRestaurant(User admin, int restaurantId, String name, String description, String address, String ownerEmail) {
+        if (admin == null || admin.getRole() != UserRole.ADMINISTRATOR) {
+            throw new SecurityException("Administrators only.");
+        }
         boolean changeOwner = Validator.isNotBlank(ownerEmail);
         if (changeOwner) {
             findBusinessOwner(ownerEmail);
         }
-        updateRestaurant(actor, restaurantId, name, description, address);
+        updateRestaurant(admin, restaurantId, name, description, address);
         if (changeOwner) {
-            assignOwner(actor, restaurantId, ownerEmail);
+            assignOwner(admin, restaurantId, ownerEmail);
         }
     }
 }
