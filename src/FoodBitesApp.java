@@ -1076,15 +1076,16 @@ public class FoodBitesApp {
     }
 
     private void adminMenu(User user){
-        System.out.println("1. Add restaurant");
-        System.out.println("2. Edit restaurant");
-        System.out.println("3. Remove restaurant");
-        System.out.println("4. View restaurants by ID");
-        System.out.println("5. View restaurants A to Z");
-        System.out.println("6. View restaurants by Descending Order of Sales");
-        System.out.println("7. View restaurants by Increasing Order of Sales");
-        System.out.println("8. View List of Business Owners");
-        System.out.println("9. Logout");
+        System.out.println("1. Browse restaurants");
+        System.out.println("2. Add restaurant");
+        System.out.println("3. Edit restaurant");
+        System.out.println("4. Remove restaurant");
+        System.out.println("5. View restaurants by ID");
+        System.out.println("6. View restaurants A to Z");
+        System.out.println("7. View restaurants by Descending Order of Sales");
+        System.out.println("8. View restaurants by Increasing Order of Sales");
+        System.out.println("9. View List of Business Owners");
+        System.out.println("0. Logout");
 
         guard(() -> {
             int restaurantId;
@@ -1092,6 +1093,9 @@ public class FoodBitesApp {
             ClearScreen.clear();
             switch (adminChoice) {
                 case 1:
+                    browse();
+                    return false;
+                case 2:
                     String newRestaurantName = readLine("Name: ");
                     String newRestaurantDescription = readLine("Description: ");
                     String newRestaurantAddress = readLine("Address: ");
@@ -1100,7 +1104,7 @@ public class FoodBitesApp {
                     Restaurant createdRestaurant = menu.createRestaurant(user, newRestaurantName, newRestaurantDescription, newRestaurantAddress, newRestaurantOwnerEmail);
                     System.out.println("Created: " + createdRestaurant);
                     break;
-                case 2:
+                case 3:
                     restaurantId = readInt("Restaurant ID: ");
                     String updatedName = readLine("Name: ");
                     String updatedDescription = readLine("Description: ");
@@ -1109,36 +1113,36 @@ public class FoodBitesApp {
                     String updatedOwnerEmail = readLine("New owner email (leave blank to keep the current owner): ");
                     menu.updateRestaurant(user, restaurantId, updatedName, updatedDescription, updatedAddress, updatedOwnerEmail);
                     break;
-                case 3:
+                case 4:
                     restaurantId = readInt("Restaurant ID: ");
                     menu.removeRestaurant(user, restaurantId);
                     break;
-                case 4:
+                case 5:
                     System.out.println("Restaurants by ID");
                     printRestaurantList(menu.browseRestaurants());
                     break;
-                case 5:
+                case 6:
                     System.out.println("Restaurants A to Z");
                     printRestaurantList(menu.browseRestaurantsAlphabetical());
                     break;
-                case 6:
+                case 7:
                     System.out.println("Restaurants by sales (highest first)");
                     printSalesRanking(reports.rankRestaurants(user));
                     break;
-                case 7:
+                case 8:
                     System.out.println("Restaurants by sales (lowest first)");
                     printSalesRanking(menu.browseRestaurantsBySalesAscending());
                     break;
-                case 8:
+                case 9:
                     printBusinessOwners();
                     break;
-                case 9:
+                case 0:
                     authentication.logout();
-                    break;
+                    return false;
                 default:
                     System.out.println("Invalid choice.");
             }
-            return adminChoice != 9;
+            return true;
         });
     }
 
