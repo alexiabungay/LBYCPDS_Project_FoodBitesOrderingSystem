@@ -115,9 +115,13 @@ public class SalesReport {
         return report.toString();
     }
 
-    public String foodplacesSummary(User admin) {
+    public String restaurantSummary(User admin, int restaurantId) {
         if (admin == null || admin.getRole() != UserRole.ADMINISTRATOR) {
             throw new SecurityException("Administrators only.");
+        }
+        Restaurant restaurant = store.getRestaurants().search(restaurantId);
+        if (restaurant == null) {
+            throw new IllegalArgumentException("Restaurant not found.");
         }
 
         int orderCount = 0;
@@ -125,45 +129,31 @@ public class SalesReport {
         int refundCount = 0;
         double grossSales = 0;
         double refundTotal = 0;
-        Restaurant topRestaurant = null;
 
-        List<Restaurant> allRestaurants = store.getRestaurants().inOrder();
-        for (Restaurant restaurant : allRestaurants) {
-            for (SalesRecord salesRecord : restaurant.getSalesRecords()) {
-                switch (salesRecord.getType()) {
-                    case SALE:
-                        orderCount++;
-                        grossSales += salesRecord.getAmount();
-                        break;
-                    case CANCELLATION:
-                        cancellationCount++;
-                        break;
-                    default:
-                        refundCount++;
-                        refundTotal += salesRecord.getAmount();
-                }
-            }
-            if (topRestaurant == null || restaurant.getTotalSales() > topRestaurant.getTotalSales()) {
-                topRestaurant = restaurant;
+        for (SalesRecord salesRecord : restaurant.getSalesRecords()) {
+            switch (salesRecord.getType()) {
+                case SALE:
+                    orderCount++;
+                    grossSales += salesRecord.getAmount();
+                    break;
+                case CANCELLATION:
+                    cancellationCount++;
+                    break;
+                default:
+                    refundCount++;
+                    refundTotal += salesRecord.getAmount();
             }
         }
 
-        String topName = "(no sales yet)";
-        if (topRestaurant != null && topRestaurant.getTotalSales() > 0) {
-            topName = topRestaurant.getName() + String.format(" (PHP %.2f)", topRestaurant.getTotalSales());
-        }
-
-        return "FOOD BITES SUMMARY" + System.lineSeparator()
-                + DisplayMenu.forSalesSummary(new String[][]{
-                {"Restaurants", String.valueOf(allRestaurants.size())},
-                {"Orders completed", String.valueOf(orderCount)},
-                {"Gross revenue", String.format("PHP %.2f", grossSales)},
-                {"Cancellations", String.valueOf(cancellationCount)},
-                {"Refunds issued", String.valueOf(refundCount)},
-                {"Refund total", String.format("PHP %.2f", refundTotal)},
-                {"Net revenue", String.format("PHP %.2f", grossSales - refundTotal)},
-                {"Top restaurant", topName}
-        });
+        return String.join(System.lineSeparator(),
+                "RESTAURANT SUMMARY - " + restaurant.getName(),
+                String.format("%-18s %s", "Orders completed:", orderCount),
+                String.format("%-18s PHP %.2f", "Gross revenue:", grossSales),
+                String.format("%-18s %s", "Cancellations:", cancellationCount),
+                String.format("%-18s %s", "Refunds issued:", refundCount),
+                String.format("%-18s PHP %.2f", "Refund total:", refundTotal),
+                String.format("%-18s PHP %.2f", "Net revenue:", grossSales - refundTotal)
+        );
     }
 
     public List<Restaurant> rankRestaurants(User actor) {

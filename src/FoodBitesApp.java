@@ -1101,8 +1101,8 @@ public class FoodBitesApp {
         System.out.println("9. View restaurants by Increasing Order of Sales");
         System.out.println("10. View list of business owners");
         System.out.println("11. View list of all registered users");
-        System.out.println("12. Food Bites summary");
-        System.out.println("13. Change a user's password");
+        System.out.println("12. Change a user's password");
+        System.out.println("13. Restaurant summary");
         System.out.println("0. Logout");
 
         guard(() -> {
@@ -1166,9 +1166,6 @@ public class FoodBitesApp {
                     printRegisteredUsers(user);
                     break;
                 case 12:
-                    System.out.println(reports.foodplacesSummary(user));
-                    break;
-                case 13:
                     printRegisteredUsers(user);
                     String targetEmail = readLine("Email of the user: ");
                     String newPassword = readHiddenInput("New password: ");
@@ -1178,6 +1175,12 @@ public class FoodBitesApp {
                     }
                     User changedUser = authentication.changePasswordFor(user, targetEmail, newPassword);
                     System.out.println("Password changed for " + changedUser.getName() + " (" + changedUser.getEmail() + ").");
+                    break;
+                case 13:
+                    printRestaurantList(menu.browseRestaurants());
+                    restaurantId = readInt("Restaurant ID: ");
+                    ClearScreen.clear();
+                    System.out.println(reports.restaurantSummary(user, restaurantId));
                     break;
                 case 0:
                     authentication.logout();
