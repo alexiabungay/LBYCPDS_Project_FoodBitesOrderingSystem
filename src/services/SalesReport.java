@@ -105,19 +105,12 @@ public class SalesReport {
         }
 
         StringBuilder report = new StringBuilder("INVENTORY - " + restaurant.getName() + "\n");
-        for (MenuItem menuItem : restaurant.listAlphabetical()) {
-            String availability = "Unavailable";
-            if (menuItem.isAvailable()) {
-                availability = "Available";
-            }
-
-            String lowStockWarning = "";
-            if (menuItem.getStock() <= LOW_STOCK_LIMIT) {
-                lowStockWarning = "  LOW STOCK";
-            }
-
-            report.append(String.format("  %-22s stock %-4d %-12s%s%n",
-                    menuItem.getName(), menuItem.getStock(), availability, lowStockWarning));
+        List<MenuItem> menuItems = restaurant.listAlphabetical();
+        if (menuItems.isEmpty()) {
+            report.append("No items to show.\n");
+        } else {
+            report.append(DisplayMenu.forInventory(menuItems, LOW_STOCK_LIMIT)).append('\n');
+            report.append(menuItems.size()).append(" item(s)\n");
         }
         return report.toString();
     }
