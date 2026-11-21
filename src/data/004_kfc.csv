@@ -1,0 +1,134 @@
+restaurant_id,owner_email,name,description,address,dine_in,takeout,delivery
+4,,KFC,Fried chicken and fast food,,true,true,true
+
+item_name,description,category,price,stock,available,portion_sizes,add_ons
+1-pc Chicken Ala Carte,,MEAL,115.0,50,true,,Buffalo Ranch Dip:50.0;Sticky Chicky Dip:50.0;Smoky BBQ Dip:50.0;FLG Dip:50.0;Regular Gravy:35.0;Extra Rice:50.0
+1-pc Chicken Meal,,MEAL,140.0,50,true,,Buffalo Ranch Dip:50.0;Sticky Chicky Dip:50.0;Smoky BBQ Dip:50.0;FLG Dip:50.0;Regular Gravy:35.0;Extra Rice:50.0
+1-pc Chicken Meal with Mashed Potato,,MEAL,185.0,50,true,,Buffalo Ranch Dip:50.0;Sticky Chicky Dip:50.0;Smoky BBQ Dip:50.0;FLG Dip:50.0;Regular Gravy:35.0;Extra Rice:50.0
+1-pc Chicken Meal with Soup,,MEAL,185.0,50,true,,Buffalo Ranch Dip:50.0;Sticky Chicky Dip:50.0;Smoky BBQ Dip:50.0;FLG Dip:50.0;Regular Gravy:35.0;Extra Rice:50.0
+1-pc Chicken Spaghetti Meal,,MEAL,230.0,50,true,,Buffalo Ranch Dip:50.0;Sticky Chicky Dip:50.0;Smoky BBQ Dip:50.0;FLG Dip:50.0;Regular Gravy:35.0;Extra Rice:50.0
+1-pc Chicken with Soup Ala Carte,,MEAL,155.0,50,true,,Regular Gravy:35.0
+1-pc Fully Loaded Meal,,MEAL,205.0,50,true,,Buffalo Ranch Dip:50.0;Sticky Chicky Dip:50.0;Smoky BBQ Dip:50.0;FLG Dip:50.0;Regular Gravy:35.0;Extra Rice:50.0
+1pc Chicken Chop Bowl Ala Carte,,SNACK,85.0,50,true,,Buffalo Ranch Dip:50.0;Sticky Chicky Dip:50.0;Smoky BBQ Dip:50.0;FLG Dip:50.0;Regular Gravy:35.0;Extra Rice:50.0
+1pc Original Recipe Tender Add-On,,SNACK,80.0,50,true,,Buffalo Ranch Dip:50.0;Sticky Chicky Dip:50.0;Smoky BBQ Dip:50.0;FLG Dip:50.0;Regular Gravy:35.0;Extra Rice:50.0
+2-pc Chicken Ala Carte,,MEAL,210.0,50,true,,Buffalo Ranch Dip:50.0;Sticky Chicky Dip:50.0;Smoky BBQ Dip:50.0;FLG Dip:50.0;Regular Gravy:35.0;Extra Rice:50.0
+2-pc Chicken Meal,,MEAL,240.0,50,true,,Buffalo Ranch Dip:50.0;Sticky Chicky Dip:50.0;Smoky BBQ Dip:50.0;FLG Dip:50.0;Regular Gravy:35.0;Extra Rice:50.0
+2-pc Fully Loaded Meal,,MEAL,305.0,50,true,,Buffalo Ranch Dip:50.0;Sticky Chicky Dip:50.0;Smoky BBQ Dip:50.0;FLG Dip:50.0;Regular Gravy:35.0;Extra Rice:50.0
+2pc Original Recipe Tenders Ala Carte,,SNACK,150.0,50,true,,Buffalo Ranch Dip:50.0;Sticky Chicky Dip:50.0;Smoky BBQ Dip:50.0;FLG Dip:50.0;Regular Gravy:35.0;Extra Rice:50.0
+2pc Original Recipe Tenders Combo,,MEAL,245.0,50,true,,Buffalo Ranch Dip:50.0;Sticky Chicky Dip:50.0;Smoky BBQ Dip:50.0;FLG Dip:50.0;Regular Gravy:35.0;Extra Rice:50.0
+2pc Original Recipe Tenders Rice Ala Carte,,SNACK,190.0,50,true,,Regular Gravy:35.0
+2pc Original Recipe Tenders Rice Combo,,MEAL,255.0,50,true,,Regular Gravy:35.0
+2pc Original Recipe Tenders Rice Meal,,MEAL,205.0,50,true,,Buffalo Ranch Dip:50.0;Sticky Chicky Dip:50.0;Smoky BBQ Dip:50.0;FLG Dip:50.0;Regular Gravy:35.0;Extra Rice:50.0
+4pc Original Recipe Tender Add-On,,SNACK,275.0,50,true,,Buffalo Ranch Dip:50.0;Sticky Chicky Dip:50.0;Smoky BBQ Dip:50.0;FLG Dip:50.0;Regular Gravy:35.0;Extra Rice:50.0
+6-pc Bucket Combo,,MEAL,675.0,50,true,,Buffalo Ranch Dip:50.0;Sticky Chicky Dip:50.0;Smoky BBQ Dip:50.0;FLG Dip:50.0;Regular Gravy:35.0;Extra Rice:50.0
+6pc Original Recipe Tenders Ala Carte,,SNACK,440.0,50,true,,Buffalo Ranch Dip:50.0;Sticky Chicky Dip:50.0;Smoky BBQ Dip:50.0;FLG Dip:50.0;Regular Gravy:35.0;Extra Rice:50.0
+8-pc Bucket Combo,,MEAL,865.0,50,true,,Buffalo Ranch Dip:50.0;Sticky Chicky Dip:50.0;Smoky BBQ Dip:50.0;FLG Dip:50.0;Regular Gravy:35.0;Extra Rice:50.0
+Ala King Rice Bowl,,MEAL,170.0,50,true,,Buffalo Ranch Dip:50.0;Sticky Chicky Dip:50.0;Smoky BBQ Dip:50.0;FLG Dip:50.0;Regular Gravy:35.0;Extra Rice:50.0
+Ala King Rice Bowl Meal,,MEAL,210.0,50,true,,Buffalo Ranch Dip:50.0;Sticky Chicky Dip:50.0;Smoky BBQ Dip:50.0;FLG Dip:50.0;Regular Gravy:35.0;Extra Rice:50.0
+Ala King Zinger Steak Ala Carte,,MEAL,165.0,50,true,,Buffalo Ranch Dip:50.0;Sticky Chicky Dip:50.0;Smoky BBQ Dip:50.0;FLG Dip:50.0;Regular Gravy:35.0;Extra Rice:50.0
+Ala King Zinger Steak Bucket,,MEAL,550.0,50,true,,Buffalo Ranch Dip:50.0;Sticky Chicky Dip:50.0;Smoky BBQ Dip:50.0;FLG Dip:50.0;Regular Gravy:35.0;Extra Rice:50.0
+Ala King Zinger Steak Bucket Combo,,MEAL,795.0,50,true,,Buffalo Ranch Dip:50.0;Sticky Chicky Dip:50.0;Smoky BBQ Dip:50.0;FLG Dip:50.0;Regular Gravy:35.0;Extra Rice:50.0
+Ala King Zinger Steak Bucket Meal,,MEAL,660.0,50,true,,Buffalo Ranch Dip:50.0;Sticky Chicky Dip:50.0;Smoky BBQ Dip:50.0;FLG Dip:50.0;Regular Gravy:35.0;Extra Rice:50.0
+Ala King Zinger Steak Combo,,MEAL,200.0,50,true,,Buffalo Ranch Dip:50.0;Sticky Chicky Dip:50.0;Smoky BBQ Dip:50.0;FLG Dip:50.0;Regular Gravy:35.0;Extra Rice:50.0
+Ala King Zinger Steak Meal,,MEAL,175.0,50,true,,Buffalo Ranch Dip:50.0;Sticky Chicky Dip:50.0;Smoky BBQ Dip:50.0;FLG Dip:50.0;Regular Gravy:35.0;Extra Rice:50.0
+Bottled Water,,DRINK,40.0,50,true,,
+Brewed Coffee,,DRINK,45.0,50,true,,
+Brownie Box,,DESSERT,200.0,50,true,,
+Bucket of 10,,MEAL,895.0,50,true,,Buffalo Ranch Dip:50.0;Sticky Chicky Dip:50.0;Smoky BBQ Dip:50.0;FLG Dip:50.0;Regular Gravy:35.0;Extra Rice:50.0
+Bucket of 10 with Super Platter,,MEAL,1250.0,50,true,,Buffalo Ranch Dip:50.0;Sticky Chicky Dip:50.0;Smoky BBQ Dip:50.0;FLG Dip:50.0;Regular Gravy:35.0;Extra Rice:50.0
+Bucket of 15,,MEAL,1260.0,50,true,,Buffalo Ranch Dip:50.0;Sticky Chicky Dip:50.0;Smoky BBQ Dip:50.0;FLG Dip:50.0;Regular Gravy:35.0;Extra Rice:50.0
+Bucket of 20,,MEAL,1575.0,50,true,,Buffalo Ranch Dip:50.0;Sticky Chicky Dip:50.0;Smoky BBQ Dip:50.0;FLG Dip:50.0;Regular Gravy:35.0;Extra Rice:50.0
+Bucket of 6,,MEAL,580.0,50,true,,Buffalo Ranch Dip:50.0;Sticky Chicky Dip:50.0;Smoky BBQ Dip:50.0;FLG Dip:50.0;Regular Gravy:35.0;Extra Rice:50.0
+Bucket of 6 with Fixin Super Platter,,MEAL,785.0,50,true,,Buffalo Ranch Dip:50.0;Sticky Chicky Dip:50.0;Smoky BBQ Dip:50.0;FLG Dip:50.0;Regular Gravy:35.0;Extra Rice:50.0
+Bucket of 6 with Spaghetti Platter,,MEAL,770.0,50,true,,Extra Spaghetti Sauce:25.0;Regular Gravy:35.0
+Bucket of 8,,MEAL,765.0,50,true,,Buffalo Ranch Dip:50.0;Sticky Chicky Dip:50.0;Smoky BBQ Dip:50.0;FLG Dip:50.0;Regular Gravy:35.0;Extra Rice:50.0
+Bucket of 8 with Fixin Super Platter,,MEAL,970.0,50,true,,Buffalo Ranch Dip:50.0;Sticky Chicky Dip:50.0;Smoky BBQ Dip:50.0;FLG Dip:50.0;Regular Gravy:35.0;Extra Rice:50.0
+Buffalo Ranch Fully Loaded Dip,,SNACK,190.0,50,true,,Buffalo Ranch Dip:50.0;Sticky Chicky Dip:50.0;Smoky BBQ Dip:50.0;FLG Dip:50.0;Regular Gravy:35.0;Extra Rice:50.0
+Buttered Corn Regular,,SNACK,65.0,50,true,,Regular Gravy:35.0
+Buttered Corn Super Platter,,SNACK,255.0,50,true,,Regular Gravy:35.0
+Cali Maki Tenders Twister Ala Carte,,SNACK,125.0,50,true,,Buffalo Ranch Dip:50.0;Sticky Chicky Dip:50.0;Smoky BBQ Dip:50.0;FLG Dip:50.0
+Cali Maki Tenders Twister Combo,,MEAL,180.0,50,true,,Buffalo Ranch Dip:50.0;Sticky Chicky Dip:50.0;Smoky BBQ Dip:50.0;FLG Dip:50.0
+Caramel Sundae,,DESSERT,55.0,50,true,,
+Chicken Burger,,SNACK,55.0,50,true,,Buffalo Ranch Dip:50.0;Sticky Chicky Dip:50.0;Smoky BBQ Dip:50.0;FLG Dip:50.0
+Chicken Burger Combo,,MEAL,130.0,50,true,,Buffalo Ranch Dip:50.0;Sticky Chicky Dip:50.0;Smoky BBQ Dip:50.0;FLG Dip:50.0
+Chicken Cheeseburger,,SNACK,85.0,50,true,,Buffalo Ranch Dip:50.0;Sticky Chicky Dip:50.0;Smoky BBQ Dip:50.0;FLG Dip:50.0
+Chicken Cheeseburger Combo,,MEAL,160.0,50,true,,Buffalo Ranch Dip:50.0;Sticky Chicky Dip:50.0;Smoky BBQ Dip:50.0;FLG Dip:50.0
+Chocolate Sundae,,DESSERT,55.0,50,true,,
+Coke Float,,DRINK,85.0,50,true,,
+Coke Zero Float,,DRINK,85.0,50,true,,
+Coleslaw Regular,,SNACK,80.0,50,true,,Regular Gravy:35.0
+Coleslaw Salad Super Platter,,SNACK,310.0,50,true,,Regular Gravy:35.0
+Creamy Iced Coffee,,DRINK,65.0,50,true,,
+Crispy Fries,,SNACK,70.0,50,true,,Regular Gravy:35.0
+Dip Party Box,,MEAL,535.0,50,true,,Buffalo Ranch Dip:50.0;Sticky Chicky Dip:50.0;Smoky BBQ Dip:50.0;FLG Dip:50.0;Regular Gravy:35.0;Extra Rice:50.0
+Double Down Fully Loaded Box,,MEAL,450.0,50,true,,Buffalo Ranch Dip:50.0;Sticky Chicky Dip:50.0;Smoky BBQ Dip:50.0;FLG Dip:50.0
+Double Down Mighty Duo Ala Carte,,MEAL,535.0,50,true,,Buffalo Ranch Dip:50.0;Sticky Chicky Dip:50.0;Smoky BBQ Dip:50.0;FLG Dip:50.0
+Double Down with Rice Ala Carte,,MEAL,315.0,50,true,,Buffalo Ranch Dip:50.0;Sticky Chicky Dip:50.0;Smoky BBQ Dip:50.0;FLG Dip:50.0
+Extra Chicken Butter Rice,,SNACK,50.0,50,true,,Regular Gravy:35.0
+Famous Bowl,,SNACK,80.0,50,true,,Buffalo Ranch Dip:50.0;Sticky Chicky Dip:50.0;Smoky BBQ Dip:50.0;FLG Dip:50.0;Regular Gravy:35.0;Extra Rice:50.0
+Famous Bowl Fully Loaded Meal,,MEAL,270.0,50,true,,Buffalo Ranch Dip:50.0;Sticky Chicky Dip:50.0;Smoky BBQ Dip:50.0;FLG Dip:50.0;Regular Gravy:35.0;Extra Rice:50.0
+Famous Bowl Meal,,MEAL,105.0,50,true,,Buffalo Ranch Dip:50.0;Sticky Chicky Dip:50.0;Smoky BBQ Dip:50.0;FLG Dip:50.0;Regular Gravy:35.0;Extra Rice:50.0
+Famous Bowl Super Platter,,MEAL,295.0,50,true,,Buffalo Ranch Dip:50.0;Sticky Chicky Dip:50.0;Smoky BBQ Dip:50.0;FLG Dip:50.0;Regular Gravy:35.0;Extra Rice:50.0
+Flavor Shots Ala Carte,,SNACK,90.0,50,true,,Buffalo Ranch Dip:50.0;Sticky Chicky Dip:50.0;Smoky BBQ Dip:50.0;FLG Dip:50.0;Regular Gravy:35.0;Extra Rice:50.0
+Flavor Shots Combo w/ Mashed Potato,,MEAL,165.0,50,true,,Regular Gravy:35.0
+FLG Fully Loaded Dip,,SNACK,190.0,50,true,,Buffalo Ranch Dip:50.0;Sticky Chicky Dip:50.0;Smoky BBQ Dip:50.0;FLG Dip:50.0;Regular Gravy:35.0;Extra Rice:50.0
+Iced Black Coffee,,DRINK,70.0,50,true,,
+Junior Bucket of Fries,,SNACK,140.0,50,true,,Regular Gravy:35.0
+Large Buttered Corn,,SNACK,85.0,50,true,,Regular Gravy:35.0
+Large Coke,,DRINK,100.0,50,true,,
+Large Coke Zero,,DRINK,100.0,50,true,,
+Large Coleslaw,,SNACK,115.0,50,true,,Regular Gravy:35.0
+Large Crispy Fries,,SNACK,100.0,50,true,,Regular Gravy:35.0
+Large Gravy,,SNACK,55.0,50,true,,Regular Gravy:35.0
+Large Macaroni,,SNACK,115.0,50,true,,Regular Gravy:35.0
+Large Mashed Potato,,SNACK,85.0,50,true,,Regular Gravy:35.0
+Large Royal,,DRINK,100.0,50,true,,
+Large Shots,,SNACK,135.0,50,true,,Buffalo Ranch Dip:50.0;Sticky Chicky Dip:50.0;Smoky BBQ Dip:50.0;FLG Dip:50.0;Regular Gravy:35.0;Extra Rice:50.0
+Large Shots Combo,,MEAL,210.0,50,true,,Buffalo Ranch Dip:50.0;Sticky Chicky Dip:50.0;Smoky BBQ Dip:50.0;FLG Dip:50.0;Regular Gravy:35.0;Extra Rice:50.0
+Large Sprite,,DRINK,100.0,50,true,,
+Macaroni Salad Regular,,SNACK,80.0,50,true,,Regular Gravy:35.0
+Macaroni Salad Super Platter,,SNACK,310.0,50,true,,Regular Gravy:35.0
+Main Character Combo,,MEAL,330.0,50,true,,Buffalo Ranch Dip:50.0;Sticky Chicky Dip:50.0;Smoky BBQ Dip:50.0;FLG Dip:50.0;Regular Gravy:35.0;Extra Rice:50.0
+Mashed Potato Regular,,SNACK,65.0,50,true,,Regular Gravy:35.0
+Mashed Potato Super Platter,,SNACK,255.0,50,true,,Regular Gravy:35.0
+Medium Coke,,DRINK,90.0,50,true,,
+Medium Coke Zero,,DRINK,90.0,50,true,,
+Medium Royal,,DRINK,90.0,50,true,,
+Medium Sprite,,DRINK,90.0,50,true,,
+Mini Brownie,,DESSERT,45.0,50,true,,
+Mushroom Soup,,SNACK,70.0,50,true,,Regular Gravy:35.0
+Original Recipe Double Down Ala Carte,,MEAL,295.0,50,true,,Buffalo Ranch Dip:50.0;Sticky Chicky Dip:50.0;Smoky BBQ Dip:50.0;FLG Dip:50.0
+Original Recipe Double Down Combo,,MEAL,370.0,50,true,,Buffalo Ranch Dip:50.0;Sticky Chicky Dip:50.0;Smoky BBQ Dip:50.0;FLG Dip:50.0
+Original Recipe Snacker,,SNACK,90.0,50,true,,Buffalo Ranch Dip:50.0;Sticky Chicky Dip:50.0;Smoky BBQ Dip:50.0;FLG Dip:50.0
+Original Recipe Snacker Combo,,MEAL,165.0,50,true,,Buffalo Ranch Dip:50.0;Sticky Chicky Dip:50.0;Smoky BBQ Dip:50.0;FLG Dip:50.0
+Regular Coke,,DRINK,80.0,50,true,,
+Regular Coke Zero,,DRINK,80.0,50,true,,
+Regular Gravy,,SNACK,35.0,50,true,,Regular Gravy:35.0
+Regular Royal,,DRINK,80.0,50,true,,
+Regular Shots,,SNACK,85.0,50,true,,Buffalo Ranch Dip:50.0;Sticky Chicky Dip:50.0;Smoky BBQ Dip:50.0;FLG Dip:50.0;Regular Gravy:35.0;Extra Rice:50.0
+Regular Sprite,,DRINK,80.0,50,true,,
+Rice,,SNACK,50.0,50,true,,Regular Gravy:35.0
+Royal Float,,DRINK,85.0,50,true,,
+Shots Combo,,MEAL,160.0,50,true,,Buffalo Ranch Dip:50.0;Sticky Chicky Dip:50.0;Smoky BBQ Dip:50.0;FLG Dip:50.0;Regular Gravy:35.0;Extra Rice:50.0
+Shots Fully Loaded Meal,,MEAL,275.0,50,true,,Buffalo Ranch Dip:50.0;Sticky Chicky Dip:50.0;Smoky BBQ Dip:50.0;FLG Dip:50.0;Regular Gravy:35.0;Extra Rice:50.0
+Sisig Rice Bowl,,MEAL,145.0,50,true,,Buffalo Ranch Dip:50.0;Sticky Chicky Dip:50.0;Smoky BBQ Dip:50.0;FLG Dip:50.0;Regular Gravy:35.0;Extra Rice:50.0
+Sisig Rice Bowl Meal,,MEAL,190.0,50,true,,Buffalo Ranch Dip:50.0;Sticky Chicky Dip:50.0;Smoky BBQ Dip:50.0;FLG Dip:50.0;Regular Gravy:35.0;Extra Rice:50.0
+Smoky BBQ Fully Loaded Dip,,SNACK,190.0,50,true,,Buffalo Ranch Dip:50.0;Sticky Chicky Dip:50.0;Smoky BBQ Dip:50.0;FLG Dip:50.0;Regular Gravy:35.0;Extra Rice:50.0
+Spaghetti,,SNACK,85.0,50,true,,Extra Spaghetti Sauce:25.0;Regular Gravy:35.0
+Spaghetti Meal,,MEAL,115.0,50,true,,Extra Spaghetti Sauce:25.0;Regular Gravy:35.0
+Spaghetti Super Platter,,MEAL,240.0,50,true,,Extra Spaghetti Sauce:25.0;Regular Gravy:35.0
+Sprite Float,,DRINK,85.0,50,true,,
+Sticky Chicky Fully Loaded Dip,,SNACK,190.0,50,true,,Buffalo Ranch Dip:50.0;Sticky Chicky Dip:50.0;Smoky BBQ Dip:50.0;FLG Dip:50.0;Regular Gravy:35.0;Extra Rice:50.0
+Strawberry Sundae,,DESSERT,55.0,50,true,,
+Unsweetened Iced Tea Large,,DRINK,100.0,50,true,,
+Unsweetened Iced Tea Medium,,DRINK,95.0,50,true,,
+Unsweetened Iced Tea Regular,,DRINK,85.0,50,true,,
+Zinger Burger,,SNACK,175.0,50,true,,Buffalo Ranch Dip:50.0;Sticky Chicky Dip:50.0;Smoky BBQ Dip:50.0;FLG Dip:50.0
+Zinger Burger Combo,,MEAL,230.0,50,true,,Buffalo Ranch Dip:50.0;Sticky Chicky Dip:50.0;Smoky BBQ Dip:50.0;FLG Dip:50.0
+Zinger Burger Fully Loaded Box,,MEAL,315.0,50,true,,Buffalo Ranch Dip:50.0;Sticky Chicky Dip:50.0;Smoky BBQ Dip:50.0;FLG Dip:50.0
+Zinger Burger Fully Loaded Box Double Rice Deals,,MEAL,350.0,50,true,,Buffalo Ranch Dip:50.0;Sticky Chicky Dip:50.0;Smoky BBQ Dip:50.0;FLG Dip:50.0
+Zinger Double Down Ala Carte,,MEAL,295.0,50,true,,Buffalo Ranch Dip:50.0;Sticky Chicky Dip:50.0;Smoky BBQ Dip:50.0;FLG Dip:50.0
+Zinger Double Down Combo,,MEAL,370.0,50,true,,Buffalo Ranch Dip:50.0;Sticky Chicky Dip:50.0;Smoky BBQ Dip:50.0;FLG Dip:50.0
+Zinger Steak Duo with 2 Drinks,,MEAL,295.0,50,true,,Buffalo Ranch Dip:50.0;Sticky Chicky Dip:50.0;Smoky BBQ Dip:50.0;FLG Dip:50.0;Regular Gravy:35.0;Extra Rice:50.0
+Zinger Steak Fully Loaded Box,,MEAL,305.0,50,true,,Buffalo Ranch Dip:50.0;Sticky Chicky Dip:50.0;Smoky BBQ Dip:50.0;FLG Dip:50.0;Regular Gravy:35.0;Extra Rice:50.0
+Zinger Steak Fully Loaded Box Double Rice Deals,,MEAL,340.0,50,true,,Buffalo Ranch Dip:50.0;Sticky Chicky Dip:50.0;Smoky BBQ Dip:50.0;FLG Dip:50.0;Regular Gravy:35.0;Extra Rice:50.0

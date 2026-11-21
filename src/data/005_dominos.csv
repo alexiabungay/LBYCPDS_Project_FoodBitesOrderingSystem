@@ -1,0 +1,47 @@
+restaurant_id,owner_email,name,description,address,dine_in,takeout,delivery
+5,,Domino's Pizza,"Pizza, pasta and sides",,true,true,true
+
+item_name,description,category,price,stock,available,portion_sizes,add_ons
+5 Cheese,"Domino's Pizza Sauce, Mozzarella Cheese, Cheese Sauce, Feta Cheese, Parmesan Cheese, Cheddar Cheese",MEAL,419.0,50,true,,Extra Mozzarella Cheese:60.0;Extra Pepperoni:60.0;Cheese Dip:20.0;BBQ Dip:20.0;Garlic Mayo Dip:20.0;Mayo Dip:20.0
+American Bacon Cheeseburger,"Tomato Ketchup, Mozzarella Cheese, Cheese Sauce, Onions, Beef, Tomatoes, Bacon, Mayonnaise",MEAL,499.0,50,true,,Extra Mozzarella Cheese:60.0;Extra Pepperoni:60.0;Cheese Dip:20.0;BBQ Dip:20.0;Garlic Mayo Dip:20.0;Mayo Dip:20.0
+Apple Crumble,"Thin-crust, Diced Apple, Cinnamon Powder, Cream Cheese, Streusel",DESSERT,199.0,50,true,,
+Bacon & Mushroom,"Tomato Ketchup, Mozzarella Cheese, Mayonnaise, Mushroom, Diced Bacon, Garlic Seasoning",MEAL,319.0,50,true,,Extra Mozzarella Cheese:60.0;Extra Pepperoni:60.0;Cheese Dip:20.0;BBQ Dip:20.0;Garlic Mayo Dip:20.0;Mayo Dip:20.0
+Baked Wings,Oven-baked chicken wings made with herbs and special ingredients,SNACK,299.0,50,true,,BBQ Dip:20.0;Cheese Dip:20.0;Garlic Mayo Dip:20.0;Mayo Dip:20.0
+Beef & Mushroom Melt,"Alfredo Sauce, Garlic Seasoning, Mushroom, Beef, Mozzarella Cheese, Cheese Sauce, Cheddar Cheese",MEAL,499.0,50,true,,Extra Mozzarella Cheese:60.0;Extra Pepperoni:60.0;Cheese Dip:20.0;BBQ Dip:20.0;Garlic Mayo Dip:20.0;Mayo Dip:20.0
+Cheese Mania,"Domino's Pizza Sauce, Mozzarella Cheese",MEAL,319.0,50,true,,Extra Mozzarella Cheese:60.0;Extra Pepperoni:60.0;Cheese Dip:20.0;BBQ Dip:20.0;Garlic Mayo Dip:20.0;Mayo Dip:20.0
+Cheesy Bacon Calzone,"Oven-baked Dough, Mozzarella, Cheese Sauce, Meat, Herbs and Spices, Seasoning",SNACK,129.0,50,true,,BBQ Dip:20.0;Cheese Dip:20.0;Garlic Mayo Dip:20.0;Mayo Dip:20.0
+Cheesy Baked Macaroni,"Macaroni Pasta, Cheese Sauce, Mozzarella Cheese, Cheddar Cheese",MEAL,249.0,50,true,,Extra Cheese:40.0;Cheese Dip:20.0
+Chicken Carbonara,Penne pasta baked with white sauce topped with real chicken breast onions mushroom and bacon,MEAL,249.0,50,true,,Extra Cheese:40.0;Cheese Dip:20.0
+Chicken Kickers,Oven-baked battered 100% chicken breast meat with herbs and spices,SNACK,299.0,50,true,,BBQ Dip:20.0;Cheese Dip:20.0;Garlic Mayo Dip:20.0;Mayo Dip:20.0
+Chicken Strips,Chicken Strips,SNACK,199.0,50,true,,BBQ Dip:20.0;Cheese Dip:20.0;Garlic Mayo Dip:20.0;Mayo Dip:20.0
+Choco Lava Cake,Oven-baked with Chocolate Filling and Powdered Sugar,DESSERT,99.0,50,true,,Choco Fudge Dip:20.0
+Cinnabites,"Oven-baked Dough, Cinnamon Powder, Powdered Sugar, Batter Oil",DESSERT,129.0,50,true,,Choco Fudge Dip:20.0
+Coke,,DRINK,70.0,50,true,,
+Coke Zero,,DRINK,70.0,50,true,,
+Crisscut Fries,Oven-baked Potato Wedges Herbs and Spices Seasoning,SNACK,189.0,50,true,,BBQ Dip:20.0;Cheese Dip:20.0;Garlic Mayo Dip:20.0;Mayo Dip:20.0
+Domino's Bottled Water,,DRINK,40.0,50,true,,
+Extravaganzza,"Domino's Pizza Sauce, Mozzarella Cheese, Pepperoni, Onions, Green Bell Pepper, Mushroom, Black Olives, Italian Sausage, Ham, Beef",MEAL,499.0,50,true,,Extra Mozzarella Cheese:60.0;Extra Pepperoni:60.0;Cheese Dip:20.0;BBQ Dip:20.0;Garlic Mayo Dip:20.0;Mayo Dip:20.0
+Garlic Parmesan Bites,"Oven-baked Dough, Parmesan Cheese, Garlic Seasoning, Batter Oil",SNACK,129.0,50,true,,BBQ Dip:20.0;Cheese Dip:20.0;Garlic Mayo Dip:20.0;Mayo Dip:20.0
+Ham & Cheese,"Domino's Pizza Sauce, Mozzarella Cheese, Ham",MEAL,319.0,50,true,,Extra Mozzarella Cheese:60.0;Extra Pepperoni:60.0;Cheese Dip:20.0;BBQ Dip:20.0;Garlic Mayo Dip:20.0;Mayo Dip:20.0
+Hawaiian,"Domino's Pizza Sauce, Mozzarella Cheese, Ham, Pineapple",MEAL,319.0,50,true,,Extra Mozzarella Cheese:60.0;Extra Pepperoni:60.0;Cheese Dip:20.0;BBQ Dip:20.0;Garlic Mayo Dip:20.0;Mayo Dip:20.0
+Italian Sausage Calzone,"Oven-baked Dough, Mozzarella, Cheese Sauce, Meat, Herbs and Spices, Seasoning",SNACK,129.0,50,true,,BBQ Dip:20.0;Cheese Dip:20.0;Garlic Mayo Dip:20.0;Mayo Dip:20.0
+Kabayan,"Domino's Pizza Sauce, Mozzarella Cheese, Pepperoni, Onions, Green Bell Pepper, Mushroom, Black Olives, Italian Sausage",MEAL,419.0,50,true,,Extra Mozzarella Cheese:60.0;Extra Pepperoni:60.0;Cheese Dip:20.0;BBQ Dip:20.0;Garlic Mayo Dip:20.0;Mayo Dip:20.0
+Locally Dalandan,,DRINK,40.0,50,true,,
+Locally Guyabano,,DRINK,40.0,50,true,,
+Locally Tamarind,,DRINK,40.0,50,true,,
+Mabuhay!,"Domino's Pizza Sauce, Mozzarella Cheese, Ham, Bacon, Pineapple, Red Bell Pepper, Havarti Cheese",MEAL,419.0,50,true,,Extra Mozzarella Cheese:60.0;Extra Pepperoni:60.0;Cheese Dip:20.0;BBQ Dip:20.0;Garlic Mayo Dip:20.0;Mayo Dip:20.0
+Mac & Cheese,"Elbow Macaroni, Parmesan Cheese, Cheese Sauce, Mozzarella Cheese, Shredded Cheddar Cheese",MEAL,249.0,50,true,,Extra Cheese:40.0;Cheese Dip:20.0
+Marbled Cookie Brownie,Oven-baked Chocolate and Caramel-Flavored Brownies,DESSERT,79.0,50,true,,Choco Fudge Dip:20.0
+Meatzza,"Domino's Pizza Sauce, Mozzarella Cheese, Ham, Beef, Pepperoni, Italian Sausage, Bacon",MEAL,419.0,50,true,,Extra Mozzarella Cheese:60.0;Extra Pepperoni:60.0;Cheese Dip:20.0;BBQ Dip:20.0;Garlic Mayo Dip:20.0;Mayo Dip:20.0
+Minute Maid,,DRINK,50.0,50,true,,
+Oh My Gulay (OMG!),"Domino's Pizza Sauce, Mozzarella Cheese, Green Bell Pepper, Havarti Cheese, Feta Cheese, Black Olives, Mushroom, Tomatoes",MEAL,419.0,50,true,,Extra Mozzarella Cheese:60.0;Extra Pepperoni:60.0;Cheese Dip:20.0;BBQ Dip:20.0;Garlic Mayo Dip:20.0;Mayo Dip:20.0
+Pepperoni,"Domino's Pizza Sauce, Mozzarella Cheese, Pepperoni",MEAL,319.0,50,true,,Extra Mozzarella Cheese:60.0;Extra Pepperoni:60.0;Cheese Dip:20.0;BBQ Dip:20.0;Garlic Mayo Dip:20.0;Mayo Dip:20.0
+Potato Wedges,Oven-baked Potato Wedges Herbs and Spices Seasoning,SNACK,189.0,50,true,,BBQ Dip:20.0;Cheese Dip:20.0;Garlic Mayo Dip:20.0;Mayo Dip:20.0
+Smoky BBQ Chicken,"Barbecue Sauce, Mozzarella Cheese, Grilled Chicken, Red Onion, Havarti Cheese, Cheddar Cheese",MEAL,499.0,50,true,,Extra Mozzarella Cheese:60.0;Extra Pepperoni:60.0;Cheese Dip:20.0;BBQ Dip:20.0;Garlic Mayo Dip:20.0;Mayo Dip:20.0
+Spinach and Feta,"Cream Cheese, Mozzarella Cheese, Spinach, Feta Cheese, Havarti Cheese, Parmesan Cheese, Mayonnaise, Garlic Seasoning",MEAL,499.0,50,true,,Extra Mozzarella Cheese:60.0;Extra Pepperoni:60.0;Cheese Dip:20.0;BBQ Dip:20.0;Garlic Mayo Dip:20.0;Mayo Dip:20.0
+Spinach and Feta Calzone,"Oven-baked Dough, Mozzarella, Cheese Sauce, Meat, Herbs and Spices, Seasoning",SNACK,129.0,50,true,,BBQ Dip:20.0;Cheese Dip:20.0;Garlic Mayo Dip:20.0;Mayo Dip:20.0
+Sprite,,DRINK,70.0,50,true,,
+Stuffed Cheesy Bread (Cheesy Garlic),"Oven-baked Dough, Mozzarella, Cheese Sauce, Herbs and Spices, Seasoning",SNACK,129.0,50,true,,BBQ Dip:20.0;Cheese Dip:20.0;Garlic Mayo Dip:20.0;Mayo Dip:20.0
+Stuffed Cheesy Bread (Four Cheese),"Oven-baked Dough, Mozzarella, Cheese Sauce, Herbs and Spices, Seasoning",SNACK,129.0,50,true,,BBQ Dip:20.0;Cheese Dip:20.0;Garlic Mayo Dip:20.0;Mayo Dip:20.0
+Stuffed Cheesy Bread (Spinach and Feta),"Oven-baked Dough, Mozzarella, Cheese Sauce, Herbs and Spices, Seasoning",SNACK,129.0,50,true,,BBQ Dip:20.0;Cheese Dip:20.0;Garlic Mayo Dip:20.0;Mayo Dip:20.0
+Ultimate Pepperoni,"Domino's Pizza Sauce, Mozzarella Cheese, Pepperoni, Havarti Cheese, Parmesan Cheese, Oregano Leaves",MEAL,419.0,50,true,,Extra Mozzarella Cheese:60.0;Extra Pepperoni:60.0;Cheese Dip:20.0;BBQ Dip:20.0;Garlic Mayo Dip:20.0;Mayo Dip:20.0

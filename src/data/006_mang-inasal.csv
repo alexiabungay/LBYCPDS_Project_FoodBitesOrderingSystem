@@ -1,0 +1,69 @@
+restaurant_id,owner_email,name,description,address,dine_in,takeout,delivery
+6,,Mang Inasal,Chicken inasal and Filipino grilled favorites,Jackman Plaza,true,true,true
+
+item_name,description,category,price,stock,available,portion_sizes,add_ons
+1 pc Paa & 1 pc Pecho,1 pc Chicken Inasal Paa Large and 1 pc Pecho Large,MEAL,361.0,50,true,,Extra Plain Rice:29.0;Extra Java Rice:41.0;Extra Soup:12.0;Chicken Oil:11.0;Toyomansi:11.0;Spiced Vinegar:8.0
+2 pcs Lumpiang Togue,2 pcs Lumpiang Togue with spiced vinegar,SNACK,65.0,50,true,,Spiced Vinegar:8.0
+2 pcs Paa,2 pcs Chicken Inasal Paa Large,MEAL,326.0,50,true,,Extra Plain Rice:29.0;Extra Java Rice:41.0;Extra Soup:12.0;Chicken Oil:11.0;Toyomansi:11.0;Spiced Vinegar:8.0
+2 pcs Paa & 2 pcs Pecho,2 pcs Chicken Inasal Paa Large and 2 pcs Chicken Inasal Pecho Large,MEAL,720.0,50,true,,Extra Plain Rice:29.0;Extra Java Rice:41.0;Extra Soup:12.0;Chicken Oil:11.0;Toyomansi:11.0;Spiced Vinegar:8.0
+2 pcs Pecho,2 pcs Chicken Inasal Pecho Large,MEAL,396.0,50,true,,Extra Plain Rice:29.0;Extra Java Rice:41.0;Extra Soup:12.0;Chicken Oil:11.0;Toyomansi:11.0;Spiced Vinegar:8.0
+2 pcs Pork BBQ,2 pcs Pork BBQ with Spiced Vinegar and Plain Rice,MEAL,117.0,50,true,,Extra Plain Rice:29.0;Extra Java Rice:41.0;Extra Soup:12.0;Chicken Oil:11.0;Toyomansi:11.0;Spiced Vinegar:8.0
+2 pcs Pork BBQ Solo Fiesta,2 pcs Pork BBQ 1 pc Lumpiang Togue Half Palabok Java Rice,MEAL,223.0,50,true,,Extra Plain Rice:29.0;Extra Java Rice:41.0;Extra Soup:12.0;Chicken Oil:11.0;Toyomansi:11.0;Spiced Vinegar:8.0
+2 pcs Spicy Pork BBQ,2 pcs Spicy Pork BBQ with Spiced Vinegar and Plain Rice,MEAL,129.0,50,true,,Extra Plain Rice:29.0;Extra Java Rice:41.0;Extra Soup:12.0;Chicken Oil:11.0;Toyomansi:11.0;Spiced Vinegar:8.0
+4 pcs Paa,,MEAL,649.0,50,true,,Extra Plain Rice:29.0;Extra Java Rice:41.0;Extra Soup:12.0;Chicken Oil:11.0;Toyomansi:11.0;Spiced Vinegar:8.0
+4 pcs Paa + Palabok Family Size,4 pcs Chicken Inasal Paa Large with Palabok Family Size,MEAL,1002.0,50,true,,Chicken Oil:11.0;Toyomansi:11.0
+4 pcs Pecho,4 pcs Chicken Inasal Pecho Large,MEAL,791.0,50,true,,Extra Plain Rice:29.0;Extra Java Rice:41.0;Extra Soup:12.0;Chicken Oil:11.0;Toyomansi:11.0;Spiced Vinegar:8.0
+4 pcs Pecho + Palabok Family Size,4 pcs Chicken Inasal Pecho Large with Palabok Family Size,MEAL,1143.0,50,true,,Chicken Oil:11.0;Toyomansi:11.0
+6 pcs Lumpiang Togue,6 pcs Lumpiang Togue with spiced vinegar,SNACK,195.0,50,true,,Spiced Vinegar:8.0
+6pcs Chicken Inasal Regular Family Size,6 pcs Chicken Inasal Regular. Choice of chicken part is subject to availability,MEAL,566.0,50,true,,Extra Plain Rice:29.0;Extra Java Rice:41.0;Extra Soup:12.0;Chicken Oil:11.0;Toyomansi:11.0;Spiced Vinegar:8.0
+8pcs Chicken Inasal Regular Family Size,8 pcs Chicken Inasal Regular. Choice of chicken part is subject to availability,MEAL,766.0,50,true,,Extra Plain Rice:29.0;Extra Java Rice:41.0;Extra Soup:12.0;Chicken Oil:11.0;Toyomansi:11.0;Spiced Vinegar:8.0
+All Chicken Buddy Fiesta,3 pcs Chicken Inasal Large Small Java Rice Platter. Good for 2-3,MEAL,543.0,50,true,,Extra Plain Rice:29.0;Extra Java Rice:41.0;Extra Soup:12.0;Chicken Oil:11.0;Toyomansi:11.0;Spiced Vinegar:8.0
+All Chicken Inasal Family Fiesta,6 pcs Chicken Inasal Large Java Rice Platter. Good for 4-6,MEAL,1080.0,50,true,,Extra Plain Rice:29.0;Extra Java Rice:41.0;Extra Soup:12.0;Chicken Oil:11.0;Toyomansi:11.0;Spiced Vinegar:8.0
+Bangus Sisig,Bangus Sisig with 1 rice,MEAL,159.0,50,true,,Extra Plain Rice:29.0;Extra Java Rice:41.0;Extra Soup:12.0;Chicken Oil:11.0;Toyomansi:11.0;Spiced Vinegar:8.0
+Bangus Sisig Family Size,Good for 3-4 people,MEAL,460.0,50,true,,Extra Plain Rice:29.0;Extra Java Rice:41.0;Extra Soup:12.0;Chicken Oil:11.0;Toyomansi:11.0;Spiced Vinegar:8.0
+Busog Sarap Combo Deal,Chicken Inasal Paa Large Value Meal with 1 Drink 1 Extra Rice and 1 Halo-Halo,MEAL,294.0,50,true,,Extra Plain Rice:29.0;Extra Java Rice:41.0;Extra Soup:12.0;Chicken Oil:11.0;Toyomansi:11.0;Spiced Vinegar:8.0
+Chicken Inasal & Grilled Liempo Buddy Fiesta,2 pcs Chicken Inasal Large 1 Grilled Liempo Small Java Rice Platter. Good for 2-3,MEAL,531.0,50,true,,Extra Plain Rice:29.0;Extra Java Rice:41.0;Extra Soup:12.0;Chicken Oil:11.0;Toyomansi:11.0;Spiced Vinegar:8.0
+Chicken Inasal & Grilled Liempo Family Fiesta,4 pcs Chicken Inasal Large 2 Grilled Liempo Java Rice Platter,MEAL,1038.0,50,true,,Extra Plain Rice:29.0;Extra Java Rice:41.0;Extra Soup:12.0;Chicken Oil:11.0;Toyomansi:11.0;Spiced Vinegar:8.0
+Chicken Inasal & Pork BBQ Buddy Fiesta,2 pcs Chicken Inasal Large 2 pcs Pork BBQ Small Java Rice Platter,MEAL,502.0,50,true,,Extra Plain Rice:29.0;Extra Java Rice:41.0;Extra Soup:12.0;Chicken Oil:11.0;Toyomansi:11.0;Spiced Vinegar:8.0
+Chicken Inasal & Pork BBQ Family Fiesta,,MEAL,915.0,50,true,,Extra Plain Rice:29.0;Extra Java Rice:41.0;Extra Soup:12.0;Chicken Oil:11.0;Toyomansi:11.0;Spiced Vinegar:8.0
+Chicken Inasal & Pork BBQ Family Fiesta with FREE 4 Soups,3 pcs Paa 6pcs Pork BBQ with Spiced Vinegar and Java Rice Platter,MEAL,963.0,50,true,,Extra Plain Rice:29.0;Extra Java Rice:41.0;Extra Soup:12.0;Chicken Oil:11.0;Toyomansi:11.0;Spiced Vinegar:8.0
+Chicken Inasal Paa & 1 pc Pork BBQ Solo Fiesta,Chicken Inasal Paa 1 pc Pork BBQ 1 pc Lumpiang Togue Half Palabok Java Rice and Soup,MEAL,310.0,50,true,,Extra Plain Rice:29.0;Extra Java Rice:41.0;Extra Soup:12.0;Chicken Oil:11.0;Toyomansi:11.0;Spiced Vinegar:8.0
+Chicken Inasal Paa & Grilled Liempo Solo Fiesta,Chicken Inasal Paa Grilled Liempo 1 pc Lumpiang Togue Half Palabok Java Rice and Soup,MEAL,427.0,50,true,,Extra Plain Rice:29.0;Extra Java Rice:41.0;Extra Soup:12.0;Chicken Oil:11.0;Toyomansi:11.0;Spiced Vinegar:8.0
+Chicken Inasal Paa Solo Fiesta,Chicken Inasal Paa 1 pc Lumpiang Togue Half Palabok Java Rice,MEAL,274.0,50,true,,Extra Plain Rice:29.0;Extra Java Rice:41.0;Extra Soup:12.0;Chicken Oil:11.0;Toyomansi:11.0;Spiced Vinegar:8.0
+Chicken Inasal Pecho & 1 pc Pork BBQ Solo Fiesta,Chicken Inasal Pecho 1 pc Pork BBQ 1 pc Lumpiang Togue Half Palabok Java Rice and Soup,MEAL,345.0,50,true,,Extra Plain Rice:29.0;Extra Java Rice:41.0;Extra Soup:12.0;Chicken Oil:11.0;Toyomansi:11.0;Spiced Vinegar:8.0
+Chicken Inasal Pecho & Grilled Liempo Solo Fiesta,Chicken Inasal Pecho Grilled Liempo 1 pc Lumpiang Togue Half Palabok Java Rice and Soup,MEAL,462.0,50,true,,Extra Plain Rice:29.0;Extra Java Rice:41.0;Extra Soup:12.0;Chicken Oil:11.0;Toyomansi:11.0;Spiced Vinegar:8.0
+Chicken Inasal Pecho Solo Fiesta,Chicken Inasal Pecho 1 pc Lumpiang Togue Half Palabok Java Rice,MEAL,309.0,50,true,,Extra Plain Rice:29.0;Extra Java Rice:41.0;Extra Soup:12.0;Chicken Oil:11.0;Toyomansi:11.0;Spiced Vinegar:8.0
+Chicken Inasal Regular,Chicken Inasal Regular with 1 rice. Choice of chicken part is subject to availability,MEAL,117.0,50,true,,Extra Plain Rice:29.0;Extra Java Rice:41.0;Extra Soup:12.0;Chicken Oil:11.0;Toyomansi:11.0;Spiced Vinegar:8.0
+Chicken Inasal Trio,3 pcs Chicken Inasal Paa Large,MEAL,489.0,50,true,,Extra Plain Rice:29.0;Extra Java Rice:41.0;Extra Soup:12.0;Chicken Oil:11.0;Toyomansi:11.0;Spiced Vinegar:8.0
+Coke,12oz Soda,DRINK,46.0,50,true,,
+Coke Regular 1.5L,Perfect for sharing,DRINK,117.0,50,true,,
+Coke Zero,12oz Soda,DRINK,46.0,50,true,,
+Crema de Leche Halo-Halo,A delightful creamy concoction of milk and ice topped with caramel,DESSERT,89.0,50,true,,
+Extra Creamy Halo-Halo,Extra Creamy Halo-Halo Small,DESSERT,89.0,50,true,,
+Grilled Liempo,Grilled Liempo with 1 rice,MEAL,159.0,50,true,,Extra Plain Rice:29.0;Extra Java Rice:41.0;Extra Soup:12.0;Chicken Oil:11.0;Toyomansi:11.0;Spiced Vinegar:8.0
+Grilled Liempo & 1pc Pork BBQ Solo Fiesta,1pc Pork BBQ Grilled Liempo 1 pc Lumpiang Togue Half Palabok Java Rice and Soup,MEAL,300.0,50,true,,Extra Plain Rice:29.0;Extra Java Rice:41.0;Extra Soup:12.0;Chicken Oil:11.0;Toyomansi:11.0;Spiced Vinegar:8.0
+Grilled Liempo Buddy Size,2pcs Grilled Liempo,MEAL,307.0,50,true,,Extra Plain Rice:29.0;Extra Java Rice:41.0;Extra Soup:12.0;Chicken Oil:11.0;Toyomansi:11.0;Spiced Vinegar:8.0
+Grilled Liempo Family Size,Good for 4-5 people,MEAL,611.0,50,true,,Extra Plain Rice:29.0;Extra Java Rice:41.0;Extra Soup:12.0;Chicken Oil:11.0;Toyomansi:11.0;Spiced Vinegar:8.0
+Grilled Liempo Solo Fiesta,Grilled Liempo 1 pc Lumpiang Togue Half Palabok Java Rice and Soup,MEAL,264.0,50,true,,Extra Plain Rice:29.0;Extra Java Rice:41.0;Extra Soup:12.0;Chicken Oil:11.0;Toyomansi:11.0;Spiced Vinegar:8.0
+Iced Red Gulaman,12oz Drinks,DRINK,46.0,50,true,,
+Iced Tea,12oz Drinks,DRINK,46.0,50,true,,
+Paa Large - PM1,Paa Large with 1 rice,MEAL,169.0,50,true,,Extra Plain Rice:29.0;Extra Java Rice:41.0;Extra Soup:12.0;Chicken Oil:11.0;Toyomansi:11.0;Spiced Vinegar:8.0
+Palabok Family Size,Good for 4-5,MEAL,407.0,50,true,,Chicken Oil:11.0;Toyomansi:11.0
+Palabok Party Size,Good for 8-10,MEAL,804.0,50,true,,Chicken Oil:11.0;Toyomansi:11.0
+Palabok Regular Size,Noodles in thick rich sauce seasoned with chopped spring onions and hard-boiled egg,MEAL,105.0,50,true,,Chicken Oil:11.0;Toyomansi:11.0
+Palabok with Crema de Leche Halo-Halo,Palabok with Crema de Leche Halo-Halo Small,MEAL,190.0,50,true,,Extra Plain Rice:29.0;Extra Java Rice:41.0;Extra Soup:12.0;Chicken Oil:11.0;Toyomansi:11.0;Spiced Vinegar:8.0
+Palabok with Extra Creamy Halo-Halo,Palabok with Extra Creamy Halo-Halo Small,MEAL,190.0,50,true,,Extra Plain Rice:29.0;Extra Java Rice:41.0;Extra Soup:12.0;Chicken Oil:11.0;Toyomansi:11.0;Spiced Vinegar:8.0
+Pecho Large - PM2,Pecho Large with 1 rice,MEAL,164.0,50,true,,Extra Plain Rice:29.0;Extra Java Rice:41.0;Extra Soup:12.0;Chicken Oil:11.0;Toyomansi:11.0;Spiced Vinegar:8.0
+Pork BBQ & Grilled Liempo Buddy Fiesta,4 pcs Pork BBQ 1 Grilled Liempo Small Java Rice Platter. Good for 2-3,MEAL,443.0,50,true,,Extra Plain Rice:29.0;Extra Java Rice:41.0;Extra Soup:12.0;Chicken Oil:11.0;Toyomansi:11.0;Spiced Vinegar:8.0
+Pork BBQ & Grilled Liempo Family Fiesta,8 pcs Pork BBQ with Spiced Vinegar 2 Grilled Liempo Java Rice Platter,MEAL,885.0,50,true,,Extra Plain Rice:29.0;Extra Java Rice:41.0;Extra Soup:12.0;Chicken Oil:11.0;Toyomansi:11.0;Spiced Vinegar:8.0
+Pork BBQ Buddy Size,4 sticks Pork BBQ with Spiced Vinegar,MEAL,228.0,50,true,,Extra Plain Rice:29.0;Extra Java Rice:41.0;Extra Soup:12.0;Chicken Oil:11.0;Toyomansi:11.0;Spiced Vinegar:8.0
+Pork BBQ Family Size,10 sticks Pork BBQ with Spiced Vinegar,MEAL,561.0,50,true,,Extra Plain Rice:29.0;Extra Java Rice:41.0;Extra Soup:12.0;Chicken Oil:11.0;Toyomansi:11.0;Spiced Vinegar:8.0
+Pork BBQ Party Size,20 sticks Pork BBQ with Spiced Vinegar,MEAL,1121.0,50,true,,Extra Plain Rice:29.0;Extra Java Rice:41.0;Extra Soup:12.0;Chicken Oil:11.0;Toyomansi:11.0;Spiced Vinegar:8.0
+Pork Sisig Rice Bowl,Pork Sisig on Rice with Savory Sauce Crunchy Bits Garlic and Chili,MEAL,105.0,50,true,,Extra Plain Rice:29.0;Extra Java Rice:41.0;Extra Soup:12.0;Chicken Oil:11.0;Toyomansi:11.0;Spiced Vinegar:8.0
+Salo-Sarap Ihaw Duo,2 pcs Chicken Inasal Paa Large and 2 pcs Pork BBQ,MEAL,443.0,50,true,,Extra Plain Rice:29.0;Extra Java Rice:41.0;Extra Soup:12.0;Chicken Oil:11.0;Toyomansi:11.0;Spiced Vinegar:8.0
+Solb-Sarap Combo A,2 pcs Paa 4 pcs Pork BBQ 2 pcs Pork Sisig,MEAL,719.0,50,true,,Extra Plain Rice:29.0;Extra Java Rice:41.0;Extra Soup:12.0;Chicken Oil:11.0;Toyomansi:11.0;Spiced Vinegar:8.0
+Solb-Sarap Combo B,1 pc Paa 1pc Pecho 4 pcs Pork BBQ 2 pcs Pork Sisig,MEAL,766.0,50,true,,Extra Plain Rice:29.0;Extra Java Rice:41.0;Extra Soup:12.0;Chicken Oil:11.0;Toyomansi:11.0;Spiced Vinegar:8.0
+Solb-Sarap Combo C,2 pcs Pecho 4 pcs Pork BBQ 2 pcs Pork Sisig,MEAL,801.0,50,true,,Extra Plain Rice:29.0;Extra Java Rice:41.0;Extra Soup:12.0;Chicken Oil:11.0;Toyomansi:11.0;Spiced Vinegar:8.0
+Soy Garlic Chicken Rice Bowl,Grilled Boneless Chicken on Rice drizzled with Soy Garlic Sauce,MEAL,105.0,50,true,,Extra Plain Rice:29.0;Extra Java Rice:41.0;Extra Soup:12.0;Chicken Oil:11.0;Toyomansi:11.0;Spiced Vinegar:8.0
+Sprite,12oz Soda,DRINK,46.0,50,true,,
+Tsoko n' Nut Yema Halo-Halo,A chocolatey crunchy Halo-Halo with a nutty twist. Limited time only,DESSERT,117.0,50,true,,

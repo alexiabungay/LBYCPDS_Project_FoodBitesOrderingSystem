@@ -1,0 +1,183 @@
+restaurant_id,owner_email,name,description,address,dine_in,takeout,delivery
+3,,Chowking,Chinese-Filipino fast food,,true,true,true
+
+item_name,description,category,price,stock,available,portion_sizes,add_ons
+12-pc. Chocolate Buchi Platter,Limited time only,DESSERT,369.0,50,true,,
+12-pc. Pre-Assorted Buchi Platter,Limited time only,DESSERT,369.0,50,true,,
+12pc. Buchi Platter,,DESSERT,341.0,50,true,,
+12pc. Peanut Buchi Platter,Limited time only,DESSERT,369.0,50,true,,
+1pc. Chinese-Style Fried Chicken,,MEAL,105.0,50,true,,Gravy:6.0;Hot Sauce:6.0;Sweet & Sour Sauce:17.0;Extra Plain Rice:43.0
+1pc. Fried Chicken with Egg,,MEAL,138.0,50,true,,Gravy:6.0;Hot Sauce:6.0;Sweet & Sour Sauce:17.0;Extra Plain Rice:43.0
+2pc. Chinese-Style Fried Chicken,,MEAL,204.0,50,true,,Gravy:6.0;Hot Sauce:6.0;Sweet & Sour Sauce:17.0;Extra Plain Rice:43.0
+2pc. Pre-Assorted Fried Siopao,,SNACK,83.0,50,true,,Chili Oil:6.0;Soymansi:6.0;Sweet Chili Sauce:17.0;Spicy Vinegar:6.0
+2pc. Siomai,,SNACK,44.0,50,true,,Chili Oil:6.0;Soymansi:6.0;Sweet Chili Sauce:17.0;Spicy Vinegar:6.0
+3-pc. Chocolate Buchi,Limited time only,DESSERT,97.0,50,true,,
+3-pc. Pre-Assorted Buchi,Limited time only,DESSERT,97.0,50,true,,
+3pc. Buchi,,DESSERT,88.0,50,true,,
+3pc. Peanut Buchi,Limited time only,DESSERT,97.0,50,true,,
+3pc. Siopao Box,,SNACK,182.0,50,true,,Chili Oil:6.0;Soymansi:6.0;Sweet Chili Sauce:17.0;Spicy Vinegar:6.0
+3pcs Choco Pao for 3,Limited time offer,DESSERT,204.0,50,true,,
+4-pc. Chicken & Seafood Chao Fan for 4,Limited time offer,MEAL,693.0,50,true,,Chili Oil:6.0;Hot Sauce:6.0;Extra Egg Fried Rice:54.0
+4-pc. Chicken-Beef Chao Fan Family Bundle,,MEAL,737.0,50,true,,Chili Oil:6.0;Hot Sauce:6.0;Extra Egg Fried Rice:54.0
+4-pc. Fried Asado Siopao Box,,SNACK,165.0,50,true,,Chili Oil:6.0;Soymansi:6.0;Sweet Chili Sauce:17.0;Spicy Vinegar:6.0
+4-pc. Fried Bola-Bola Siopao Box,,SNACK,165.0,50,true,,Chili Oil:6.0;Soymansi:6.0;Sweet Chili Sauce:17.0;Spicy Vinegar:6.0
+4-pc. Fried Pre-Assorted Siopao Box,,SNACK,165.0,50,true,,Chili Oil:6.0;Soymansi:6.0;Sweet Chili Sauce:17.0;Spicy Vinegar:6.0
+4pc Chicken & Chao Fan Platter for 4,,MEAL,692.0,50,true,,Chili Oil:6.0;Hot Sauce:6.0;Extra Egg Fried Rice:54.0
+4pc Chicken & Pancit Platter for 4,,MEAL,747.0,50,true,,Chili Oil:6.0;Soymansi:6.0;Spicy Vinegar:6.0
+4pc Chicken-Spicy Chao Fan Platter Bundle,,MEAL,693.0,50,true,,Chili Oil:6.0;Hot Sauce:6.0;Extra Egg Fried Rice:54.0
+4pc. Chicken-Chao Fan Platter Bundle,,MEAL,633.0,50,true,,Chili Oil:6.0;Hot Sauce:6.0;Extra Egg Fried Rice:54.0
+4pc. Chinese-Style Fried Chicken Family Box,,MEAL,413.0,50,true,,Gravy:6.0;Hot Sauce:6.0;Sweet & Sour Sauce:17.0;Extra Plain Rice:43.0
+4pc. Lumpiang Shanghai,,SNACK,87.0,50,true,,Chili Oil:6.0;Soymansi:6.0;Sweet Chili Sauce:17.0;Spicy Vinegar:6.0
+4pc. Siomai,,SNACK,87.0,50,true,,Chili Oil:6.0;Soymansi:6.0;Sweet Chili Sauce:17.0;Spicy Vinegar:6.0
+6-pc. Chocolate Buchi Platter,Limited time only,DESSERT,187.0,50,true,,
+6-pc. Crispy Wonton with Sweet Chili,,SNACK,87.0,50,true,,Chili Oil:6.0;Soymansi:6.0;Sweet Chili Sauce:17.0;Spicy Vinegar:6.0
+6-pc. Pre-Assorted Buchi Platter,Limited time only,DESSERT,187.0,50,true,,
+6-pc. Spicy Wonton,,SNACK,87.0,50,true,,Chili Oil:6.0;Soymansi:6.0;Sweet Chili Sauce:17.0;Spicy Vinegar:6.0
+6pc Peanut Buchi Platter,Limited time only,DESSERT,187.0,50,true,,
+6pc. Buchi Platter,,DESSERT,175.0,50,true,,
+6pc. Chinese-Style Fried Chicken,,MEAL,578.0,50,true,,Gravy:6.0;Hot Sauce:6.0;Sweet & Sour Sauce:17.0;Extra Plain Rice:43.0
+7 UP,,DRINK,72.0,50,true,,
+8pc. Chinese-Style Fried Chicken,,MEAL,732.0,50,true,,Gravy:6.0;Hot Sauce:6.0;Sweet & Sour Sauce:17.0;Extra Plain Rice:43.0
+Asado Siopao & Milksha Peach Fruit Tea,,MEAL,142.0,50,true,,Chili Oil:6.0;Soymansi:6.0;Sweet Chili Sauce:17.0;Spicy Vinegar:6.0
+Asado Siopao & Wintermelon with Jelly,,MEAL,142.0,50,true,,Chili Oil:6.0;Soymansi:6.0;Sweet Chili Sauce:17.0;Spicy Vinegar:6.0
+Asian BBQ Chicken Chop with Egg Fried Rice,,MEAL,109.0,50,true,,Gravy:6.0;Asian BBQ Sauce:17.0;Creamy Sauce:17.0;Extra Plain Rice:43.0
+Asian BBQ Chicken Chop with Egg Fried Rice & Egg,,MEAL,142.0,50,true,,Gravy:6.0;Asian BBQ Sauce:17.0;Creamy Sauce:17.0;Extra Plain Rice:43.0
+Asian BBQ Chicken Chop with Plain Rice,,MEAL,87.0,50,true,,Gravy:6.0;Asian BBQ Sauce:17.0;Creamy Sauce:17.0;Extra Plain Rice:43.0
+Beef Chao Fan,,MEAL,109.0,50,true,,Chili Oil:6.0;Hot Sauce:6.0;Extra Egg Fried Rice:54.0
+Beef Chao Fan Platter,,MEAL,336.0,50,true,,Chili Oil:6.0;Hot Sauce:6.0;Extra Egg Fried Rice:54.0
+Beef Chao Fan with Fried Chicken,,MEAL,204.0,50,true,,Gravy:6.0;Hot Sauce:6.0;Sweet & Sour Sauce:17.0;Extra Plain Rice:43.0
+Beef Mami,,MEAL,208.0,50,true,,Chili Oil:6.0;Soymansi:6.0
+Beef Tapa,,MEAL,176.0,50,true,,Extra Plain Rice:43.0;Chili Oil:6.0;Hot Sauce:6.0
+Beef Wonton Mami,,MEAL,226.0,50,true,,Chili Oil:6.0;Soymansi:6.0
+Bestipid Chao Fan with Drink,,MEAL,87.0,50,true,,Chili Oil:6.0;Hot Sauce:6.0;Extra Egg Fried Rice:54.0
+Bestipid Everyday Sulit with Drink,,MEAL,109.0,50,true,,Extra Plain Rice:43.0;Chili Oil:6.0;Hot Sauce:6.0
+Bestipid Mas Sulit with 2 Sides,,MEAL,164.0,50,true,,Extra Plain Rice:43.0;Chili Oil:6.0;Hot Sauce:6.0
+Bestipid Todo Sulit with 3 Sides,,MEAL,219.0,50,true,,Extra Plain Rice:43.0;Chili Oil:6.0;Hot Sauce:6.0
+Bola-Bola Siopao Supreme,,SNACK,83.0,50,true,,Chili Oil:6.0;Soymansi:6.0;Sweet Chili Sauce:17.0;Spicy Vinegar:6.0
+Bottled Water 350mL,,DRINK,39.0,50,true,,
+Braised Beef with Rice,,MEAL,193.0,50,true,,Extra Plain Rice:43.0;Chili Oil:6.0;Hot Sauce:6.0
+Braised Beef with Rice Combo,,MEAL,257.0,50,true,,Extra Plain Rice:43.0;Chili Oil:6.0;Hot Sauce:6.0
+Breakfast 2pc Fried Asado Siopao & Drink,,MEAL,83.0,50,true,,Chili Oil:6.0;Soymansi:6.0;Sweet Chili Sauce:17.0;Spicy Vinegar:6.0
+Breakfast Beef Chao Fan,,MEAL,142.0,50,true,,Chili Oil:6.0;Hot Sauce:6.0;Extra Egg Fried Rice:54.0
+Breakfast Bola-Bola Siopao & Drink,,MEAL,110.0,50,true,,Chili Oil:6.0;Soymansi:6.0;Sweet Chili Sauce:17.0;Spicy Vinegar:6.0
+Breakfast Chunky Asado Siopao & Drink,,MEAL,88.0,50,true,,Chili Oil:6.0;Soymansi:6.0;Sweet Chili Sauce:17.0;Spicy Vinegar:6.0
+Breakfast Crispy Wonton Beef Chao Fan,,MEAL,208.0,50,true,,Chili Oil:6.0;Hot Sauce:6.0;Extra Egg Fried Rice:54.0
+Breakfast Crispy Wonton Chao Fan,,MEAL,160.0,50,true,,Chili Oil:6.0;Hot Sauce:6.0;Extra Egg Fried Rice:54.0
+Breakfast Crispy Wonton Spicy Chao Fan,,MEAL,186.0,50,true,,Chili Oil:6.0;Hot Sauce:6.0;Extra Egg Fried Rice:54.0
+Breakfast Pork Chao Fan,,MEAL,98.0,50,true,,Chili Oil:6.0;Hot Sauce:6.0;Extra Egg Fried Rice:54.0
+Breakfast Seafood Chao Fan,,MEAL,120.0,50,true,,Chili Oil:6.0;Hot Sauce:6.0;Extra Egg Fried Rice:54.0
+Breakfast Seafood Chao Fan with Fish Fillet,,MEAL,186.0,50,true,,Chili Oil:6.0;Hot Sauce:6.0;Extra Egg Fried Rice:54.0
+Breakfast Seafood Chao Fan with Topping,,MEAL,175.0,50,true,,Chili Oil:6.0;Hot Sauce:6.0;Extra Egg Fried Rice:54.0
+Breakfast Siomai Beef Chao Fan,,MEAL,197.0,50,true,,Chili Oil:6.0;Hot Sauce:6.0;Extra Egg Fried Rice:54.0
+Breakfast Siomai Chao Fan,,MEAL,142.0,50,true,,Chili Oil:6.0;Hot Sauce:6.0;Extra Egg Fried Rice:54.0
+Breakfast Siomai Spicy Chao Fan,,MEAL,175.0,50,true,,Chili Oil:6.0;Hot Sauce:6.0;Extra Egg Fried Rice:54.0
+Breakfast Spicy Chao Fan,,MEAL,120.0,50,true,,Chili Oil:6.0;Hot Sauce:6.0;Extra Egg Fried Rice:54.0
+Breakfast Wonton Mami with Drink,,MEAL,138.0,50,true,,Chili Oil:6.0;Soymansi:6.0
+Brewed Coffee,,DRINK,50.0,50,true,,
+Buy 2 Get 1 Free Steamed Asado Siopao Box,Buy 2 get 1 free,MEAL,363.0,50,true,,Chili Oil:6.0;Soymansi:6.0;Sweet Chili Sauce:17.0;Spicy Vinegar:6.0
+Buy 2 Get 1 Free Steamed Asado Siopao Solo,Buy 2 get 1 free,MEAL,121.0,50,true,,Chili Oil:6.0;Soymansi:6.0;Sweet Chili Sauce:17.0;Spicy Vinegar:6.0
+Chao Fan with 1pc. Fried Chicken,,MEAL,149.0,50,true,,Gravy:6.0;Hot Sauce:6.0;Sweet & Sour Sauce:17.0;Extra Plain Rice:43.0
+Chao Fan with 2pc. Fried Chicken,Wok-Sarap combo,MEAL,234.0,50,true,,Gravy:6.0;Hot Sauce:6.0;Sweet & Sour Sauce:17.0;Extra Plain Rice:43.0
+Chao Fan with Sweet & Sour Chicken,Wok-Sarap combo,MEAL,208.0,50,true,,Chili Oil:6.0;Hot Sauce:6.0;Extra Egg Fried Rice:54.0
+Chao Fan with Sweet & Sour Fish,Wok-Sarap combo,MEAL,215.0,50,true,,Chili Oil:6.0;Hot Sauce:6.0;Extra Egg Fried Rice:54.0
+Chao Fan with Sweet & Sour Pork,Wok-Sarap combo,MEAL,208.0,50,true,,Chili Oil:6.0;Hot Sauce:6.0;Extra Egg Fried Rice:54.0
+Chao Fan with Toppings & Peach Fruit Tea,,MEAL,186.0,50,true,,Chili Oil:6.0;Hot Sauce:6.0;Extra Egg Fried Rice:54.0
+Chao Fan with Toppings & Wintermelon with Jelly,,MEAL,186.0,50,true,,Chili Oil:6.0;Hot Sauce:6.0;Extra Egg Fried Rice:54.0
+Chicharap with Spicy Vinegar,,SNACK,87.0,50,true,,Chili Oil:6.0;Soymansi:6.0;Sweet Chili Sauce:17.0;Spicy Vinegar:6.0
+Chicken and Pancit Bundle A,,MEAL,714.0,50,true,,Gravy:6.0;Hot Sauce:6.0;Sweet & Sour Sauce:17.0;Extra Plain Rice:43.0
+Chicken and Pancit Bundle B,,MEAL,1073.0,50,true,,Gravy:6.0;Hot Sauce:6.0;Sweet & Sour Sauce:17.0;Extra Plain Rice:43.0
+Chicken Chop & Peach Fruit Tea Jelly,,MEAL,186.0,50,true,,Gravy:6.0;Asian BBQ Sauce:17.0;Creamy Sauce:17.0;Extra Plain Rice:43.0
+Chicken Chop & Wintermelon with Jelly,,MEAL,186.0,50,true,,Gravy:6.0;Asian BBQ Sauce:17.0;Creamy Sauce:17.0;Extra Plain Rice:43.0
+Chicken Lauriat & Peach Fruit Tea,,MEAL,296.0,50,true,,Gravy:6.0;Hot Sauce:6.0;Sweet & Sour Sauce:17.0;Extra Plain Rice:43.0
+Chicken Lauriat & Wintermelon with Jelly,,MEAL,296.0,50,true,,Gravy:6.0;Hot Sauce:6.0;Sweet & Sour Sauce:17.0;Extra Plain Rice:43.0
+Chinese Pork Longganisa,,MEAL,176.0,50,true,,Extra Plain Rice:43.0;Chili Oil:6.0;Hot Sauce:6.0
+Chinese-Style Fried Chicken Lauriat,,MEAL,219.0,50,true,,Gravy:6.0;Hot Sauce:6.0;Sweet & Sour Sauce:17.0;Extra Plain Rice:43.0
+Choco Pao,Limited time offer,DESSERT,72.0,50,true,,
+Choco Pao with Drink,Limited time offer,DESSERT,94.0,50,true,,
+Chunky Asado Siopao,,SNACK,61.0,50,true,,Chili Oil:6.0;Soymansi:6.0;Sweet Chili Sauce:17.0;Spicy Vinegar:6.0
+Coke,,DRINK,77.0,50,true,,
+Coke 1L,,DRINK,105.0,50,true,,
+Coke Zero,,DRINK,77.0,50,true,,
+Creamy Chicken Chop with Egg Fried Rice,,MEAL,109.0,50,true,,Gravy:6.0;Asian BBQ Sauce:17.0;Creamy Sauce:17.0;Extra Plain Rice:43.0
+Creamy Chicken Chop with Egg Fried Rice & Egg,,MEAL,142.0,50,true,,Gravy:6.0;Asian BBQ Sauce:17.0;Creamy Sauce:17.0;Extra Plain Rice:43.0
+Creamy Chicken Chop with Plain Rice,,MEAL,87.0,50,true,,Gravy:6.0;Asian BBQ Sauce:17.0;Creamy Sauce:17.0;Extra Plain Rice:43.0
+Crispy Wonton Beef Chao Fan,,MEAL,160.0,50,true,,Chili Oil:6.0;Hot Sauce:6.0;Extra Egg Fried Rice:54.0
+Crispy Wonton Chao Fan,,MEAL,121.0,50,true,,Chili Oil:6.0;Hot Sauce:6.0;Extra Egg Fried Rice:54.0
+Crispy Wonton Platter with Sweet Chili,,SNACK,242.0,50,true,,Chili Oil:6.0;Soymansi:6.0;Sweet Chili Sauce:17.0;Spicy Vinegar:6.0
+Crispy Wonton Spicy Chao Fan,,MEAL,142.0,50,true,,Chili Oil:6.0;Hot Sauce:6.0;Extra Egg Fried Rice:54.0
+Dimsum Mix Platter,,SNACK,303.0,50,true,,Chili Oil:6.0;Soymansi:6.0;Sweet Chili Sauce:17.0;Spicy Vinegar:6.0
+Egg Fried Rice Group Platter,,MEAL,209.0,50,true,,Chili Oil:6.0;Hot Sauce:6.0;Extra Egg Fried Rice:54.0
+Family Lauriat for 4 pax,,MEAL,803.0,50,true,,Gravy:6.0;Hot Sauce:6.0;Sweet & Sour Sauce:17.0;Extra Plain Rice:43.0
+Family Lauriat for 6 pax,,MEAL,1150.0,50,true,,Gravy:6.0;Hot Sauce:6.0;Sweet & Sour Sauce:17.0;Extra Plain Rice:43.0
+Fried Beef Siomai Platter,,SNACK,242.0,50,true,,Chili Oil:6.0;Soymansi:6.0;Sweet Chili Sauce:17.0;Spicy Vinegar:6.0
+Fried Chicken-Pancit Family Platter,,MEAL,813.0,50,true,,Gravy:6.0;Hot Sauce:6.0;Sweet & Sour Sauce:17.0;Extra Plain Rice:43.0
+Fried Pork Siomai Group Platter,,SNACK,242.0,50,true,,Chili Oil:6.0;Soymansi:6.0;Sweet Chili Sauce:17.0;Spicy Vinegar:6.0
+Gravy Chicken Chop with Egg Fried Rice,,MEAL,105.0,50,true,,Gravy:6.0;Asian BBQ Sauce:17.0;Creamy Sauce:17.0;Extra Plain Rice:43.0
+Gravy Chicken Chop with Egg Fried Rice & Egg,,MEAL,142.0,50,true,,Gravy:6.0;Asian BBQ Sauce:17.0;Creamy Sauce:17.0;Extra Plain Rice:43.0
+Gravy Chicken Chop with Plain Rice,,MEAL,83.0,50,true,,Gravy:6.0;Asian BBQ Sauce:17.0;Creamy Sauce:17.0;Extra Plain Rice:43.0
+Halo-Halo Supreme,,DESSERT,83.0,50,true,,
+Iced Tea,,DRINK,77.0,50,true,,
+Kangkong with Chinese Bagoong,,SNACK,87.0,50,true,,Chili Oil:6.0;Soymansi:6.0
+King Special - Beef Siomai,,MEAL,198.0,50,true,,Chili Oil:6.0;Soymansi:6.0;Sweet Chili Sauce:17.0;Spicy Vinegar:6.0
+King's Special,,MEAL,198.0,50,true,,Extra Plain Rice:43.0;Chili Oil:6.0;Hot Sauce:6.0
+Large Wonton Mami,,MEAL,165.0,50,true,,Chili Oil:6.0;Soymansi:6.0
+Lumpiang Shanghai Group Platter,,SNACK,242.0,50,true,,Chili Oil:6.0;Soymansi:6.0;Sweet Chili Sauce:17.0;Spicy Vinegar:6.0
+Lumpiang Shanghai Rice Meal,,MEAL,99.0,50,true,,Chili Oil:6.0;Soymansi:6.0;Sweet Chili Sauce:17.0;Spicy Vinegar:6.0
+Milksha Perfect Pair (Good for 2),Good for 2,DRINK,263.0,50,true,,
+Mirinda,,DRINK,77.0,50,true,,
+Mountain Dew,,DRINK,77.0,50,true,,
+MUG Rootbeer,,DRINK,77.0,50,true,,
+Pancit Canton,,MEAL,94.0,50,true,,Chili Oil:6.0;Soymansi:6.0;Spicy Vinegar:6.0
+Pancit Canton Group Platter,,MEAL,281.0,50,true,,Chili Oil:6.0;Soymansi:6.0;Spicy Vinegar:6.0
+Pancit Canton with Fried Chicken,,MEAL,197.0,50,true,,Gravy:6.0;Hot Sauce:6.0;Sweet & Sour Sauce:17.0;Extra Plain Rice:43.0
+Pepsi,,DRINK,77.0,50,true,,
+Pepsi Black,,DRINK,77.0,50,true,,
+Pineapple Juice,,DRINK,77.0,50,true,,
+Pork Chao Fan,,MEAL,65.0,50,true,,Chili Oil:6.0;Hot Sauce:6.0;Extra Egg Fried Rice:54.0
+Pork Chao Fan Group Platter,,MEAL,226.0,50,true,,Chili Oil:6.0;Hot Sauce:6.0;Extra Egg Fried Rice:54.0
+Pork Chao Fan with Fried Chicken,,MEAL,160.0,50,true,,Gravy:6.0;Hot Sauce:6.0;Sweet & Sour Sauce:17.0;Extra Plain Rice:43.0
+Regular Wonton Mami,,MEAL,109.0,50,true,,Chili Oil:6.0;Soymansi:6.0
+Seafood Chao Fan,,MEAL,87.0,50,true,,Chili Oil:6.0;Hot Sauce:6.0;Extra Egg Fried Rice:54.0
+Seafood Chao Fan Mix & Match,,MEAL,153.0,50,true,,Chili Oil:6.0;Hot Sauce:6.0;Extra Egg Fried Rice:54.0
+Seafood Chao Fan Platter,Limited time offer,MEAL,292.0,50,true,,Chili Oil:6.0;Hot Sauce:6.0;Extra Egg Fried Rice:54.0
+Seafood Chao Fan with Fish Fillet,,MEAL,153.0,50,true,,Chili Oil:6.0;Hot Sauce:6.0;Extra Egg Fried Rice:54.0
+Seafood Chao Fan with Fish Fillet Platter,Limited time offer,MEAL,457.0,50,true,,Chili Oil:6.0;Hot Sauce:6.0;Extra Egg Fried Rice:54.0
+Seafood Chao Fan with Fried Chicken,,MEAL,175.0,50,true,,Gravy:6.0;Hot Sauce:6.0;Sweet & Sour Sauce:17.0;Extra Plain Rice:43.0
+Seafood Chao Fan with Topping,,MEAL,142.0,50,true,,Chili Oil:6.0;Hot Sauce:6.0;Extra Egg Fried Rice:54.0
+Siomai & Pancit Canton Platter for 3,,MEAL,501.0,50,true,,Chili Oil:6.0;Soymansi:6.0;Spicy Vinegar:6.0
+Siomai Beef Chao Fan,,MEAL,164.0,50,true,,Chili Oil:6.0;Hot Sauce:6.0;Extra Egg Fried Rice:54.0
+Siomai Beef Chao Fan Family Platter,,MEAL,446.0,50,true,,Chili Oil:6.0;Hot Sauce:6.0;Extra Egg Fried Rice:54.0
+Siomai Chao Fan,,MEAL,109.0,50,true,,Chili Oil:6.0;Hot Sauce:6.0;Extra Egg Fried Rice:54.0
+Siomai Chao Fan Family Platter,,MEAL,336.0,50,true,,Chili Oil:6.0;Hot Sauce:6.0;Extra Egg Fried Rice:54.0
+Siomai Chao Fan Platter Bundle for 3,,MEAL,468.0,50,true,,Chili Oil:6.0;Hot Sauce:6.0;Extra Egg Fried Rice:54.0
+Siomai Spicy Chao Fan,,MEAL,142.0,50,true,,Chili Oil:6.0;Hot Sauce:6.0;Extra Egg Fried Rice:54.0
+Siomai Spicy Chao Fan Family Platter,,MEAL,413.0,50,true,,Chili Oil:6.0;Hot Sauce:6.0;Extra Egg Fried Rice:54.0
+Snack Size Fried Siopao & Pancit Canton,,MEAL,87.0,50,true,,Chili Oil:6.0;Soymansi:6.0;Spicy Vinegar:6.0
+Snack Size Fried Siopao & Wonton Mami,,MEAL,98.0,50,true,,Chili Oil:6.0;Soymansi:6.0
+Snack Size Pancit Canton & 4pc. Dimsum,,MEAL,87.0,50,true,,Chili Oil:6.0;Soymansi:6.0;Spicy Vinegar:6.0
+Snack Size Wonton Mami & 4pc. Dimsum,,MEAL,98.0,50,true,,Chili Oil:6.0;Soymansi:6.0
+Spicy Chao Fan,,MEAL,87.0,50,true,,Chili Oil:6.0;Hot Sauce:6.0;Extra Egg Fried Rice:54.0
+Spicy Chao Fan Group Platter,,MEAL,292.0,50,true,,Chili Oil:6.0;Hot Sauce:6.0;Extra Egg Fried Rice:54.0
+Spicy Chao Fan with Fried Chicken,,MEAL,182.0,50,true,,Gravy:6.0;Hot Sauce:6.0;Sweet & Sour Sauce:17.0;Extra Plain Rice:43.0
+Spicy Wonton Platter,,SNACK,242.0,50,true,,Chili Oil:6.0;Soymansi:6.0;Sweet Chili Sauce:17.0;Spicy Vinegar:6.0
+Sprite,,DRINK,77.0,50,true,,
+Steamed Beef Siomai Platter,,SNACK,242.0,50,true,,Chili Oil:6.0;Soymansi:6.0;Sweet Chili Sauce:17.0;Spicy Vinegar:6.0
+Steamed Pork Siomai Group Platter,,SNACK,242.0,50,true,,Chili Oil:6.0;Soymansi:6.0;Sweet Chili Sauce:17.0;Spicy Vinegar:6.0
+Stir-fried Bok Choy,,SNACK,87.0,50,true,,Chili Oil:6.0;Soymansi:6.0
+Sweet & Sour Chicken Group Platter,,MEAL,435.0,50,true,,Sweet & Sour Sauce:17.0;Extra Plain Rice:43.0
+Sweet & Sour Chicken Lauriat,,MEAL,252.0,50,true,,Sweet & Sour Sauce:17.0;Extra Plain Rice:43.0
+Sweet & Sour Chicken Rice Meal,,MEAL,175.0,50,true,,Sweet & Sour Sauce:17.0;Extra Plain Rice:43.0
+Sweet & Sour Fish Group Platter,,MEAL,450.0,50,true,,Sweet & Sour Sauce:17.0;Extra Plain Rice:43.0
+Sweet & Sour Fish Lauriat,,MEAL,259.0,50,true,,Sweet & Sour Sauce:17.0;Extra Plain Rice:43.0
+Sweet & Sour Fish Rice Meal,,MEAL,182.0,50,true,,Sweet & Sour Sauce:17.0;Extra Plain Rice:43.0
+Sweet & Sour Pork Group Platter,,MEAL,435.0,50,true,,Sweet & Sour Sauce:17.0;Extra Plain Rice:43.0
+Sweet & Sour Pork Lauriat,,MEAL,252.0,50,true,,Sweet & Sour Sauce:17.0;Extra Plain Rice:43.0
+Sweet & Sour Pork Rice Meal,,MEAL,175.0,50,true,,Sweet & Sour Sauce:17.0;Extra Plain Rice:43.0
+Sweet & Sour Pork-Chao Fan Family Bundle,,MEAL,633.0,50,true,,Chili Oil:6.0;Hot Sauce:6.0;Extra Egg Fried Rice:54.0
+Sweet & Sour Pork-Spicy Chao Fan Family Bundle,,MEAL,699.0,50,true,,Chili Oil:6.0;Hot Sauce:6.0;Extra Egg Fried Rice:54.0
+Wintermelon with Jelly Large,,DRINK,131.0,50,true,,
+Wintermelon with Jelly Medium,,DRINK,109.0,50,true,,
+Wonton Mami & Milksha Peach Fruit Tea,,MEAL,208.0,50,true,,Chili Oil:6.0;Soymansi:6.0
+Wonton Mami & Wintermelon with Jelly,,MEAL,197.0,50,true,,Chili Oil:6.0;Soymansi:6.0
+Wonton Mami with Asado Siopao,,MEAL,160.0,50,true,,Chili Oil:6.0;Soymansi:6.0
+Wonton Soup,,SNACK,87.0,50,true,,Chili Oil:6.0;Soymansi:6.0
