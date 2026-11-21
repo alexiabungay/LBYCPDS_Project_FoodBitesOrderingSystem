@@ -1075,16 +1075,34 @@ public class FoodBitesApp {
         }
     }
 
+    private void printRegisteredUsers(User admin) {
+        List<User> registeredUsers = authentication.listUsers(admin);
+        if (registeredUsers.isEmpty()) {
+            System.out.println("No registered users.");
+            return;
+        }
+        System.out.println("Registered users");
+        for (User registeredUser : registeredUsers) {
+            System.out.printf("  #%d %-16s %-26s %s%n", registeredUser.getId(), registeredUser.getRole(),
+                    registeredUser.getName(), registeredUser.getEmail());
+        }
+        System.out.println(registeredUsers.size() + " user(s)");
+    }
+
     private void adminMenu(User user){
         System.out.println("1. Browse restaurants");
         System.out.println("2. Add restaurant");
         System.out.println("3. Edit restaurant");
         System.out.println("4. Remove restaurant");
-        System.out.println("5. View restaurants by ID");
-        System.out.println("6. View restaurants A to Z");
-        System.out.println("7. View restaurants by Descending Order of Sales");
-        System.out.println("8. View restaurants by Increasing Order of Sales");
-        System.out.println("9. View List of Business Owners");
+        System.out.println("5. Reassign restaurant owner");
+        System.out.println("6. View restaurants by ID");
+        System.out.println("7. View restaurants A to Z");
+        System.out.println("8. View restaurants by Descending Order of Sales");
+        System.out.println("9. View restaurants by Increasing Order of Sales");
+        System.out.println("10. View List of Business Owners");
+        System.out.println("11. View List of All Registered Users");
+        System.out.println("12. Foodplaces summary");
+        System.out.println("13. Change a user's password");
         System.out.println("0. Logout");
 
         guard(() -> {
@@ -1118,23 +1136,48 @@ public class FoodBitesApp {
                     menu.removeRestaurant(user, restaurantId);
                     break;
                 case 5:
+                    printRestaurantList(menu.browseRestaurants());
+                    restaurantId = readInt("Restaurant ID: ");
+                    printBusinessOwners();
+                    String reassignedOwnerEmail = readLine("New owner email: ");
+                    menu.assignOwner(user, restaurantId, reassignedOwnerEmail);
+                    System.out.println("Owner updated.");
+                    break;
+                case 6:
                     System.out.println("Restaurants by ID");
                     printRestaurantList(menu.browseRestaurants());
                     break;
-                case 6:
+                case 7:
                     System.out.println("Restaurants A to Z");
                     printRestaurantList(menu.browseRestaurantsAlphabetical());
                     break;
-                case 7:
+                case 8:
                     System.out.println("Restaurants by sales (highest first)");
                     printSalesRanking(reports.rankRestaurants(user));
                     break;
-                case 8:
+                case 9:
                     System.out.println("Restaurants by sales (lowest first)");
                     printSalesRanking(menu.browseRestaurantsBySalesAscending());
                     break;
-                case 9:
+                case 10:
                     printBusinessOwners();
+                    break;
+                case 11:
+                    printRegisteredUsers(user);
+                    break;
+                case 12:
+                    System.out.println(reports.foodplacesSummary(user));
+                    break;
+                case 13:
+                    printRegisteredUsers(user);
+                    String targetEmail = readLine("Email of the user: ");
+                    String newPassword = readHiddenInput("New password: ");
+                    String confirmPassword = readHiddenInput("Confirm new password: ");
+                    if (!newPassword.equals(confirmPassword)) {
+                        throw new IllegalArgumentException("Passwords do not match.");
+                    }
+                    User changedUser = authentication.changePasswordFor(user, targetEmail, newPassword);
+                    System.out.println("Password changed for " + changedUser.getName() + " (" + changedUser.getEmail() + ").");
                     break;
                 case 0:
                     authentication.logout();
