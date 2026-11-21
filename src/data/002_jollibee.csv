@@ -72,6 +72,8 @@ Burger Steak Family Savers,,MEAL,388.0,50,true,,
 Champ Jr. Solo,,SNACK,188.0,50,true,,
 Chicken Macaroni Soup,,SNACK,94.0,50,true,,
 Chocolate Sundae,,DESSERT,71.0,50,true,,
+Coke,,DRINK,50.0,50,true,,
+Coke Float,,DRINK,105.0,50,true,,
 Cookies & Cream Sundae,,DESSERT,95.0,50,true,,
 Corned Beef Solo,,MEAL,135.0,50,true,,Extra Rice:54.0
 Corned Beef w/ Drink,,MEAL,165.0,50,true,,Extra Rice:54.0
@@ -94,6 +96,7 @@ Longganisa Solo,,MEAL,135.0,50,true,,Extra Rice:54.0
 Longganisa w/ Drink,,MEAL,165.0,50,true,,Extra Rice:54.0
 Mashed Potato,,SNACK,94.0,50,true,,
 Mini Chocolate Sundae,,DESSERT,54.0,50,true,,
+Mountain Dew,,DRINK,50.0,50,true,,
 Original Cheesy Yumburger Solo,,SNACK,94.0,50,true,,
 Original Cheesy Yumburger w/ Drink,,MEAL,119.0,50,true,,
 Palabok Family Pan,,MEAL,701.0,50,true,,
@@ -104,11 +107,16 @@ Peach Mango 6 Pies To-Go,,DESSERT,370.0,50,true,,
 Peach Mango Pie,,DESSERT,59.0,50,true,,
 Pepper Cream Chicken Fillet Solo,,MEAL,111.0,50,true,,Extra Chickenjoy Gravy:19.0;Extra Rice:54.0
 Pepper Cream Chicken Fillet w/ Drink,,MEAL,124.0,50,true,,Extra Chickenjoy Gravy:19.0;Extra Rice:54.0
+Pineapple Juice,,DRINK,30.0,50,true,,
 Pistachio Choco Sundae,,DESSERT,95.0,50,true,,
+Regular Drink,,DRINK,16.0,50,true,,
+Regular Iced Tea,,DRINK,30.0,50,true,,
+Royal,,DRINK,50.0,50,true,,
 Special Cheesy Yumburger Solo,,SNACK,107.0,50,true,,
 Special Cheesy Yumburger w/ Drink,,MEAL,151.0,50,true,,
 Spicy Tuna Pie,,SNACK,101.0,50,true,,
 Spicy Tuna Pie Trio,,SNACK,294.0,50,true,,
+Sprite,,DRINK,50.0,50,true,,
 Tuna Pie Solo,,SNACK,101.0,50,true,,
 Tuna Pie Trio,,SNACK,294.0,50,true,,
 Yumburger Solo,,SNACK,57.0,50,true,,
