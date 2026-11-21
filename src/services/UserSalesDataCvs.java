@@ -172,6 +172,33 @@ public class UserSalesDataCvs {
         }
     }
 
+    public void updatePasswordHash(int userId, String newHash) {
+        if (!Files.exists(usersFile)) {
+            return;
+        }
+        try {
+            List<String> updatedLines = new ArrayList<>();
+            boolean isFirstLine = true;
+            for (String line : Files.readAllLines(usersFile, StandardCharsets.UTF_8)) {
+                if (isFirstLine || line.trim().isEmpty()) {
+                    isFirstLine = false;
+                    updatedLines.add(line);
+                    continue;
+                }
+                List<String> fields = new ArrayList<>(Csv.parseLine(line));
+                if (fields.size() > 5 && fields.get(0).equals(String.valueOf(userId))) {
+                    fields.set(5, newHash);
+                    line = Csv.join(fields);
+                }
+                updatedLines.add(line);
+            }
+            String text = String.join(System.lineSeparator(), updatedLines) + System.lineSeparator();
+            Files.write(usersFile, text.getBytes(StandardCharsets.UTF_8));
+        } catch (IOException exception) {
+            System.err.println("! Could not update users.csv: " + exception.getMessage());
+        }
+    }
+
     // reading
     private List<List<String>> readRows(Path file) {
         List<List<String>> rows = new ArrayList<>();
