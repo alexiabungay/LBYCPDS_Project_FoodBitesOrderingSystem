@@ -2,30 +2,114 @@ restaurant_id,owner_email,name,description,address,dine_in,takeout,delivery
 2,owner@jollibee.com,Jollibee,Bida ang Saya!,,true,true,true
 
 item_name,description,category,price,stock,available,portion_sizes,add_ons
-1-pc. Chickenjoy Solo,,MEAL,98.0,50,true,,
-1-pc. Chickenjoy Spicy Solo,,MEAL,106.0,50,true,,
-1-pc. Chickenjoy w/ Burger Steak Solo,,MEAL,183.0,50,true,,
-1-pc. Chickenjoy w/ Drink,,MEAL,111.0,50,true,,
-1-pc. Chickenjoy w/ Fries Solo,,MEAL,167.0,50,true,,
-1-pc. Chickenjoy w/ Jolly Spaghetti Solo,,MEAL,167.0,50,true,,
-1-pc. Chickenjoy w/ Jolly Spaghetti w/ Drink,,MEAL,205.0,50,true,,
-1-pc. Chickenjoy w/ Palabok Solo,,MEAL,254.0,50,true,,
-10-pc. Chicken Nuggets Solo,,SNACK,232.0,50,true,,
-2-pc. Chickenjoy Solo,,MEAL,201.0,50,true,,
-2-pc. Pancakes Solo,,MEAL,95.0,50,true,,
-4-pc. Chickenjoy Family Box Solo,,MEAL,420.0,50,true,,
-6-pc. Chicken Nuggets Solo,,SNACK,143.0,50,true,,
-6-pc. Chickenjoy Solo,,MEAL,554.0,50,true,,
-8-pc. Chickenjoy Solo,,MEAL,748.0,50,true,,
-Bacon Cheesy Yumburger Solo,,SNACK,142.0,50,true,,
-Beef Tapa Solo,,MEAL,135.0,50,true,,
-Champ Solo,,MEAL,277.0,50,true,,
-Cheesy Yumburger Solo,,SNACK,84.0,50,true,,
-Chocolate Sundae,,DESSERT,63.0,50,true,,
-Jolly Spaghetti Solo,,MEAL,76.0,50,true,,
-Jolly Spaghetti w/ Drink,,MEAL,95.0,50,true,,
-Mini Chocolate Sundae,,DESSERT,50.0,50,true,,
-Palabok Solo,,MEAL,177.0,50,true,,
-Peach Mango Pie,,DESSERT,53.0,50,true,,
-Yumburger Solo,,SNACK,51.0,50,true,,
-Yumburger w/ Drink,,MEAL,95.0,50,true,,
+1 - pc. Burger Steak Solo,,MEAL,94.0,50,true,,Extra Chickenjoy Gravy:19.0;Extra Rice:54.0
+1 - pc. Burger Steak w/ Drink,,MEAL,112.0,50,true,,Extra Chickenjoy Gravy:19.0;Extra Rice:54.0
+1 - pc. Chickenjoy Solo,,MEAL,108.0,50,true,,Extra Chickenjoy Gravy:19.0;Extra Rice:54.0
+1 - pc. Chickenjoy Spicy Solo,,MEAL,116.0,50,true,,Extra Chickenjoy Gravy:19.0;Extra Rice:54.0
+1 - pc. Chickenjoy Spicy w/ Burger Steak Solo,,MEAL,224.0,50,true,,Extra Chickenjoy Gravy:19.0;Extra Rice:54.0
+1 - pc. Chickenjoy Spicy w/ Burger Steak w/ Drink,,MEAL,240.0,50,true,,Extra Chickenjoy Gravy:19.0;Extra Rice:54.0
+1 - pc. Chickenjoy Spicy w/ Coke Float,,MEAL,221.0,50,true,,Extra Chickenjoy Gravy:19.0;Extra Rice:54.0
+1 - pc. Chickenjoy Spicy w/ Drink,,MEAL,132.0,50,true,,Extra Chickenjoy Gravy:19.0;Extra Rice:54.0
+1 - pc. Chickenjoy Spicy w/ Jolly Spaghetti Solo,,MEAL,199.0,50,true,,Extra Chickenjoy Gravy:19.0;Extra Rice:54.0
+1 - pc. Chickenjoy Spicy w/ Jolly Spaghetti w/ Drink,,MEAL,240.0,50,true,,Extra Chickenjoy Gravy:19.0;Extra Rice:54.0
+1 - pc. Chickenjoy Spicy w/ Palabok Solo,,MEAL,295.0,50,true,,Extra Chickenjoy Gravy:19.0;Extra Rice:54.0
+1 - pc. Chickenjoy Spicy w/ Palabok w/ Drink,,MEAL,333.0,50,true,,Extra Chickenjoy Gravy:19.0;Extra Rice:54.0
+1 - pc. Chickenjoy w/ Burger Steak Solo,,MEAL,216.0,50,true,,Extra Chickenjoy Gravy:19.0;Extra Rice:54.0
+1 - pc. Chickenjoy w/ Burger Steak w/ Drink,,MEAL,232.0,50,true,,Extra Chickenjoy Gravy:19.0;Extra Rice:54.0
+1 - pc. Chickenjoy w/ Chicken Macaroni Soup,,MEAL,212.0,50,true,,Extra Chickenjoy Gravy:19.0;Extra Rice:54.0
+1 - pc. Chickenjoy w/ Chicken Macaroni Soup & Drink,,MEAL,231.0,50,true,,Extra Chickenjoy Gravy:19.0;Extra Rice:54.0
+1 - pc. Chickenjoy w/ Coke Float,,MEAL,213.0,50,true,,Extra Chickenjoy Gravy:19.0;Extra Rice:54.0
+1 - pc. Chickenjoy w/ Drink,,MEAL,124.0,50,true,,Extra Chickenjoy Gravy:19.0;Extra Rice:54.0
+1 - pc. Chickenjoy w/ Jolly Spaghetti Solo,,MEAL,191.0,50,true,,Extra Chickenjoy Gravy:19.0;Extra Rice:54.0
+1 - pc. Chickenjoy w/ Jolly Spaghetti w/ Drink,,MEAL,232.0,50,true,,Extra Chickenjoy Gravy:19.0;Extra Rice:54.0
+1 - pc. Chickenjoy w/ Mashed Potato,,MEAL,212.0,50,true,,Extra Chickenjoy Gravy:19.0;Extra Rice:54.0
+1 - pc. Chickenjoy w/ Mashed Potato & Drink,,MEAL,231.0,50,true,,Extra Chickenjoy Gravy:19.0;Extra Rice:54.0
+1 - pc. Chickenjoy w/ Palabok Solo,,MEAL,287.0,50,true,,Extra Chickenjoy Gravy:19.0;Extra Rice:54.0
+1 - pc. Chickenjoy w/ Palabok w/ Drink,,MEAL,325.0,50,true,,Extra Chickenjoy Gravy:19.0;Extra Rice:54.0
+1 - pc. Spicy Chickenjoy w/ Chicken Macaroni Soup,,MEAL,220.0,50,true,,Extra Chickenjoy Gravy:19.0;Extra Rice:54.0
+1 - pc. Spicy Chickenjoy w/ Chicken Macaroni Soup & Drink,,MEAL,239.0,50,true,,Extra Chickenjoy Gravy:19.0;Extra Rice:54.0
+1 - pc. Spicy Chickenjoy w/ Mashed Potato,,MEAL,220.0,50,true,,Extra Chickenjoy Gravy:19.0;Extra Rice:54.0
+1 - pc. Spicy Chickenjoy w/ Mashed Potato & Drink,,MEAL,239.0,50,true,,Extra Chickenjoy Gravy:19.0;Extra Rice:54.0
+1-pc. Chickenjoy w/ Drink,,MEAL,124.0,50,true,,Extra Chickenjoy Gravy:19.0;Extra Rice:54.0
+"1-pc. Chickenjoy, Half Jolly Spaghetti, Burger Steak with Rice and Reg. Drink",,MEAL,288.0,50,true,,Extra Chickenjoy Gravy:19.0;Extra Rice:54.0
+"1-pc. Chickenjoy, Half Jolly Spaghetti, Yumburger, with Rice and Reg. Drink",,MEAL,251.0,50,true,,Extra Chickenjoy Gravy:19.0;Extra Rice:54.0
+1-pc. Pepper Cream w/ Jolly Spaghetti & Drink,,MEAL,199.0,50,true,,Extra Chickenjoy Gravy:19.0;Extra Rice:54.0
+1-pc. Pepper Cream w/ Jolly Spaghetti Solo,,MEAL,182.0,50,true,,Extra Chickenjoy Gravy:19.0;Extra Rice:54.0
+"1-pc. Spicy Chickenjoy, Half Jolly Spaghetti, Burger Steak with Rice and Reg. Drink",,MEAL,296.0,50,true,,Extra Chickenjoy Gravy:19.0;Extra Rice:54.0
+10 - pc. Chicken Nuggets,,SNACK,263.0,50,true,,
+1pc Chickenjoy Spicy w/ Double Rice and Regular Iced Tea,,MEAL,201.0,50,true,,Extra Chickenjoy Gravy:19.0;Extra Rice:54.0
+"1pc Chickenjoy, Double Rice & Regular Iced Tea",,MEAL,193.0,50,true,,Extra Chickenjoy Gravy:19.0;Extra Rice:54.0
+2 - pc. Burger Steak Solo,,MEAL,165.0,50,true,,Extra Chickenjoy Gravy:19.0;Extra Rice:54.0
+2 - pc. Burger Steak w/ Drink,,MEAL,188.0,50,true,,Extra Chickenjoy Gravy:19.0;Extra Rice:54.0
+2 - pc. Chickenjoy Solo,,MEAL,225.0,50,true,,Extra Chickenjoy Gravy:19.0;Extra Rice:54.0
+2 - pc. Chickenjoy Spicy Solo,,MEAL,241.0,50,true,,Extra Chickenjoy Gravy:19.0;Extra Rice:54.0
+2 - pc. Chickenjoy Spicy w/ Drink,,MEAL,260.0,50,true,,Extra Chickenjoy Gravy:19.0;Extra Rice:54.0
+2 - pc. Chickenjoy w/ Drink,,MEAL,244.0,50,true,,Extra Chickenjoy Gravy:19.0;Extra Rice:54.0
+2-pc. Pepper Cream Solo,,MEAL,194.0,50,true,,Extra Chickenjoy Gravy:19.0;Extra Rice:54.0
+2-pc. Pepper Cream w/ Drink,,MEAL,219.0,50,true,,Extra Chickenjoy Gravy:19.0;Extra Rice:54.0
+"4 - pc. Chickenjoy Bucket w/ 2 Rice, 2 Sides and 2 Drinks",,MEAL,625.0,50,true,,
+4 - pc. Chickenjoy Family Box Solo,,MEAL,411.0,50,true,,Extra Chickenjoy Gravy:19.0;Extra Rice:54.0
+6 - pc Burger Steak w/ Palabok Family Pan,,MEAL,1014.0,50,true,,
+6 - pc. Burger Steak Family Pan,,MEAL,501.0,50,true,,
+6 - pc. Burger Steak w/ Jolly Spaghetti Family Pan,,MEAL,814.0,50,true,,
+6 - pc. Chicken Nuggets,,SNACK,163.0,50,true,,
+"6 - pc. Chickenjoy Bucket w/ 3 Rice, 3 Sides & 3 Drinks",,MEAL,875.0,50,true,,
+6 - pc. Chickenjoy Bucket w/ Jolly Spaghetti Family Pan,,MEAL,927.0,50,true,,
+6 - pc. Chickenjoy Solo,,MEAL,578.0,50,true,,Extra Chickenjoy Gravy:19.0;Extra Rice:54.0
+"6 - pc. Chickenjoy w/ Rice, Jolly Spaghetti & Drinks",,MEAL,1000.0,50,true,,Extra Chickenjoy Gravy:19.0;Extra Rice:54.0
+6 - pc. Chickenjoy with Palabok Family Pan,,MEAL,1250.0,50,true,,
+8 - pc Burger Steak w/ Palabok Family Pan,,MEAL,1139.0,50,true,,
+8 - pc. Burger Steak Family Pan,,MEAL,664.0,50,true,,
+8 - pc. Burger Steak w/ Jolly Spaghetti Family Pan,,MEAL,939.0,50,true,,
+"8 - pc. Chickenjoy Bucket w/ 4 Rice, 4 Sides and 4 Drinks",,MEAL,1125.0,50,true,,
+8 - pc. Chickenjoy Bucket w/ Jolly Spaghetti Family Pan,,MEAL,1074.0,50,true,,
+8 - pc. Chickenjoy Solo,,MEAL,751.0,50,true,,Extra Chickenjoy Gravy:19.0;Extra Rice:54.0
+"8 - pc. Chickenjoy w/ Rice, Jolly Spaghetti & Drinks",,MEAL,1300.0,50,true,,Extra Chickenjoy Gravy:19.0;Extra Rice:54.0
+8 - pc. Chickenjoy with Palabok Family Pan,,MEAL,1375.0,50,true,,
+Amazing Aloha Champ Jr. Solo,,SNACK,226.0,50,true,,
+Bacon Cheesy Yumburger Solo,,SNACK,161.0,50,true,,
+Burger Steak Family Savers,,MEAL,388.0,50,true,,
+Champ Jr. Solo,,SNACK,188.0,50,true,,
+Chicken Macaroni Soup,,SNACK,94.0,50,true,,
+Chocolate Sundae,,DESSERT,71.0,50,true,,
+Cookies & Cream Sundae,,DESSERT,95.0,50,true,,
+Corned Beef Solo,,MEAL,135.0,50,true,,Extra Rice:54.0
+Corned Beef w/ Drink,,MEAL,165.0,50,true,,Extra Rice:54.0
+Creamy Ranch Crunchy Chicken Sandwich,,SNACK,88.0,50,true,,
+Creamy Ranch Crunchy Chicken Sandwich w/ Drinks,,MEAL,119.0,50,true,,
+Double Original Cheesy Yumburger Solo,,SNACK,199.0,50,true,,
+Double Original Cheesy Yumburger w/ Drink,,MEAL,232.0,50,true,,
+Double Special Cheesy Yumburger Solo,,SNACK,212.0,50,true,,
+Double Special Cheesy Yumburger w/ Drink,,MEAL,244.0,50,true,,
+Jolly Charm: 1-pc. Chickenjoy w/ Regular Drink,,MEAL,402.0,50,true,,Extra Chickenjoy Gravy:19.0;Extra Rice:54.0
+Jolly Charm: 1-pc. Spicy Chickenjoy w/ Regular Drink,,MEAL,410.0,50,true,,Extra Chickenjoy Gravy:19.0;Extra Rice:54.0
+Jolly Spaghetti Family Pan,,MEAL,375.0,50,true,,
+Jolly Spaghetti Solo,,MEAL,85.0,50,true,,
+Jolly Spaghetti w/ 1 - pc. Burger Steak Solo,,MEAL,187.0,50,true,,Extra Chickenjoy Gravy:19.0;Extra Rice:54.0
+Jolly Spaghetti w/ 1 - pc. Burger Steak w/ Drink,,MEAL,188.0,50,true,,Extra Chickenjoy Gravy:19.0;Extra Rice:54.0
+Jolly Spaghetti w/ Cheesy Yumburger w/ Drink,,MEAL,207.0,50,true,,
+Jolly Spaghetti w/ Drink,,MEAL,107.0,50,true,,
+Jolly Spaghetti w/ Yumburger w/ Drink,,MEAL,160.0,50,true,,
+Longganisa Solo,,MEAL,135.0,50,true,,Extra Rice:54.0
+Longganisa w/ Drink,,MEAL,165.0,50,true,,Extra Rice:54.0
+Mashed Potato,,SNACK,94.0,50,true,,
+Mini Chocolate Sundae,,DESSERT,54.0,50,true,,
+Original Cheesy Yumburger Solo,,SNACK,94.0,50,true,,
+Original Cheesy Yumburger w/ Drink,,MEAL,119.0,50,true,,
+Palabok Family Pan,,MEAL,701.0,50,true,,
+Palabok Solo,,MEAL,201.0,50,true,,
+Palabok w/ Drink,,MEAL,226.0,50,true,,
+Peach Mango 3 Pies To-Go,,DESSERT,187.0,50,true,,
+Peach Mango 6 Pies To-Go,,DESSERT,370.0,50,true,,
+Peach Mango Pie,,DESSERT,59.0,50,true,,
+Pepper Cream Chicken Fillet Solo,,MEAL,111.0,50,true,,Extra Chickenjoy Gravy:19.0;Extra Rice:54.0
+Pepper Cream Chicken Fillet w/ Drink,,MEAL,124.0,50,true,,Extra Chickenjoy Gravy:19.0;Extra Rice:54.0
+Pistachio Choco Sundae,,DESSERT,95.0,50,true,,
+Special Cheesy Yumburger Solo,,SNACK,107.0,50,true,,
+Special Cheesy Yumburger w/ Drink,,MEAL,151.0,50,true,,
+Spicy Tuna Pie,,SNACK,101.0,50,true,,
+Spicy Tuna Pie Trio,,SNACK,294.0,50,true,,
+Tuna Pie Solo,,SNACK,101.0,50,true,,
+Tuna Pie Trio,,SNACK,294.0,50,true,,
+Yumburger Solo,,SNACK,57.0,50,true,,
+Yumburger w/ Drink,,MEAL,107.0,50,true,,
