@@ -319,6 +319,20 @@ public class UserSalesDataCvs {
         return loadedCount;
     }
 
+    // Highest payment reference number saved so far (FB-PAY-00012 gives 12).
+    public int highestPaymentNumber() {
+        int highest = 0;
+        for (List<String> row : readRows(ordersFile)) {
+            try {
+                String reference = row.get(8);
+                highest = Math.max(highest, Integer.parseInt(reference.substring(reference.lastIndexOf('-') + 1)));
+            } catch (RuntimeException exception) {
+                // no reference yet or a damaged row
+            }
+        }
+        return highest;
+    }
+
     // Highest order number saved so far, so new orders do not reuse old numbers.
     public int highestOrderId() {
         int highest = 0;
