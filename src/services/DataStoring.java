@@ -29,7 +29,7 @@ public class DataStoring {
 
     public DataStoring(String restaurantFolder) {
         this.restaurantStorage = new RestaurantStorage(restaurantFolder);
-        // kept in a sub-folder so the restaurant loader (which reads *.csv in restaurantFolder) never sees these files
+        // kept in a sub-folder so the restaurant loader
         this.records = new UserSalesDataCvs(restaurantFolder + "/records");
     }
 
@@ -87,7 +87,7 @@ public class DataStoring {
                 restaurants.insert(restaurant.getId(), restaurant);
                 restaurantStorage.register(restaurantId, csvFile);
                 if (needsNewId) {
-                    restaurantStorage.save(restaurant);   // writes the new id back to the file
+                    restaurantStorage.save(restaurant);
                 }
                 loadedCount++;
             } catch (IOException | RuntimeException exception) {
@@ -97,7 +97,7 @@ public class DataStoring {
         return loadedCount;
     }
 
-    // Loads saved accounts. Call after loadRestaurants() so business owners get linked to their restaurants.
+    // Loads saved accounts
     public int loadUsers() {
         int loadedCount = 0;
         for (User savedUser : records.readUsers()) {
@@ -113,10 +113,11 @@ public class DataStoring {
         return loadedCount;
     }
 
-    // Loads saved sales into the restaurants (for the sales report / best sellers) and continues the order numbers.
+    // Loads saved sales into the restaurants
     public int loadSalesData() {
         int loadedCount = records.loadSales(restaurants);
         nextOrderId = Math.max(nextOrderId, records.highestOrderId() + 1);
+        features.Payment.continueNumberingFrom(records.highestPaymentNumber());
         return loadedCount;
     }
 
