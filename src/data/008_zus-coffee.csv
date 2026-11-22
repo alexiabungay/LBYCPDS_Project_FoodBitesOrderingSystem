@@ -1,0 +1,71 @@
+restaurant_id,owner_email,name,description,address,dine_in,takeout,delivery
+8,contact-us@zuscoffee.ph,ZUS Coffee,"Specialty coffee, frappe, tea and non-coffee drinks",,true,true,true
+
+item_name,description,category,price,stock,available,portion_sizes,add_ons
+Americano,"Bold, rich and classic",DRINK,85.0,50,true,Iced;Hot,Upsize to Regular:10.0;Espresso Shot:25.0;Oat Milk:25.0;Whipped Cream:20.0;Vanilla Flavor Shot:20.0;Caramel Flavor Shot:20.0;Hazelnut Flavor Shot:20.0;Pearls:20.0
+Americano 1L Bottle,"Bottled, 1 liter",DRINK,280.0,50,true,,
+Australian Chocolate,,DRINK,125.0,50,true,Iced;Hot,Oat Milk:25.0;Whipped Cream:20.0;Vanilla Flavor Shot:20.0;Caramel Flavor Shot:20.0;Hazelnut Flavor Shot:20.0;Pearls:20.0
+Babycino,Kids-friendly,DRINK,100.0,50,true,,
+Berry Cheesecake Frappe,Frappe without coffee,DRINK,155.0,50,true,,Whipped Cream:20.0;Pearls:20.0
+Berry Chocolate,Chocolate drink,DRINK,140.0,50,true,Iced;Hot,Oat Milk:25.0;Whipped Cream:20.0;Vanilla Flavor Shot:20.0;Caramel Flavor Shot:20.0;Hazelnut Flavor Shot:20.0;Pearls:20.0
+Berry Lemonade,Kids-friendly,DRINK,125.0,50,true,,Pearls:20.0
+Buttercreme Latte,Coffee+ creme,DRINK,120.0,50,true,,Espresso Shot:25.0;Oat Milk:25.0;Whipped Cream:20.0;Vanilla Flavor Shot:20.0;Caramel Flavor Shot:20.0;Hazelnut Flavor Shot:20.0;Pearls:20.0
+Cafe Latte,Smooth espresso with steamed milk,DRINK,100.0,50,true,Iced;Hot,Upsize to Regular:10.0;Espresso Shot:25.0;Oat Milk:25.0;Whipped Cream:20.0;Vanilla Flavor Shot:20.0;Caramel Flavor Shot:20.0;Hazelnut Flavor Shot:20.0;Pearls:20.0
+Cafe Latte 1L Bottle,"Bottled, 1 liter",DRINK,370.0,50,true,,
+Cafe Mocha,Chocolatey meets coffee,DRINK,130.0,50,true,Iced;Hot,Upsize to Regular:10.0;Espresso Shot:25.0;Oat Milk:25.0;Whipped Cream:20.0;Vanilla Flavor Shot:20.0;Caramel Flavor Shot:20.0;Hazelnut Flavor Shot:20.0;Pearls:20.0
+Caramel Cream Frappe,Frappe without coffee,DRINK,155.0,50,true,,Whipped Cream:20.0;Pearls:20.0
+Caramel Frappe,,DRINK,130.0,50,true,,Upsize to Regular:10.0;Espresso Shot:25.0;Whipped Cream:20.0;Pearls:20.0
+Caramel Macchiato,Sweet caramel over bold espresso,DRINK,120.0,50,true,Iced;Hot,Upsize to Regular:10.0;Espresso Shot:25.0;Oat Milk:25.0;Whipped Cream:20.0;Vanilla Flavor Shot:20.0;Caramel Flavor Shot:20.0;Hazelnut Flavor Shot:20.0;Pearls:20.0
+CEO Latte,"S in size, XL in strength. Hot only",DRINK,115.0,50,true,,Espresso Shot:25.0;Oat Milk:25.0;Whipped Cream:20.0;Vanilla Flavor Shot:20.0;Caramel Flavor Shot:20.0;Hazelnut Flavor Shot:20.0;Pearls:20.0
+Choc Chip Frappe,Frappe without coffee,DRINK,165.0,50,true,,Whipped Cream:20.0;Pearls:20.0
+Chocolate Hazelnut,,DRINK,120.0,50,true,Iced;Hot,Upsize to Regular:10.0;Oat Milk:25.0;Whipped Cream:20.0;Vanilla Flavor Shot:20.0;Caramel Flavor Shot:20.0;Hazelnut Flavor Shot:20.0;Pearls:20.0
+Coconut Cafe Latte,Latte with a touch of coconut,DRINK,120.0,50,true,Iced;Hot,Upsize to Regular:10.0;Espresso Shot:25.0;Oat Milk:25.0;Whipped Cream:20.0;Vanilla Flavor Shot:20.0;Caramel Flavor Shot:20.0;Hazelnut Flavor Shot:20.0;Pearls:20.0
+Coconut ZUS Gula Melaka,ZUS Gula Melaka with coconut,DRINK,140.0,50,true,Iced;Hot,Upsize to Regular:10.0;Espresso Shot:25.0;Oat Milk:25.0;Whipped Cream:20.0;Vanilla Flavor Shot:20.0;Caramel Flavor Shot:20.0;Hazelnut Flavor Shot:20.0;Pearls:20.0
+Cookies & Cream,,DRINK,120.0,50,true,Iced;Hot,Upsize to Regular:10.0;Oat Milk:25.0;Whipped Cream:20.0;Vanilla Flavor Shot:20.0;Caramel Flavor Shot:20.0;Hazelnut Flavor Shot:20.0;Pearls:20.0
+Cookies & Cream Frappe,,DRINK,130.0,50,true,,Upsize to Regular:10.0;Espresso Shot:25.0;Whipped Cream:20.0;Pearls:20.0
+Creamy Hazelnut Latte,"Nutty, creamy and oh-so smooth",DRINK,110.0,50,true,Iced,Upsize to Regular:10.0;Espresso Shot:25.0;Oat Milk:25.0;Whipped Cream:20.0;Vanilla Flavor Shot:20.0;Caramel Flavor Shot:20.0;Hazelnut Flavor Shot:20.0;Pearls:20.0
+Creamy White,Richer than your usual latte,DRINK,100.0,50,true,Iced;Hot,Upsize to Regular:10.0;Espresso Shot:25.0;Oat Milk:25.0;Whipped Cream:20.0;Vanilla Flavor Shot:20.0;Caramel Flavor Shot:20.0;Hazelnut Flavor Shot:20.0;Pearls:20.0
+Dark Mocha,,DRINK,120.0,50,true,Iced;Hot,Upsize to Regular:10.0;Oat Milk:25.0;Whipped Cream:20.0;Vanilla Flavor Shot:20.0;Caramel Flavor Shot:20.0;Hazelnut Flavor Shot:20.0;Pearls:20.0
+Dark Mocha Frappe,,DRINK,130.0,50,true,,Upsize to Regular:10.0;Espresso Shot:25.0;Whipped Cream:20.0;Pearls:20.0
+Double Chocolate,,DRINK,120.0,50,true,Iced;Hot,Upsize to Regular:10.0;Oat Milk:25.0;Whipped Cream:20.0;Vanilla Flavor Shot:20.0;Caramel Flavor Shot:20.0;Hazelnut Flavor Shot:20.0;Pearls:20.0
+Espresso,,DRINK,45.0,50,true,Iced;Hot,Espresso Shot:25.0;Oat Milk:25.0;Whipped Cream:20.0;Vanilla Flavor Shot:20.0;Caramel Flavor Shot:20.0;Hazelnut Flavor Shot:20.0;Pearls:20.0
+Espresso Crush Frappe,Frappe with coffee,DRINK,165.0,50,true,,Espresso Shot:25.0;Whipped Cream:20.0;Pearls:20.0
+Hiraya Latte,Buttery caramel coffee for dreamers and achievers,DRINK,120.0,50,true,Iced;Hot,Upsize to Regular:10.0;Espresso Shot:25.0;Oat Milk:25.0;Whipped Cream:20.0;Vanilla Flavor Shot:20.0;Caramel Flavor Shot:20.0;Hazelnut Flavor Shot:20.0;Pearls:20.0
+Honey Green Tea,,DRINK,85.0,50,true,Iced;Hot,Upsize to Regular:10.0;Pearls:20.0
+Iced Shaken Double Espresso,,DRINK,140.0,50,true,,Espresso Shot:25.0;Oat Milk:25.0;Whipped Cream:20.0;Vanilla Flavor Shot:20.0;Caramel Flavor Shot:20.0;Hazelnut Flavor Shot:20.0;Pearls:20.0
+Irish Cream,Chocolate drink,DRINK,140.0,50,true,Iced;Hot,Oat Milk:25.0;Whipped Cream:20.0;Vanilla Flavor Shot:20.0;Caramel Flavor Shot:20.0;Hazelnut Flavor Shot:20.0;Pearls:20.0
+Irish Cream Frappe,Frappe without coffee,DRINK,165.0,50,true,,Whipped Cream:20.0;Pearls:20.0
+Java Chip Frappe,,DRINK,130.0,50,true,,Upsize to Regular:10.0;Espresso Shot:25.0;Whipped Cream:20.0;Pearls:20.0
+Java Cocoa Frappe,Frappe with coffee,DRINK,155.0,50,true,,Espresso Shot:25.0;Whipped Cream:20.0;Pearls:20.0
+Lemon Black Tea,,DRINK,85.0,50,true,Iced;Hot,Upsize to Regular:10.0;Pearls:20.0
+Lychee Black Tea,,DRINK,85.0,50,true,Iced;Hot,Upsize to Regular:10.0;Pearls:20.0
+Matcha Craze Frappe,Frappe without coffee,DRINK,155.0,50,true,,Whipped Cream:20.0;Pearls:20.0
+Matcha Frappe,,DRINK,130.0,50,true,,Upsize to Regular:10.0;Espresso Shot:25.0;Whipped Cream:20.0;Pearls:20.0
+Matcha Latte,,DRINK,120.0,50,true,Iced;Hot,Upsize to Regular:10.0;Oat Milk:25.0;Whipped Cream:20.0;Vanilla Flavor Shot:20.0;Caramel Flavor Shot:20.0;Hazelnut Flavor Shot:20.0;Pearls:20.0
+Matcha Latte 1L Bottle,"Bottled, 1 liter",DRINK,420.0,50,true,,
+Mocha Chip Frappe,,DRINK,130.0,50,true,,Upsize to Regular:10.0;Espresso Shot:25.0;Whipped Cream:20.0;Pearls:20.0
+Passion Fruit Green Tea,,DRINK,85.0,50,true,Iced;Hot,Upsize to Regular:10.0;Pearls:20.0
+Peach Black Tea,,DRINK,85.0,50,true,Iced;Hot,Upsize to Regular:10.0;Pearls:20.0
+Pink Black,Strawberry lemonade espresso mocktail,DRINK,125.0,50,true,,Pearls:20.0
+Provence Tea,Tea blend,DRINK,80.0,50,true,Iced;Hot,Pearls:20.0
+Rose Tea,Tea blend,DRINK,80.0,50,true,Iced;Hot,Pearls:20.0
+Salted Caramel Frappe,Frappe with coffee,DRINK,155.0,50,true,,Espresso Shot:25.0;Whipped Cream:20.0;Pearls:20.0
+Salted Caramel Latte,"Sweet and salty, perfectly balanced",DRINK,130.0,50,true,Iced;Hot,Upsize to Regular:10.0;Espresso Shot:25.0;Oat Milk:25.0;Whipped Cream:20.0;Vanilla Flavor Shot:20.0;Caramel Flavor Shot:20.0;Hazelnut Flavor Shot:20.0;Pearls:20.0
+Seasalt Brown Sugar,Iced shaken espresso,DRINK,140.0,50,true,,Espresso Shot:25.0;Oat Milk:25.0;Whipped Cream:20.0;Vanilla Flavor Shot:20.0;Caramel Flavor Shot:20.0;Hazelnut Flavor Shot:20.0;Pearls:20.0
+Seasalt Spanish Latte,A perfect blend of sweet and salty,DRINK,130.0,50,true,Iced;Hot,Upsize to Regular:10.0;Espresso Shot:25.0;Oat Milk:25.0;Whipped Cream:20.0;Vanilla Flavor Shot:20.0;Caramel Flavor Shot:20.0;Hazelnut Flavor Shot:20.0;Pearls:20.0
+Spanish Latte,Global bestseller enjoyed by millions,DRINK,110.0,50,true,Iced;Hot,Upsize to Regular:10.0;Espresso Shot:25.0;Oat Milk:25.0;Whipped Cream:20.0;Vanilla Flavor Shot:20.0;Caramel Flavor Shot:20.0;Hazelnut Flavor Shot:20.0;Pearls:20.0
+Spanish Latte 1L Bottle,"Bottled, 1 liter",DRINK,390.0,50,true,,
+Strawberry Buttercreme,Strawberry with rich buttercreme,DRINK,130.0,50,true,Iced;Hot,Upsize to Regular:10.0;Espresso Shot:25.0;Oat Milk:25.0;Whipped Cream:20.0;Vanilla Flavor Shot:20.0;Caramel Flavor Shot:20.0;Hazelnut Flavor Shot:20.0;Pearls:20.0
+Strawberry Cafe Latte,Fruity strawberry with creamy latte,DRINK,130.0,50,true,Iced;Hot,Upsize to Regular:10.0;Espresso Shot:25.0;Oat Milk:25.0;Whipped Cream:20.0;Vanilla Flavor Shot:20.0;Caramel Flavor Shot:20.0;Hazelnut Flavor Shot:20.0;Pearls:20.0
+Thai Latte,,DRINK,120.0,50,true,Iced;Hot,Upsize to Regular:10.0;Oat Milk:25.0;Whipped Cream:20.0;Vanilla Flavor Shot:20.0;Caramel Flavor Shot:20.0;Hazelnut Flavor Shot:20.0;Pearls:20.0
+Thunder,Honey lemon espresso mocktail,DRINK,125.0,50,true,,Pearls:20.0
+Triple Java Jelly Frappe,Frappe with coffee,DRINK,165.0,50,true,,Espresso Shot:25.0;Whipped Cream:20.0;Pearls:20.0
+Ube Frappe,Frappe without coffee,DRINK,165.0,50,true,,Whipped Cream:20.0;Pearls:20.0
+Ube Latte,,DRINK,120.0,50,true,Iced;Hot,Upsize to Regular:10.0;Oat Milk:25.0;Whipped Cream:20.0;Vanilla Flavor Shot:20.0;Caramel Flavor Shot:20.0;Hazelnut Flavor Shot:20.0;Pearls:20.0
+Velvet Berry Honey,Kids-friendly,DRINK,125.0,50,true,,Pearls:20.0
+Velvet Creme Latte,Coffee+ creme,DRINK,130.0,50,true,,Espresso Shot:25.0;Oat Milk:25.0;Whipped Cream:20.0;Vanilla Flavor Shot:20.0;Caramel Flavor Shot:20.0;Hazelnut Flavor Shot:20.0;Pearls:20.0
+Vermont Chocolate,,DRINK,120.0,50,true,Iced;Hot,Upsize to Regular:10.0;Oat Milk:25.0;Whipped Cream:20.0;Vanilla Flavor Shot:20.0;Caramel Flavor Shot:20.0;Hazelnut Flavor Shot:20.0;Pearls:20.0
+White Peach Oolong,Tea blend,DRINK,80.0,50,true,Iced;Hot,Pearls:20.0
+Zirty Matcha,Iced shaken matcha,DRINK,140.0,50,true,,Espresso Shot:25.0;Oat Milk:25.0;Whipped Cream:20.0;Vanilla Flavor Shot:20.0;Caramel Flavor Shot:20.0;Hazelnut Flavor Shot:20.0;Pearls:20.0
+ZUS Gula Melaka,All-time favourite Gula Melaka coffee,DRINK,110.0,50,true,Iced;Hot,Upsize to Regular:10.0;Espresso Shot:25.0;Oat Milk:25.0;Whipped Cream:20.0;Vanilla Flavor Shot:20.0;Caramel Flavor Shot:20.0;Hazelnut Flavor Shot:20.0;Pearls:20.0
+ZUS Lemonade,Kids-friendly,DRINK,100.0,50,true,,Pearls:20.0
