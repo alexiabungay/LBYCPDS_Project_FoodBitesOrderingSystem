@@ -70,6 +70,10 @@ public class FoodBitesApp {
     private double readDouble(String prompt) {
         while (true) {
             System.out.print(prompt);
+            if (!scanner.hasNextLine()) {
+                System.out.println();
+                System.exit(0);
+            }
             try {
                 return Double.parseDouble(scanner.nextLine().trim());
             } catch (NumberFormatException exception) {
@@ -239,7 +243,7 @@ public class FoodBitesApp {
         }
         accepted.add("Email: " + email);
 
-        askField(title, accepted, null, "Password", true, text -> {
+        String password = askField(title, accepted, null, "Password", true, text -> {
             try {
                 authentication.login(email, text);
                 return null;
@@ -247,6 +251,9 @@ public class FoodBitesApp {
                 return "Incorrect password.";
             }
         });
+        if (password == null) {
+            return false;       // login was cancelled, nobody is logged in
+        }
 
         User currentUser = authentication.getCurrentUser();
         System.out.println("\nSuccessfully Logged In. Welcome, " + currentUser.getRoleDescription() + " " + currentUser.getName() + "!");
@@ -1203,7 +1210,7 @@ public class FoodBitesApp {
             ClearScreen.clear();
             if (!authentication.isLoggedIn()) {
                 System.out.println("FOOD BITES ORDERING SYSTEM");
-                System.out.println(loadedRestaurantCount + " restaurant(s) loaded from data/restaurants");
+                System.out.println(loadedRestaurantCount + " restaurant(s) loaded from src/data");
                 System.out.println("\nMain Menu");
                 System.out.println("\t1. Browse restaurants and menus");
                 System.out.println("\t2. Register");
