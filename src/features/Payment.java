@@ -13,6 +13,12 @@ public class Payment {
     private LocalDateTime timestamp;
     private String message = "";
 
+    public static void continueNumberingFrom(int highestUsed) {
+        if (highestUsed >= counter) {
+            counter = highestUsed + 1;
+        }
+    }
+
     public Payment(double amount, PaymentMethod method) {
         this.referenceNumber = String.format("FB-PAY-%05d", counter++);
         this.amount = amount;
