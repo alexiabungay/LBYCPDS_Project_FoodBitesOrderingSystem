@@ -5,3 +5,8 @@ user_id,role,name,email,phone,password_hash,restaurant_id,registered_at
 4,BUSINESS_OWNER,Jollibee,owner@jollibee.com,09275959186,bb5ef93d72709933b03589b4735a4887a5853e79350628b576df0755bbc13732,-1,2026-11-19 18:35:42
 5,EMPLOYEE,Uncle Dags,uncle_dags@dlsu.edu.ph,09761134790,cb5970f43e6615848379ef3e9db1e2cb62857270e38780dde46002ed6ca4f684,2,2026-11-22 00:52:22
 6,EMPLOYEE,Hev Abi,hev_abi@dlsu.edu.ph,09173719717,57ff2f0f8afd38c1cd5351d18293f9c4bc696d8708abd2b334788b652bda41b6,6,2026-11-22 01:00:18
+7,CUSTOMER,Hannah,hannah@gmail.com,09959287228,bd94dcda26fccb4e68d6a31f9b5aac0b571ae266d822620e901ef7ebe3a11d4f,-1,2026-11-23 08:52:51
+8,DELIVERY_RIDER,Reiner,reiner@gmail.com,09158508766,bd94dcda26fccb4e68d6a31f9b5aac0b571ae266d822620e901ef7ebe3a11d4f,-1,2026-11-23 20:52:59
+9,CUSTOMER,Hannah Grace Gutierrez,hannah_gutierrez@dlsu.edu.ph,09959287228,bd94dcda26fccb4e68d6a31f9b5aac0b571ae266d822620e901ef7ebe3a11d4f,-1,2026-11-24 20:58:54
+10,CUSTOMER,Hannah Grace Gutierrez,hannahgutierrez11@gmail.com,09158508766,bd94dcda26fccb4e68d6a31f9b5aac0b571ae266d822620e901ef7ebe3a11d4f,-1,2026-11-24 21:09:18
+11,CUSTOMER,Hannah Gutierrez,hannahgutierrez@dlsu.edu.ph,09176659863,bd94dcda26fccb4e68d6a31f9b5aac0b571ae266d822620e901ef7ebe3a11d4f,-1,2026-11-24 21:36:26
