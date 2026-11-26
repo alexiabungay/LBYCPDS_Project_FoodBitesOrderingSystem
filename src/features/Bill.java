@@ -90,7 +90,7 @@ public class Bill {
         this.discountIdNumber = discountIdNumber;
     }
 
-    private String maskedIdNumber() {
+    public String getMaskedDiscountIdNumber() {
         if (discountIdNumber.length() <= 4) {
             return discountIdNumber;
         }
@@ -104,7 +104,7 @@ public class Bill {
             sb.append(String.format("  %-34s PHP %9.2f%n", l.getDescription(), l.getAmount()));
         sb.append(String.format("  %-34s PHP %9.2f", "TOTAL", getTotal()));
         if (discountType.isSectorDiscount()) {
-            sb.append(System.lineSeparator()).append("  ").append(discountType).append(" ID: ").append(maskedIdNumber());
+            sb.append(System.lineSeparator()).append("  ").append(discountType).append(" ID: ").append(getMaskedDiscountIdNumber());
         }
         return sb.toString();
     }

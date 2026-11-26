@@ -1,11 +1,10 @@
 package services;
 
+import data.structure.AVLTree;
+import data.structure.HeapSort;
 import features.*;
 
-import java.util.ArrayList;
-import java.util.EnumMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Menu {
     private final DataStoring store;
@@ -16,6 +15,20 @@ public class Menu {
 
     public List<Restaurant> browseRestaurants() {
         return store.getRestaurants().inOrder();
+    }
+
+    public List<Restaurant> browseRestaurantsAlphabetical() {
+        AVLTree<String, Restaurant> byName = new AVLTree<>();
+        for (Restaurant restaurant : browseRestaurants()) {
+            byName.insert(String.format("%s#%06d", restaurant.getName().toLowerCase(), restaurant.getId()), restaurant);
+        }
+        return byName.inOrder();
+    }
+
+    public List<Restaurant> browseRestaurantsBySalesAscending() {
+        Restaurant[] restaurants = browseRestaurants().toArray(new Restaurant[0]);
+        HeapSort.sortAscending(restaurants, Comparator.comparingDouble(Restaurant::getTotalSales));
+        return new ArrayList<>(java.util.Arrays.asList(restaurants));
     }
 
     public Restaurant getRestaurant(int restaurantId) {
@@ -70,41 +83,7 @@ public class Menu {
         }
     }
 
-    public Restaurant createRestaurant(User actor, String name, String description, String address) {
-        requireManager(actor);
-        if (!Validator.isNotBlank(name)) {
-            throw new IllegalArgumentException("Restaurant name is required.");
-        }
-
-        int ownerId = actor.getId();
-        Restaurant restaurant = new Restaurant(store.newRestaurantId(), ownerId, name, description, address);
-        restaurant.setOwnerEmail(actor.getEmail());
-        store.getRestaurants().insert(restaurant.getId(), restaurant);
-
-        if (actor instanceof BusinessOwner) {
-            ((BusinessOwner) actor).getRestaurantIds().add(restaurant.getId());
-        }
-        store.saveRestaurant(restaurant);
-        return restaurant;
-    }
-
-    public void updateRestaurant(User actor, int restaurantId, String name, String description, String address) {
-        Restaurant restaurant = requireOwnership(actor, restaurantId);
-        restaurant.setName(name);
-        restaurant.setDescription(description);
-        restaurant.setAddress(address);
-        store.saveRestaurant(restaurant);
-    }
-
-    public void removeRestaurant(User actor, int restaurantId) {
-        Restaurant restaurant = requireOwnership(actor, restaurantId);
-        store.getRestaurants().delete(restaurantId);
-        store.deleteRestaurantFile(restaurant);
-
-        if (actor instanceof BusinessOwner) {
-            ((BusinessOwner) actor).getRestaurantIds().remove((Integer) restaurantId);
-        }
-    }
+    // Business Owner Menu
 
     public MenuItem addItem(User actor, int restaurantId, String name, String description,
                             Category category, double price, int stock) {
@@ -229,5 +208,113 @@ public class Menu {
             throw new SecurityException("You can only manage your own restaurant.");
         }
         return restaurant;
+    }
+
+    // Admin Menu
+
+    public Restaurant createRestaurant(User admin, String name, String description, String address) {
+        if (admin == null || admin.getRole() != UserRole.ADMINISTRATOR) {
+            throw new SecurityException("Administrators only.");
+        }
+        if (!Validator.isNotBlank(name)) {
+            throw new IllegalArgumentException("Restaurant name is required.");
+        }
+
+        int ownerId = admin.getId();
+        Restaurant restaurant = new Restaurant(store.newRestaurantId(), ownerId, name, description, address);
+        restaurant.setOwnerEmail(admin.getEmail());
+        store.getRestaurants().insert(restaurant.getId(), restaurant);
+
+        if (admin instanceof BusinessOwner) {
+            ((BusinessOwner) admin).getRestaurantIds().add(restaurant.getId());
+        }
+        store.saveRestaurant(restaurant);
+        return restaurant;
+    }
+
+    public void updateRestaurant(User admin, int restaurantId, String name, String description, String address) {
+        if (admin == null || admin.getRole() != UserRole.ADMINISTRATOR) {
+            throw new SecurityException("Administrators only.");
+        }
+        Restaurant restaurant = requireOwnership(admin, restaurantId);
+        restaurant.setName(name);
+        restaurant.setDescription(description);
+        restaurant.setAddress(address);
+        store.saveRestaurant(restaurant);
+    }
+
+    public void removeRestaurant(User admin, int restaurantId) {
+        if (admin == null || admin.getRole() != UserRole.ADMINISTRATOR) {
+            throw new SecurityException("Administrators only.");
+        }
+        Restaurant restaurant = requireOwnership(admin, restaurantId);
+        store.getRestaurants().delete(restaurantId);
+        store.deleteRestaurantFile(restaurant);
+
+        User owner = store.getUsersById().search(restaurant.getOwnerId());
+        if (owner instanceof BusinessOwner) {
+            ((BusinessOwner) owner).getRestaurantIds().remove((Integer) restaurantId);
+        }
+    }
+
+    public List<BusinessOwner> browseBusinessOwners() {
+        List<BusinessOwner> owners = new ArrayList<>();
+        for (User user : store.getUsersById().inOrder()) {
+            if (user instanceof BusinessOwner) {
+                owners.add((BusinessOwner) user);
+            }
+        }
+        return owners;
+    }
+
+    private BusinessOwner findBusinessOwner(String ownerEmail) {
+        User found = ownerEmail == null ? null : store.getUsersByEmail().search(ownerEmail.trim().toLowerCase());
+        if (!(found instanceof BusinessOwner)) {
+            throw new IllegalArgumentException("No business owner account has that email.");
+        }
+        return (BusinessOwner) found;
+    }
+
+    public void assignOwner(User admin, int restaurantId, String ownerEmail) {
+        if (admin == null || admin.getRole() != UserRole.ADMINISTRATOR) {
+            throw new SecurityException("Administrators only.");
+        }
+        Restaurant restaurant = getRestaurant(restaurantId);
+        BusinessOwner newOwner = findBusinessOwner(ownerEmail);
+
+        User oldOwner = store.getUsersById().search(restaurant.getOwnerId());
+        if (oldOwner instanceof BusinessOwner) {
+            ((BusinessOwner) oldOwner).getRestaurantIds().remove((Integer) restaurantId);
+        }
+        restaurant.setOwnerId(newOwner.getId());
+        restaurant.setOwnerEmail(newOwner.getEmail());
+        if (!newOwner.getRestaurantIds().contains(restaurantId)) {
+            newOwner.getRestaurantIds().add(restaurantId);
+        }
+        store.saveRestaurant(restaurant);
+    }
+
+    public Restaurant createRestaurant(User admin, String name, String description, String address, String ownerEmail) {
+        if (admin == null || admin.getRole() != UserRole.ADMINISTRATOR) {
+            throw new SecurityException("Administrators only.");
+        }
+        BusinessOwner owner = findBusinessOwner(ownerEmail);
+        Restaurant restaurant = createRestaurant(admin, name, description, address);
+        assignOwner(admin, restaurant.getId(), owner.getEmail());
+        return restaurant;
+    }
+
+    public void updateRestaurant(User admin, int restaurantId, String name, String description, String address, String ownerEmail) {
+        if (admin == null || admin.getRole() != UserRole.ADMINISTRATOR) {
+            throw new SecurityException("Administrators only.");
+        }
+        boolean changeOwner = Validator.isNotBlank(ownerEmail);
+        if (changeOwner) {
+            findBusinessOwner(ownerEmail);
+        }
+        updateRestaurant(admin, restaurantId, name, description, address);
+        if (changeOwner) {
+            assignOwner(admin, restaurantId, ownerEmail);
+        }
     }
 }

@@ -19,16 +19,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-/**
- * Saves user and sales data to CSV files. Every save is an append, so nothing is overwritten.
- *
- *   users.csv        - every registered account (loaded again the next time the program runs)
- *   orders.csv       - one row every time an order is placed or its status changes
- *                      (dine in / takeout / delivery, completed, cancelled, refunded, failed, ...)
- *   order_items.csv  - the food ordered in each order
- *   sales.csv        - the food sold, cancelled or refunded (loaded again for the sales report)
- *   receipts/        - the e-receipt of each confirmed order as a text file
- */
 public class UserSalesDataCvs {
     private static final String USER_HEADER =
             "user_id,role,name,email,phone,password_hash,restaurant_id,registered_at";
@@ -59,7 +49,7 @@ public class UserSalesDataCvs {
         this.receiptsFolder = folder.resolve("receipts");
     }
 
-    // ---------------------------------------------------------------- writing
+    // writing
 
     private String now() {
         return LocalDateTime.now().format(TIMESTAMP_FORMAT);
@@ -103,7 +93,8 @@ public class UserSalesDataCvs {
                 now()));
     }
 
-    // One row per call: save it again whenever the order changes status so the file keeps the full history.
+    // One row per call
+    // save it again whenever the order changes status so the file keeps the full history.
     public void appendOrder(Order order) {
         Bill bill = order.getBill();
         Payment payment = order.getPayment();
@@ -181,8 +172,34 @@ public class UserSalesDataCvs {
         }
     }
 
-    // ---------------------------------------------------------------- reading
+    public void updatePasswordHash(int userId, String newHash) {
+        if (!Files.exists(usersFile)) {
+            return;
+        }
+        try {
+            List<String> updatedLines = new ArrayList<>();
+            boolean isFirstLine = true;
+            for (String line : Files.readAllLines(usersFile, StandardCharsets.UTF_8)) {
+                if (isFirstLine || line.trim().isEmpty()) {
+                    isFirstLine = false;
+                    updatedLines.add(line);
+                    continue;
+                }
+                List<String> fields = new ArrayList<>(Csv.parseLine(line));
+                if (fields.size() > 5 && fields.get(0).equals(String.valueOf(userId))) {
+                    fields.set(5, newHash);
+                    line = Csv.join(fields);
+                }
+                updatedLines.add(line);
+            }
+            String text = String.join(System.lineSeparator(), updatedLines) + System.lineSeparator();
+            Files.write(usersFile, text.getBytes(StandardCharsets.UTF_8));
+        } catch (IOException exception) {
+            System.err.println("! Could not update users.csv: " + exception.getMessage());
+        }
+    }
 
+    // reading
     private List<List<String>> readRows(Path file) {
         List<List<String>> rows = new ArrayList<>();
         if (!Files.exists(file)) {
@@ -193,7 +210,7 @@ public class UserSalesDataCvs {
             boolean isFirstLine = true;
             for (String line : Files.readAllLines(file, StandardCharsets.UTF_8)) {
                 if (isFirstLine) {
-                    isFirstLine = false;     // header
+                    isFirstLine = false; // header
                     continue;
                 }
                 if (line.trim().isEmpty()) {
@@ -300,6 +317,20 @@ public class UserSalesDataCvs {
             }
         }
         return loadedCount;
+    }
+
+    // Highest payment reference number saved so far (FB-PAY-00012 gives 12).
+    public int highestPaymentNumber() {
+        int highest = 0;
+        for (List<String> row : readRows(ordersFile)) {
+            try {
+                String reference = row.get(8);
+                highest = Math.max(highest, Integer.parseInt(reference.substring(reference.lastIndexOf('-') + 1)));
+            } catch (RuntimeException exception) {
+                // no reference yet or a damaged row
+            }
+        }
+        return highest;
     }
 
     // Highest order number saved so far, so new orders do not reuse old numbers.

@@ -1,0 +1,32 @@
+restaurant_id,owner_email,name,description,address,dine_in,takeout,delivery
+7,,Potato Corner,Flavored fries and snacks,LRT Balintawak,true,true,true
+
+item_name,description,category,price,stock,available,portion_sizes,add_ons
+Giga Fries,Your favorite Potato Corner flavored fries,SNACK,237.0,50,true,,Cheese Dip:20.0;Sour Cream Dip:20.0;Korean Sweet Soy Dip:25.0;Extra Flavor Seasoning:10.0
+Jumbo Fries,Your favorite Potato Corner flavored fries,SNACK,117.0,50,true,,Cheese Dip:20.0;Sour Cream Dip:20.0;Korean Sweet Soy Dip:25.0;Extra Flavor Seasoning:10.0
+Large Mix of 2 (Fries + Chicken Fries),Marked unavailable on delivery app,SNACK,120.0,30,true,,Cheese Dip:20.0;Sour Cream Dip:20.0;Korean Sweet Soy Dip:25.0;Extra Flavor Seasoning:10.0
+Large Mix of 2 (Fries + Chicken Fries) w/ Korean Sweet Soy,Marked unavailable on delivery app,SNACK,120.0,30,true,,Cheese Dip:20.0;Sour Cream Dip:20.0;Korean Sweet Soy Dip:25.0;Extra Flavor Seasoning:10.0
+Large Mix of 2 (Fries + Crunchy Chicken Pops),Large Mix of 2: Flavored Fries + Crunchy Chicken Pops,SNACK,120.0,50,true,,Cheese Dip:20.0;Sour Cream Dip:20.0;Korean Sweet Soy Dip:25.0;Extra Flavor Seasoning:10.0
+Large Mix of 2 (Fries + Loopys),Large Mix of 2: Flavored Fries + Loopys,SNACK,120.0,50,true,,Cheese Dip:20.0;Sour Cream Dip:20.0;Korean Sweet Soy Dip:25.0;Extra Flavor Seasoning:10.0
+Large Mix of 2 (Loopys + Chicken Fries),Marked unavailable on delivery app,SNACK,120.0,30,true,,Cheese Dip:20.0;Sour Cream Dip:20.0;Korean Sweet Soy Dip:25.0;Extra Flavor Seasoning:10.0
+Large Mix of 2 (Loopys + Chicken Fries) w/ Korean Sweet Soy,Marked unavailable on delivery app,SNACK,120.0,30,true,,Cheese Dip:20.0;Sour Cream Dip:20.0;Korean Sweet Soy Dip:25.0;Extra Flavor Seasoning:10.0
+Large Mix of 2 (Loopys + Crunchy Chicken Pops),Large Mix of 2: Loopys + Crunchy Chicken Pops,SNACK,120.0,50,true,,Cheese Dip:20.0;Sour Cream Dip:20.0;Korean Sweet Soy Dip:25.0;Extra Flavor Seasoning:10.0
+Mega Chicken Fries,Marked unavailable on delivery app,SNACK,219.0,30,true,,Cheese Dip:20.0;Sour Cream Dip:20.0;Korean Sweet Soy Dip:25.0;Extra Flavor Seasoning:10.0
+Mega Chicken Fries w/ Korean Sweet Soy,Marked unavailable on delivery app,SNACK,219.0,30,true,,Cheese Dip:20.0;Sour Cream Dip:20.0;Korean Sweet Soy Dip:25.0;Extra Flavor Seasoning:10.0
+Mega Crunchy Chicken Pops,Crunchy Chicken Pops are tender juicy bites of whole chicken muscle,SNACK,219.0,50,true,,Cheese Dip:20.0;Sour Cream Dip:20.0;Korean Sweet Soy Dip:25.0;Extra Flavor Seasoning:10.0
+Mega Fries,Your favorite Potato Corner flavored fries,SNACK,148.0,50,true,,Cheese Dip:20.0;Sour Cream Dip:20.0;Korean Sweet Soy Dip:25.0;Extra Flavor Seasoning:10.0
+Mega Loopys,Loopys are spiral-shaped fries packed with potato-ey goodness,SNACK,155.0,50,true,,Cheese Dip:20.0;Sour Cream Dip:20.0;Korean Sweet Soy Dip:25.0;Extra Flavor Seasoning:10.0
+Mega Mix of 2 (Fries + Chicken Fries),Marked unavailable on delivery app,SNACK,169.0,30,true,,Cheese Dip:20.0;Sour Cream Dip:20.0;Korean Sweet Soy Dip:25.0;Extra Flavor Seasoning:10.0
+Mega Mix of 2 (Fries + Chicken Fries) w/ Korean Sweet Soy,Marked unavailable on delivery app,SNACK,169.0,30,true,,Cheese Dip:20.0;Sour Cream Dip:20.0;Korean Sweet Soy Dip:25.0;Extra Flavor Seasoning:10.0
+Mega Mix of 2 (Fries + Crunchy Chicken Pops),Mega Mix of 2: Flavored Fries + Crunchy Chicken Pops,SNACK,169.0,50,true,,Cheese Dip:20.0;Sour Cream Dip:20.0;Korean Sweet Soy Dip:25.0;Extra Flavor Seasoning:10.0
+Mega Mix of 2 (Fries + Loopys),Mega Mix of 2: Flavored Fries + Loopys,SNACK,169.0,50,true,,Cheese Dip:20.0;Sour Cream Dip:20.0;Korean Sweet Soy Dip:25.0;Extra Flavor Seasoning:10.0
+Mega Mix of 2 (Loopys + Chicken Fries),Marked unavailable on delivery app,SNACK,169.0,30,true,,Cheese Dip:20.0;Sour Cream Dip:20.0;Korean Sweet Soy Dip:25.0;Extra Flavor Seasoning:10.0
+Mega Mix of 2 (Loopys + Chicken Fries) w/ Korean Sweet Soy,Marked unavailable on delivery app,SNACK,169.0,30,true,,Cheese Dip:20.0;Sour Cream Dip:20.0;Korean Sweet Soy Dip:25.0;Extra Flavor Seasoning:10.0
+Mega Mix of 2 (Loopys + Crunchy Chicken Pops),Mega Mix of 2: Loopys + Crunchy Chicken Pops,SNACK,169.0,50,true,,Cheese Dip:20.0;Sour Cream Dip:20.0;Korean Sweet Soy Dip:25.0;Extra Flavor Seasoning:10.0
+Party Mix A (Fries + Loopys),Mix match and share! A party box perfect for 3-4 people,MEAL,349.0,50,true,,Cheese Dip:20.0;Sour Cream Dip:20.0;Korean Sweet Soy Dip:25.0;Extra Flavor Seasoning:10.0
+Party Mix B (Fries + Crunchy Chicken Pops),Mix match and share! A party box perfect for 3-4 people,MEAL,399.0,50,true,,Cheese Dip:20.0;Sour Cream Dip:20.0;Korean Sweet Soy Dip:25.0;Extra Flavor Seasoning:10.0
+Party Mix C (Fries + Loopys + Crunchy Chicken Pops),Mix match and share! A party box perfect for 3-4 people,MEAL,399.0,50,true,,Cheese Dip:20.0;Sour Cream Dip:20.0;Korean Sweet Soy Dip:25.0;Extra Flavor Seasoning:10.0
+Tera Fries,,SNACK,222.0,50,true,,Cheese Dip:20.0;Sour Cream Dip:20.0;Korean Sweet Soy Dip:25.0;Extra Flavor Seasoning:10.0
+Tera Mix of 3 (Chicken Fries),Marked unavailable on delivery app,SNACK,285.0,30,true,,Cheese Dip:20.0;Sour Cream Dip:20.0;Korean Sweet Soy Dip:25.0;Extra Flavor Seasoning:10.0
+Tera Mix of 3 (Chicken Fries) w/ Korean Sweet Soy,Marked unavailable on delivery app,SNACK,285.0,30,true,,Cheese Dip:20.0;Sour Cream Dip:20.0;Korean Sweet Soy Dip:25.0;Extra Flavor Seasoning:10.0
+Tera Mix of 3 (Crunchy Chicken Pops),Tera Mix of 3: Flavored Fries + Loopys + Crunchy Chicken Pops,SNACK,285.0,50,true,,Cheese Dip:20.0;Sour Cream Dip:20.0;Korean Sweet Soy Dip:25.0;Extra Flavor Seasoning:10.0

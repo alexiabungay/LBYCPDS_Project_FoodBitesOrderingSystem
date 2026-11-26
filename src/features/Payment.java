@@ -13,6 +13,12 @@ public class Payment {
     private LocalDateTime timestamp;
     private String message = "";
 
+    public static void continueNumberingFrom(int highestUsed) {
+        if (highestUsed >= counter) {
+            counter = highestUsed + 1;
+        }
+    }
+
     public Payment(double amount, PaymentMethod method) {
         this.referenceNumber = String.format("FB-PAY-%05d", counter++);
         this.amount = amount;
@@ -25,10 +31,6 @@ public class Payment {
 
     public void markFailed(String reason) {
         status = PaymentStatus.FAILED; timestamp = LocalDateTime.now(); message = reason;
-    }
-
-    public void markCancelled() {
-        status = PaymentStatus.CANCELLED; timestamp = LocalDateTime.now(); message = "Payment cancelled.";
     }
 
     public void markRefunded() {
@@ -46,10 +48,6 @@ public class Payment {
         return referenceNumber;
     }
 
-    public double getAmount() {
-        return amount;
-    }
-
     public PaymentMethod getMethod() {
         return method;
     }
@@ -60,9 +58,5 @@ public class Payment {
 
     public LocalDateTime getTimestamp() {
         return timestamp;
-    }
-
-    public String getMessage() {
-        return message;
     }
 }

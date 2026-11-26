@@ -1,0 +1,39 @@
+                  FOOD BITES
+                   Jollibee
+                  E-RECEIPT
+
+Order Number                              1001
+Date                         November 22, 2026
+Time Ordered                          12:50 am
+Order Type                             Dine-in
+
+Item                          Qty       Amount
+----------------------------------------------
+1-pc. Chickenjoy w/ Drink       2   PHP 356.00
+  Extra Rice
+Cookies & Cream Sundae          1    PHP 95.00
+----------------------------------------------
+Subtotal                            PHP 451.00
+Tax (12%)                            PHP 54.12
+Service charge (10%)                 PHP 45.10
+TOTAL                               PHP 550.22
+
+                   Payment
+
+Method                         Cash at counter
+Reference                         FB-PAY-00001
+Status                                    Paid
+
+               Customer Details
+
+Gian
+09565932223
+gian_fadriquela@dlsu.edu.ph
+
+                  Dine-in At
+Jollibee
+                 Order Notes
+naone
+
+           Thank you for ordering!
+    Powered by Food Bites Ordering System

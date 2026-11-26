@@ -15,8 +15,8 @@ public class SalesReportFeature {
     private final List<ItemSales> bestSellers;
 
     public SalesReportFeature(String restaurantName, ReportType period, LocalDate from, LocalDate to,
-                       int orderCount, double grossRevenue, int cancellations, double refunds,
-                       List<ItemSales> bestSellers) {
+                              int orderCount, double grossRevenue, int cancellations, double refunds,
+                              List<ItemSales> bestSellers) {
         this.restaurantName = restaurantName;
         this.period = period;
         this.from = from;
@@ -32,49 +32,23 @@ public class SalesReportFeature {
         return grossRevenue - refunds;
     }
 
-    public String getRestaurantName() {
-        return restaurantName;
-    }
-
-    public ReportType getPeriod() {
-        return period;
-    }
-
-    public int getOrderCount() {
-        return orderCount;
-    }
-
-    public double getGrossRevenue() {
-        return grossRevenue;
-    }
-
-    public int getCancellations() {
-        return cancellations;
-    }
-
-    public double getRefunds() {
-        return refunds;
-    }
-
-    public List<ItemSales> getBestSellers() {
-        return bestSellers;
-    }
-
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(String.format("%s SALES REPORT - %s (%s to %s)%n", period, restaurantName, from, to));
-        sb.append(String.format("  Orders completed : %d%n", orderCount));
-        sb.append(String.format("  Gross revenue    : PHP %.2f%n", grossRevenue));
-        sb.append(String.format("  Cancellations    : %d%n", cancellations));
-        sb.append(String.format("  Refunds          : PHP %.2f%n", refunds));
-        sb.append(String.format("  Net revenue      : PHP %.2f%n", getNetRevenue()));
-        sb.append("  Best-selling items (heap sort, highest to lowest):\n");
-        if (bestSellers.isEmpty())
-            sb.append("    (no sales in this period)\n");
-        int rank = 1;
-        for (ItemSales itemSale : bestSellers)
-            sb.append(String.format("    %d. %-22s %3d sold  PHP %.2f%n", rank++, itemSale.getName(), itemSale.getUnits(), itemSale.getRevenue()));
+        sb.append(services.DisplayMenu.forSalesSummary(new String[][]{
+                {"Orders completed", String.valueOf(orderCount)},
+                {"Gross revenue", String.format("PHP %.2f", grossRevenue)},
+                {"Cancellations", String.valueOf(cancellations)},
+                {"Refunds", String.format("PHP %.2f", refunds)},
+                {"Net revenue", String.format("PHP %.2f", getNetRevenue())}
+        })).append(System.lineSeparator());
+        sb.append(System.lineSeparator()).append("Best-selling items (highest to lowest)").append(System.lineSeparator());
+        if (bestSellers.isEmpty()) {
+            sb.append("(no sales in this period)").append(System.lineSeparator());
+        } else {
+            sb.append(services.DisplayMenu.forSalesItems(bestSellers)).append(System.lineSeparator());
+        }
         return sb.toString();
     }
 }

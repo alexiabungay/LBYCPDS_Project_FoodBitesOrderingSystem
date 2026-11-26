@@ -1,0 +1,40 @@
+                  FOOD BITES
+                 Mang Inasal
+                Jackman Plaza
+                  E-RECEIPT
+
+Order Number                              1002
+Date                         November 22, 2026
+Time Ordered                          12:57 am
+Order Type                             Dine-in
+
+Item                          Qty       Amount
+----------------------------------------------
+Paa Large - PM1                 5 PHP 1,045.00
+  Extra Plain Rice, Chicken Oil
+Crema de Leche Halo-Halo        3   PHP 267.00
+Coke                            5   PHP 230.00
+----------------------------------------------
+Subtotal                          PHP 1,542.00
+Tax (12%)                           PHP 185.04
+Service charge (10%)                PHP 154.20
+TOTAL                             PHP 1,881.24
+
+                   Payment
+
+Method                         Cash at counter
+Reference                         FB-PAY-00001
+Status                                    Paid
+
+               Customer Details
+
+Gian
+09565932223
+gian_fadriquela@dlsu.edu.ph
+
+                  Dine-in At
+Mang Inasal
+Jackman Plaza
+
+           Thank you for ordering!
+    Powered by Food Bites Ordering System

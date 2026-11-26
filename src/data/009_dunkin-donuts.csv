@@ -1,0 +1,74 @@
+restaurant_id,owner_email,name,description,address,dine_in,takeout,delivery
+9,,Dunkin' Donuts,"Donuts, coffee and sandwiches",,true,true,true
+
+item_name,description,category,price,stock,available,portion_sizes,add_ons
+Assorted Mini Bucket,Munchkins mini bucket,SNACK,93.0,50,true,,
+Assorted Sari-Sari Bucket A,10 Choco Bang + 12 D' Yan + 10 Premium + 6 Classic Munchkins,DESSERT,303.0,50,true,,
+Assorted Sari-Sari Bucket B,10 Choco Bang + 12 D' Yan + 16 Premium Munchkins,DESSERT,303.0,50,true,,
+Awesome Bundle,6 Premium + 12 Classics,DESSERT,520.0,50,true,,
+Bacon Cheese Mushroom Croissant,,MEAL,120.0,50,true,,Cheese:35.0;Ham/Bacon:30.0;Spanish Sausage:30.0
+Bacon Cheesy Mushroom Bunwich,,MEAL,75.0,50,true,,Cheese:35.0;Ham/Bacon:30.0;Spanish Sausage:30.0
+Cappuccino,Mocha or Caramel,DRINK,100.0,50,true,Mocha;Caramel,
+Cheese Bunwich,,MEAL,55.0,50,true,,Cheese:35.0;Ham/Bacon:30.0;Spanish Sausage:30.0
+Cheese Croissant,,MEAL,90.0,50,true,,Cheese:35.0;Ham/Bacon:30.0;Spanish Sausage:30.0
+Cheese Madness,Duncreation,MEAL,105.0,50,true,,Cheese:35.0;Ham/Bacon:30.0;Spanish Sausage:30.0
+Cheesy Tuna,Duncreation,MEAL,105.0,50,true,,Cheese:35.0;Ham/Bacon:30.0;Spanish Sausage:30.0
+Chicken Clubhouse,Duncreation,MEAL,105.0,50,true,,Cheese:35.0;Ham/Bacon:30.0;Spanish Sausage:30.0
+Chocolate Croissant Pack,Croissant bundle,SNACK,220.0,50,true,,
+Classic Donut (per piece),,DESSERT,32.0,50,true,,
+Classic Donuts 12-pc,,DESSERT,395.0,50,true,,
+Classic Donuts 24-pc,,DESSERT,790.0,50,true,,
+Classic Little Bunch,,SNACK,190.0,50,true,,
+Classic Munchkins (40 pcs),,SNACK,304.0,50,true,,
+Classic Munchkins (single pc),,SNACK,8.0,50,true,,
+Creme Brulee Donut,New,DESSERT,50.0,50,true,,
+Delights Bundle,3 Premium + 9 Classic,DESSERT,330.0,50,true,,
+Dunkin' Waffles,Breakfast,MEAL,105.0,50,true,,
+Egg and Cheese,Duncreation,MEAL,105.0,50,true,,Cheese:35.0;Ham/Bacon:30.0;Spanish Sausage:30.0
+Famous Bundle,6 Premium + 6 Classics,DESSERT,380.0,50,true,,
+Ham and Cheese Bunwich,,MEAL,75.0,50,true,,Cheese:35.0;Ham/Bacon:30.0;Spanish Sausage:30.0
+Ham and Cheese Croissant,,MEAL,120.0,50,true,,Cheese:35.0;Ham/Bacon:30.0;Spanish Sausage:30.0
+Hot Brewed Black Tea,,DRINK,60.0,50,true,,
+Hot Brewed Green Tea,,DRINK,60.0,50,true,,
+Hot Choco,,DRINK,65.0,50,true,,
+Hungarian Sausage,Duncreation,MEAL,105.0,50,true,,Cheese:35.0;Ham/Bacon:30.0;Spanish Sausage:30.0
+Iced Brewed Black Tea,,DRINK,70.0,50,true,,
+Iced Choco Java,,DRINK,100.0,50,true,,
+Iced Coffee Extra Large (22oz),,DRINK,95.0,50,true,,
+Iced Coffee Hazelnut Extra Large (22oz),,DRINK,145.0,50,true,,
+Iced Coffee with Pearls,,DRINK,100.0,50,true,,Extra Pearls:20.0;Extra Poppins Pearls:20.0
+Iced Latte,,DRINK,100.0,50,true,,
+Iced Spanish Latte Extra Large,,DRINK,120.0,50,true,,
+Icy Choco with Pearls,,DRINK,90.0,50,true,,Extra Pearls:20.0;Extra Poppins Pearls:20.0
+Icy Tea,,DRINK,70.0,50,true,,
+Josh's Fav,Combo: Bunwich + Large Coffee,MEAL,140.0,50,true,,
+Justin Craving,Combo,MEAL,120.0,50,true,,
+Ken's Choice,Combo,MEAL,120.0,50,true,,
+Large Brewed Coffee,,DRINK,75.0,50,true,,
+Large Cafe Americano,,DRINK,95.0,50,true,,
+Large Choco Java,,DRINK,90.0,50,true,,
+Latte,Mocha or Caramel,DRINK,100.0,50,true,Mocha;Caramel,
+Medium Brewed Coffee,,DRINK,60.0,50,true,,
+Medium Cafe Americano,,DRINK,85.0,50,true,,
+Medium Choco Java,,DRINK,75.0,50,true,,
+Mushroom Madness,Duncreation,MEAL,105.0,50,true,,Cheese:35.0;Ham/Bacon:30.0;Spanish Sausage:30.0
+Pablo's Pick,Combo,MEAL,99.0,50,true,,
+Plain Croissant,,SNACK,65.0,50,true,,
+Plain Croissant Pack,Croissant bundle,SNACK,199.0,50,true,,
+Premium Donut (per piece),,DESSERT,44.0,50,true,,
+Premium Donuts 12-pc,,DESSERT,528.0,50,true,,
+Premium Donuts 6-pc,,DESSERT,264.0,50,true,,
+Premium Little Bunch,,SNACK,283.0,50,true,,
+Premium Munchkins (40 pcs),,SNACK,454.0,50,true,,
+Premium Munchkins (single pc),,SNACK,12.0,50,true,,
+Smores Donut,New,DESSERT,50.0,50,true,,
+Spanish Latte Large,,DRINK,110.0,50,true,,
+Spanish Sausage Bunwich,,MEAL,75.0,50,true,,Cheese:35.0;Ham/Bacon:30.0;Spanish Sausage:30.0
+Spanish Sausage Croissant,,MEAL,120.0,50,true,,Cheese:35.0;Ham/Bacon:30.0;Spanish Sausage:30.0
+Stell's Selection,Combo,MEAL,109.0,50,true,,
+Supreme Bundle,3 Premium + 15 Classics,DESSERT,475.0,50,true,,
+Taro Milk Tea,,DRINK,125.0,50,true,,Extra Pearls:20.0;Extra Poppins Pearls:20.0
+Tuna Bunwich,,MEAL,75.0,50,true,,Cheese:35.0;Ham/Bacon:30.0;Spanish Sausage:30.0
+Tuna Croissant,,MEAL,120.0,50,true,,Cheese:35.0;Ham/Bacon:30.0;Spanish Sausage:30.0
+UBE Champoatrado,Breakfast,MEAL,192.0,50,true,,
+Ultimate Bundle,12 Premium + 12 Classics,DESSERT,750.0,50,true,,

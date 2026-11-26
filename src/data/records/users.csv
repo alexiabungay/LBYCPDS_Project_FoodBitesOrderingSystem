@@ -1,2 +1,1 @@
 user_id,role,name,email,phone,password_hash,restaurant_id,registered_at
-1,ADMINISTRATOR,Food Bites Admin,admin@foodbites.ph,09170000000,60fe74406e7f353ed979f350f2fbb6a2e8690a5fa7d1b0c32983d1d8b3f95f67,-1,2026-11-19 09:53:53
